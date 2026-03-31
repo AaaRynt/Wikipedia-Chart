@@ -1,4 +1,10 @@
+import { Header } from './layout/header'
+
 // src/components/App.tsx
-export default function App() {
-  return <div className="flex min-h-screen flex-col items-center bg-[#282c34] text-gray-200">Hello, World!</div>
+export function App() {
+  return (
+    <div className="bg-background text-foreground flex min-h-screen flex-col items-center">
+      <Header />
+    </div>
+  )
 }
