@@ -1,0 +1,29 @@
+version: 2
+
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'saturday'
+      time: '09:00'
+
+    open-pull-requests-limit: 5
+
+    allow:
+      - dependency-type: 'direct'
+
+    # 分组（关键）
+    groups:
+      frontend:
+        patterns:
+          - 'react*'
+          - 'vite*'
+          - '@types/*'
+
+    # 只忽略高风险库的 major
+    ignore:
+      - dependency-name: 'vite'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'react'
+        update-types: ['version-update:semver-major']
