@@ -19,7 +19,7 @@ export function DatePickerWithRange() {
   })
 
   return (
-    <Field className="mx-auto w-60">
+    <Field className="w-60">
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outline" id="date-picker-range" className="cursor-pointer justify-start font-normal">

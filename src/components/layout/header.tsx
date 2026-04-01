@@ -5,7 +5,7 @@ import { ButtonGroup } from '@/components/ui'
 
 export function Header() {
   return (
-    <header className="justify-between p-4">
+    <header className="justify-between px-4 py-2">
       <a
         className="flex items-center gap-2 hover:underline"
         href="https://github.com/AaaRynt/Wikipedia-Chart"

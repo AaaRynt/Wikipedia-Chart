@@ -1,6 +1,35 @@
 // src/data/keys.ts
-export const keys: { label: string; value: string[]; align: 'start' | 'center' | 'end' }[] = [
-  { label: 'granularity', value: ['daily', 'monthly'], align: 'start' },
-  { label: 'access', value: ['all-access', 'desktop', 'mobile-app', 'mobile-web'], align: 'center' },
-  { label: 'agent', value: ['all-agents', 'automated', 'spider', 'user'], align: 'end' },
+import {
+  Ri24HoursLine,
+  RiCalendarScheduleLine,
+  RiDeviceLine,
+  RiComputerLine,
+  RiAppsLine,
+  RiSmartphoneLine,
+  RiGlobalLine,
+  RiSeoLine,
+  RiBugLine,
+  RiUserLine,
+} from '@remixicon/react'
+import type { Tkey } from '@/data/types'
+
+export const keys: Tkey[] = [
+  {
+    label: 'granularity',
+    value: ['daily', 'monthly'],
+    svg: [Ri24HoursLine, RiCalendarScheduleLine],
+    align: 'start',
+  },
+  {
+    label: 'access',
+    value: ['all-access', 'desktop', 'mobile-app', 'mobile-web'],
+    svg: [RiDeviceLine, RiComputerLine, RiAppsLine, RiSmartphoneLine],
+    align: 'center',
+  },
+  {
+    label: 'agent',
+    value: ['all-agents', 'automated', 'spider', 'user'],
+    svg: [RiGlobalLine, RiSeoLine, RiBugLine, RiUserLine],
+    align: 'end',
+  },
 ]

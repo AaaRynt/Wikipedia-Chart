@@ -19,3 +19,10 @@ export type Tres = {
   agent: 'all-agents' | 'automated' | 'spider' | 'user'
   views: number
 }
+
+export type Tkey = {
+  label: string
+  value: string[]
+  svg: React.ElementType[]
+  align: 'start' | 'center' | 'end'
+}
