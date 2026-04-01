@@ -1,8 +1,7 @@
 // src/components/layout/header.tsx
 import { RiGithubFill } from '@remixicon/react'
-import { ButtonGroup } from '../ui'
-import { Download, KeySelect, ThemeToggle } from '../features'
-import { keys } from '../../data/keys'
+import { Download, Search, ThemeToggle } from '@/components/features'
+import { ButtonGroup } from '@/components/ui'
 
 export function Header() {
   return (
@@ -13,17 +12,13 @@ export function Header() {
         target="_blank"
       >
         <RiGithubFill />
-        <div className="font-mono text-sm">Wikipedia-Chart</div>
+        <div className="font-mono text-sm">Wikipedia Chart</div>
       </a>
-      <div className="flex gap-2">
-        {keys.map((key) => (
-          <KeySelect keys={key} align={key.align} />
-        ))}
-        <ButtonGroup className="hidden sm:flex">
-          <Download />
-          <ThemeToggle />
-        </ButtonGroup>
-      </div>
+      <Search />
+      <ButtonGroup className="hidden sm:flex">
+        <Download />
+        <ThemeToggle />
+      </ButtonGroup>
     </header>
   )
 }

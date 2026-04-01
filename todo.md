@@ -4,6 +4,8 @@
 
 <https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/automated/Russo-Ukrainian_war/daily/20220301/20220307>
 
+pageviews 系列数据自 2015 年 7 月 1 日开始提供
+
 DEADLINE：清明节假期终焉
 灵感来源：
 

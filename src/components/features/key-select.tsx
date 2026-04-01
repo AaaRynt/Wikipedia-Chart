@@ -1,5 +1,14 @@
 // src/components/features/key-select.tsx
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { format } from '@/lib/format'
 
 export function KeySelect({
   keys,
@@ -10,15 +19,15 @@ export function KeySelect({
 }) {
   return (
     <Select>
-      <SelectTrigger className="w-auto">
-        <SelectValue placeholder={keys.value[0]} />
+      <SelectTrigger className="w-auto cursor-pointer">
+        <SelectValue placeholder={format(keys.value[0])} />
       </SelectTrigger>
       <SelectContent position="popper" align={align}>
         <SelectGroup>
-          <SelectLabel>{keys.label}</SelectLabel>
-          {keys.value.map((key) => (
-            <SelectItem key={key} value={key}>
-              {key}
+          <SelectLabel>{format(keys.label)}</SelectLabel>
+          {keys.value.map((value) => (
+            <SelectItem key={value} value={value}>
+              {format(value)}
             </SelectItem>
           ))}
         </SelectGroup>
