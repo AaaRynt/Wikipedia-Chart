@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { format } from '@/lib/format'
+import { formatKey } from '@/lib/format'
 import type { Tkey } from '@/data/types'
 
 export function KeySelect({ pKey }: { pKey: Tkey }) {
@@ -20,20 +20,20 @@ export function KeySelect({ pKey }: { pKey: Tkey }) {
           placeholder={
             <>
               <Icon className="text-muted-foreground" />
-              {format(pKey.value[0])}
+              {formatKey(pKey.value[0], false)}
             </>
           }
         />
       </SelectTrigger>
       <SelectContent position="popper" align={pKey.align}>
         <SelectGroup>
-          <SelectLabel>{format(pKey.label)}</SelectLabel>
+          <SelectLabel>{formatKey(pKey.label, false)}</SelectLabel>
           {pKey.value.map((value, index) => {
             const Icon = pKey.svg[index]
             return (
               <SelectItem key={value} value={value} className="flex items-center gap-2">
                 <Icon className="text-muted-foreground" />
-                {format(value)}
+                {formatKey(value, false)}
               </SelectItem>
             )
           })}

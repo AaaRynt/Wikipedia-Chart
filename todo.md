@@ -2,7 +2,7 @@
 
 [type](./src/data/types.ts)
 
-<https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/Russo-Ukrainian_war/daily/20220301/20220401>
+- <https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/Russo-Ukrainian_war/daily/20220301/20220401>
 
 pageviews 系列数据自 2015 年 7 月 1 日开始提供
 

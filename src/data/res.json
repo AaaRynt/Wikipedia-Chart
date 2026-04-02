@@ -4,6 +4,519 @@
       "project": "en.wikipedia",
       "article": "Russo-Ukrainian_war",
       "granularity": "daily",
+      "timestamp": "2022010200",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 5
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022010300",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 4
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022010400",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 2
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022010500",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 7
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022010700",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022010800",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 4
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022010900",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022011000",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 6
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022011100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 2
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022011200",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 1
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022011300",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 2
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022011400",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 2
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022011500",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 1
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022011600",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 1
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022011700",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022011800",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 2
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022011900",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022012000",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 1
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022012100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022012200",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 7
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022012300",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 6
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022012400",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 11
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022012500",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 6
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022012600",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 6
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022012700",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 6
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022012800",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 4
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022012900",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 5
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022013000",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022013100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 1
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022020100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 6
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022020200",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022020300",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022020400",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022020500",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022020600",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 2
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022020700",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 1
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022020800",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 6
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022020900",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022021000",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022021100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 2
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022021200",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 7
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022021300",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 4
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022021400",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 7
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022021500",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 6
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022021600",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 4
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022021700",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 6
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022021800",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 15
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022021900",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 6
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022022000",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 3
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022022100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 18
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022022200",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 20
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022022300",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 54
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022022400",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 264
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022022500",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 855
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022022600",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 1186
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022022700",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 656
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
+      "timestamp": "2022022800",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 384
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "Russo-Ukrainian_war",
+      "granularity": "daily",
       "timestamp": "2022030100",
       "access": "all-access",
       "agent": "all-agents",
@@ -2759,537 +3272,6 @@
       "article": "Russo-Ukrainian_war",
       "granularity": "daily",
       "timestamp": "2023010100",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 120
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023010200",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 129
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023010300",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 152
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023010400",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 138
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023010500",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 129
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023010600",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 124
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023010700",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 121
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023010800",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 133
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023010900",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 145
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023011000",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 126
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023011100",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 183
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023011200",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 160
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023011300",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 121
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023011400",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 155
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023011500",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 156
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023011600",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 202
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023011700",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 167
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023011800",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 167
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023011900",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 156
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023012000",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 153
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023012100",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 142
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023012200",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 152
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023012300",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 149
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023012400",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 137
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023012500",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 164
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023012600",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 173
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023012700",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 162
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023012800",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 149
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023012900",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 205
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023013000",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 183
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023013100",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 131
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023020100",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 90
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023020200",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 84
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023020300",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 81
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023020400",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 86
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023020500",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 93
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023020600",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 104
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023020700",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 75
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023020800",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 121
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023020900",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 105
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023021000",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 155
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023021100",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 107
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023021200",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 143
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023021300",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 138
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023021400",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 136
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023021500",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 114
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023021600",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 137
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023021700",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 100
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023021800",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 105
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023021900",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 122
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023022000",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 129
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023022100",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 167
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023022200",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 157
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023022300",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 153
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023022400",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 249
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023022500",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 151
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023022600",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 143
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023022700",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 137
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023022800",
-      "access": "all-access",
-      "agent": "all-agents",
-      "views": 116
-    },
-    {
-      "project": "en.wikipedia",
-      "article": "Russo-Ukrainian_war",
-      "granularity": "daily",
-      "timestamp": "2023030100",
       "access": "all-access",
       "agent": "all-agents",
       "views": 120

@@ -30,7 +30,7 @@ export function DatePickerWithRange() {
                   {format(date.from, 'yyyy, M/d')} - {format(date.to, 'yyyy, M/d')}
                 </>
               ) : (
-                format(date.from, 'yyyy M/d')
+                format(date.from, 'yyyy, M/d')
               )
             ) : (
               <span>Pick a date</span>
