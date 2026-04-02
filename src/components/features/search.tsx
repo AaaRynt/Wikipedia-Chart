@@ -13,7 +13,7 @@ import {
 export function Search() {
   const [open, setOpen] = useState(false)
   return (
-    <Command className="relative max-w-xl overflow-visible border">
+    <Command className="relative max-w-2xl flex-1 overflow-visible border">
       <CommandInput
         placeholder="Type a command or search..."
         onClick={() => setOpen((prev) => !prev)}

@@ -12,7 +12,7 @@ export function ThemeToggle() {
     <Button
       className="cursor-pointer active:translate-y-0!"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      size="icon"
+      size="icon-lg"
       variant="outline"
     >
       <Icon />

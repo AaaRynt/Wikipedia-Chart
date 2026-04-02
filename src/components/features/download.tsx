@@ -4,7 +4,7 @@ import { RiDownload2Line } from '@remixicon/react'
 
 export function Download() {
   return (
-    <Button className="cursor-pointer" size="icon" variant="outline">
+    <Button className="cursor-pointer" size="icon-lg" variant="outline">
       <RiDownload2Line />
     </Button>
   )

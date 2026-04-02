@@ -28,8 +28,8 @@ export const keys: Tkey[] = [
   },
   {
     label: 'agent',
-    value: ['all-agents', 'automated', 'spider', 'user'],
-    svg: [RiGlobalLine, RiSeoLine, RiBugLine, RiUserLine],
+    value: ['all-agents', 'user', 'spider', 'automated'],
+    svg: [RiGlobalLine, RiUserLine, RiBugLine, RiSeoLine],
     align: 'end',
   },
 ]
