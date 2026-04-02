@@ -3,7 +3,7 @@ import { Header, Main, Footer } from './layout'
 
 export function App() {
   return (
-    <div className="bg-background text-foreground flex min-h-screen flex-col items-center transition-colors duration-300 *:flex *:w-full *:items-center">
+    <div className="bg-background text-foreground flex min-h-screen flex-col items-center *:flex *:w-full *:items-center">
       <Header />
       <Main />
       <Footer />

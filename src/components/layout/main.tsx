@@ -4,7 +4,7 @@ import type { Tres } from '@/data/types'
 import { format } from 'date-fns'
 import { formatKey } from '@/lib/format'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui'
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, Legend, XAxis, YAxis } from 'recharts'
 
 export function Main() {
   const [res, setRes] = useState<Tres[]>([])
@@ -40,13 +40,14 @@ export function Main() {
       <Card className="h-[80vh] w-4/5">
         {res.length > 0 && (
           <>
+            {/* 后期把Title改成输入的，判断加载只判断Content */}
             <CardHeader>
               <CardTitle>{formatKey(res[0].article, true)}</CardTitle>
             </CardHeader>
             <CardContent className="h-full">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData} margin={{ top: 10, right: 24, left: 0, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="5 10" />
+                  <CartesianGrid stroke="var(--muted)" vertical={false} />
                   <XAxis
                     dataKey="time"
                     type="number"
@@ -54,8 +55,9 @@ export function Main() {
                     tickFormatter={(value) => format(new Date(value), 'MMM')}
                     tickLine={false}
                     axisLine={false}
+                    tickMargin={8}
                   />
-                  <YAxis />
+                  <YAxis tickLine={false} axisLine={false} tickMargin={8} />
                   <Tooltip
                     contentStyle={{
                       color: 'var(--popover-foreground)',
@@ -63,17 +65,18 @@ export function Main() {
                       border: '1px solid var(--border)',
                       borderRadius: 'var(--radius)',
                     }}
-                    labelFormatter={(value) => format(new Date(value as number), 'MMM d, yyyy')}
-                    formatter={(value) => [`${value}`, 'views']}
+                    labelFormatter={(value) => format(new Date(value as number), 'yyyy, M/d')}
+                    formatter={(value) => [`${value}`, `${(value as number) >= 2 ? 'views' : 'view'}`]}
                   />
                   <Line
                     type="monotone"
                     dataKey="views"
-                    stroke="#aaaaff"
-                    strokeWidth={1}
+                    stroke="var(--chart-1)"
+                    strokeWidth={2}
                     dot={{ r: 0 }}
                     activeDot={{ r: 2 }}
                   />
+                  <Legend />
                 </LineChart>
               </ResponsiveContainer>
             </CardContent>
