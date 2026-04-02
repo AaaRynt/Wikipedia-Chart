@@ -29,7 +29,7 @@ export const keys: Tkey[] = [
   {
     label: 'agent',
     value: ['all-agents', 'user', 'spider', 'automated'],
-    svg: [RiGlobalLine, RiUserLine, RiBugLine, RiSeoLine],
+    svg: [RiGlobalLine, RiUserLine, RiSeoLine, RiBugLine],
     align: 'end',
   },
 ]

@@ -13,8 +13,9 @@ import {
 export function Search() {
   const [open, setOpen] = useState(false)
   return (
-    <Command className="relative max-w-2xl flex-1 overflow-visible border">
+    <Command className="relative max-w-2xl flex-1 overflow-visible border duration-300">
       <CommandInput
+        className="duration-300"
         placeholder="Type a command or search..."
         onClick={() => setOpen((prev) => !prev)}
         onFocus={() => setOpen(true)}
