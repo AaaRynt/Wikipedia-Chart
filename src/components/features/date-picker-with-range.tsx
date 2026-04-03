@@ -12,11 +12,24 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 const userLocale = navigator.language || 'en-US'
 
-export function DatePickerWithRange() {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(new Date().getFullYear(), 0, 20),
-    to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
-  })
+const defaultRange = {
+  from: new Date(new Date().getFullYear(), 0, 20),
+  to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
+}
+
+export function DatePickerWithRange({
+  value,
+  onChange,
+}: {
+  value?: DateRange
+  onChange?: (range: DateRange | undefined) => void
+}) {
+  const [date, setDate] = React.useState<DateRange | undefined>(value ?? defaultRange)
+
+  React.useEffect(() => {
+    if (!value?.from && !value?.to) return
+    setDate(value)
+  }, [value, value?.from, value?.to])
 
   return (
     <Field className="w-60">
@@ -43,7 +56,10 @@ export function DatePickerWithRange() {
             captionLayout="dropdown"
             defaultMonth={date?.from}
             selected={date}
-            onSelect={setDate}
+            onSelect={(range) => {
+              setDate(range)
+              onChange?.(range)
+            }}
             numberOfMonths={2}
             startMonth={new Date(2015, 6)}
             endMonth={new Date()}

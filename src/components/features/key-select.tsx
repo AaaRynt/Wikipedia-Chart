@@ -11,10 +11,18 @@ import {
 import { formatKey } from '@/lib/format'
 import type { Tkey } from '@/data/types'
 
-export function KeySelect({ pKey }: { pKey: Tkey }) {
+export function KeySelect({
+  pKey,
+  value,
+  onValueChange,
+}: {
+  pKey: Tkey
+  value?: string
+  onValueChange?: (value: string) => void
+}) {
   const Icon = pKey.svg[0]
   return (
-    <Select>
+    <Select value={value} onValueChange={onValueChange}>
       <SelectTrigger className="w-33 cursor-pointer">
         <SelectValue
           placeholder={

@@ -6,18 +6,27 @@ import { formatKey } from '@/lib/format'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui'
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, Legend, XAxis, YAxis } from 'recharts'
 
-export function Main() {
+type Query = {
+  article: string
+  access: string
+  agent: string
+  granularity: string
+  start: string
+  end: string
+}
+
+export function Main({ query }: { query: Query }) {
   const [res, setRes] = useState<Tres[]>([])
 
   useEffect(() => {
     async function fetchRes() {
-      const url = `https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/Russo-Ukrainian_war/daily/20220101/20230101`
-      const res = await fetch(url)
-      const json = await res.json()
+      const url = `https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/${query.access}/${query.agent}/Russo-Ukrainian_war/${query.granularity}/${query.start}/${query.end}`
+      const temp = await fetch(url)
+      const json = await temp.json()
       setRes(json.items)
     }
     fetchRes()
-  }, [])
+  }, [query])
   const chartData = useMemo(
     () =>
       res
@@ -36,8 +45,8 @@ export function Main() {
   )
 
   return (
-    <main className="flex-1 flex-col justify-center">
-      <Card className="h-[80vh] w-4/5">
+    <main className="flex-1 flex-col justify-center px-8">
+      <Card className="h-[85vh] w-full">
         {res.length > 0 && (
           <>
             {/* 后期把Title改成输入的，判断加载只判断Content */}
