@@ -3,9 +3,9 @@ import type { TQuery } from '@/data/types'
 
 const date = new Date()
 date.setDate(date.getDate() - 2)
-const yyyy = date.getFullYear()
-const MM = String(date.getMonth() + 1).padStart(2, '0')
-const dd = String(date.getDate()).padStart(2, '0')
+const yyyy = date.getFullYear(),
+  MM = String(date.getMonth() + 1).padStart(2, '0'),
+  dd = String(date.getDate()).padStart(2, '0')
 
 export const defaultQuery: TQuery = {
   project: 'en.wikipedia',

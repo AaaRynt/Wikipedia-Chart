@@ -6,12 +6,11 @@ import * as React from 'react'
 import { type DateRange } from 'react-day-picker'
 import { Button, Calendar, Field, Popover, PopoverContent, PopoverTrigger } from '@/components/ui'
 
-const userLocale = navigator.language || 'en-US'
-
-const defaultRange = {
-  from: new Date(new Date().getFullYear(), 0, 20),
-  to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
-}
+const userLocale = navigator.language || 'en-US',
+  defaultRange = {
+    from: new Date(new Date().getFullYear(), 0, 20),
+    to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
+  }
 
 export function DatePickerWithRange({
   value,

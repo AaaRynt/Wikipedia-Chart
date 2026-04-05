@@ -10,9 +10,9 @@ export function Main({ query }: { query: TQuery }) {
 
   useEffect(() => {
     async function fetchRes() {
-      const url = `https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/${query.project}/${query.access}/${query.agent}/${query.article}/${query.granularity}/${query.start}/${query.end}`
-      const temp = await fetch(url)
-      const json = await temp.json()
+      const url = `https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/${query.project}/${query.access}/${query.agent}/${query.article}/${query.granularity}/${query.start}/${query.end}`,
+        temp = await fetch(url),
+        json = await temp.json()
       setRes(json.items)
     }
     fetchRes()
@@ -20,7 +20,7 @@ export function Main({ query }: { query: TQuery }) {
 
   return (
     <main className="flex-1 flex-col justify-center px-8">
-      <Card className="h-[85vh] w-full">{res.length > 0 ? <WikiChart res={res} query={query} /> : <Fault />}</Card>
+      <Card className="h-[85vh] w-full">{res.length > 0 ? <WikiChart res={res} /> : <Fault />}</Card>
     </main>
   )
 }

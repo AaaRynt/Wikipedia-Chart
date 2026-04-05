@@ -12,9 +12,9 @@ export function App() {
   const [query, setQuery] = useState<TQuery>(() => {
     if (typeof window === 'undefined') return defaultQuery
 
-    const parts = window.location.pathname.split('/').filter(Boolean)
-    const startIndex = parts.indexOf('Wikipedia-Chart') + 1
-    const [project, access, agent, article, granularity, start, end] = parts.slice(startIndex, startIndex + 7)
+    const parts = window.location.pathname.split('/').filter(Boolean),
+      startIndex = parts.indexOf('Wikipedia-Chart') + 1,
+      [project, access, agent, article, granularity, start, end] = parts.slice(startIndex, startIndex + 7)
     return {
       project: project || defaultQuery.project,
       article: article || defaultQuery.article,
@@ -28,9 +28,9 @@ export function App() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const base = import.meta.env.BASE_URL ?? '/'
-    const normalizedBase = base.endsWith('/') ? base : `${base}/`
-    const nextPath = `${normalizedBase}${query.project}/${query.access}/${query.agent}/${query.article}/${query.granularity}/${query.start}/${query.end}`
+    const base = import.meta.env.BASE_URL ?? '/',
+      normalizedBase = base.endsWith('/') ? base : `${base}/`,
+      nextPath = `${normalizedBase}${query.project}/${query.access}/${query.agent}/${query.article}/${query.granularity}/${query.start}/${query.end}`
     window.history.replaceState(null, '', nextPath)
   }, [query])
 
