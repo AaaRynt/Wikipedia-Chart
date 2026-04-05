@@ -1,7 +1,7 @@
 // src/components/layout/main.tsx
 // https://recharts.org/
 import { useEffect, useState } from 'react'
-import { Empty, Fault } from '@/components/main'
+import { Fault, WikiChart } from '@/components/main'
 import { Card } from '@/components/ui'
 import type { TQuery, TRes } from '@/data/types'
 
@@ -20,14 +20,7 @@ export function Main({ query }: { query: TQuery }) {
 
   return (
     <main className="flex-1 flex-col justify-center px-8">
-      <Card className="h-[85vh] w-full">
-        {res.length > 0 ? (
-          //  <WikiChart res={res} query={query} />
-          <Empty />
-        ) : (
-          <Fault />
-        )}
-      </Card>
+      <Card className="h-[85vh] w-full">{res.length > 0 ? <WikiChart res={res} query={query} /> : <Fault />}</Card>
     </main>
   )
 }

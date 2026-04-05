@@ -1,5 +1,5 @@
 // src/components/main/empty.tsx
-import { RiInformationLine } from '@remixicon/react'
+import { InfoIcon } from 'lucide-react'
 import { Alert, AlertDescription, AlertTitle, Badge, CardContent } from '@/components/ui'
 import { suggestions } from '@/data/suggestions'
 import { fisherYates } from '@/util/fisher–yates'
@@ -8,7 +8,7 @@ export function Empty() {
   return (
     <CardContent className="flex h-full items-center justify-center">
       <Alert className="text-secondary-foreground bg-secondary m w-md shadow-xl">
-        <RiInformationLine />
+        <InfoIcon />
         <AlertTitle>
           Please search for some article of&nbsp;
           <a href="https://www.wikipedia.org/" target="_blank" className="font-semibold no-underline! hover:underline!">

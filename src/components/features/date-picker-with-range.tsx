@@ -1,8 +1,7 @@
 // src/components/features/date-picker-with-range.tsx
 'use client'
-
-import { RiCalendar2Line } from '@remixicon/react'
 import { addDays, format } from 'date-fns'
+import { CalendarRangeIcon } from 'lucide-react'
 import * as React from 'react'
 import { type DateRange } from 'react-day-picker'
 import { Button, Calendar, Field, Popover, PopoverContent, PopoverTrigger } from '@/components/ui'
@@ -33,7 +32,7 @@ export function DatePickerWithRange({
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outline" id="date-picker-range" className="cursor-pointer justify-start font-normal">
-            <RiCalendar2Line />
+            <CalendarRangeIcon />
             {date?.from ? (
               date.to ? (
                 <>
