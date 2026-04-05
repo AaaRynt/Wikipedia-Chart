@@ -1,5 +1,5 @@
 // src/components/ui/theme-toggle.tsx
-import { RiSunFill, RiMoonFill } from '@remixicon/react'
+import { RiMoonFill, RiSunFill } from '@remixicon/react'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui'
 

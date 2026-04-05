@@ -6,11 +6,7 @@ import { Button, ButtonGroup } from '@/components/ui'
 export function Header() {
   return (
     <header className="justify-between gap-8 px-4 py-2">
-      <a
-        className="font-mono text-sm hover:underline"
-        href="https://github.com/AaaRynt/Wikipedia-Chart"
-        target="_blank"
-      >
+      <a className="font-mono text-sm hover:underline" href="/Wikipedia-Chart/" target="_self">
         Wikipedia Chart
       </a>
       <Search />

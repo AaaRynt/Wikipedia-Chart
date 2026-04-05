@@ -1,26 +1,18 @@
 // src/components/layout/main.tsx
-import { useEffect, useMemo, useState } from 'react'
-import type { Tres } from '@/data/types'
+// https://recharts.org/
 import { format } from 'date-fns'
+import { useEffect, useMemo, useState } from 'react'
+import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
+import type { TQuery, TRes } from '@/data/types'
 import { formatKey } from '@/lib/format'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui'
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, Legend, XAxis, YAxis } from 'recharts'
 
-type Query = {
-  article: string
-  access: string
-  agent: string
-  granularity: string
-  start: string
-  end: string
-}
-
-export function Main({ query }: { query: Query }) {
-  const [res, setRes] = useState<Tres[]>([])
+export function Main({ query }: { query: TQuery }) {
+  const [res, setRes] = useState<TRes[]>([])
 
   useEffect(() => {
     async function fetchRes() {
-      const url = `https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/${query.access}/${query.agent}/Russo-Ukrainian_war/${query.granularity}/${query.start}/${query.end}`
+      const url = `https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/${query.project}/${query.access}/${query.agent}/Russo-Ukrainian_war/${query.granularity}/${query.start}/${query.end}`
       const temp = await fetch(url)
       const json = await temp.json()
       setRes(json.items)
@@ -56,7 +48,7 @@ export function Main({ query }: { query: Query }) {
             <CardContent className="h-full">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData} margin={{ top: 10, right: 24, left: 0, bottom: 0 }}>
-                  <CartesianGrid stroke="var(--muted)" vertical={false} />
+                  <CartesianGrid stroke="var(--muted)" />
                   <XAxis
                     dataKey="time"
                     type="number"
@@ -68,6 +60,7 @@ export function Main({ query }: { query: Query }) {
                   />
                   <YAxis tickLine={false} axisLine={false} tickMargin={8} />
                   <Tooltip
+                    cursor={false}
                     contentStyle={{
                       color: 'var(--popover-foreground)',
                       backgroundColor: 'var(--popover)',
@@ -82,7 +75,7 @@ export function Main({ query }: { query: Query }) {
                     dataKey="views"
                     stroke="var(--chart-1)"
                     strokeWidth={2}
-                    dot={{ r: 0 }}
+                    dot={false}
                     activeDot={{ r: 2 }}
                   />
                   <Legend />

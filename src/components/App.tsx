@@ -1,36 +1,44 @@
 // src/components/App.tsx
 import { useEffect, useState } from 'react'
-import { Header, Main, Footer } from './layout'
+import type { TQuery } from '../data/types'
+import { Footer, Header, Main } from './layout'
 
-const defaultQuery = {
-  article: 'Russo-Ukrainian_war',
-  access: 'all-access',
-  agent: 'all-agents',
-  granularity: 'daily',
-  start: '20220101',
-  end: '20230101',
-}
-
-function parseQueryFromPath(pathname: string) {
-  const parts = pathname.split('/').filter(Boolean)
-  if (parts.length >= 6) {
-    const [access, agent, article, granularity, start, end] = parts.slice(-6)
-    return { ...defaultQuery, access, agent, article, granularity, start, end }
-  }
-  return defaultQuery
-}
+// 只忽略用户在URL末尾加的字段
+//[TODO] 暂不处理用户缺失或修改非法URL字段，导致无法查询数据的问题：
+// 返回默认查询，或者重定向到错误页面
 
 export function App() {
-  const [query, setQuery] = useState(() => {
+  const [query, setQuery] = useState<TQuery>(() => {
+    const defaultQuery: TQuery = {
+      project: 'en.wikipedia',
+      article: 'Russo-Ukrainian_war',
+      access: 'all-access',
+      agent: 'all-agents',
+      granularity: 'daily',
+      start: '20250101',
+      end: '20260101',
+    }
     if (typeof window === 'undefined') return defaultQuery
-    return parseQueryFromPath(window.location.pathname)
+
+    const parts = window.location.pathname.split('/').filter(Boolean)
+    const startIndex = parts.indexOf('Wikipedia-Chart') + 1
+    const [project, access, agent, article, granularity, start, end] = parts.slice(startIndex, startIndex + 7)
+    return {
+      project: project || defaultQuery.project,
+      article: article || defaultQuery.article,
+      access: (access as TQuery['access']) || defaultQuery.access,
+      agent: (agent as TQuery['agent']) || defaultQuery.agent,
+      granularity: (granularity as TQuery['granularity']) || defaultQuery.granularity,
+      start: start || defaultQuery.start,
+      end: end || defaultQuery.end,
+    }
   })
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     const base = import.meta.env.BASE_URL ?? '/'
     const normalizedBase = base.endsWith('/') ? base : `${base}/`
-    const nextPath = `${normalizedBase}${query.access}/${query.agent}/${query.article}/${query.granularity}/${query.start}/${query.end}`
+    const nextPath = `${normalizedBase}${query.project}/${query.access}/${query.agent}/${query.article}/${query.granularity}/${query.start}/${query.end}`
     window.history.replaceState(null, '', nextPath)
   }, [query])
 

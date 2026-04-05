@@ -7,16 +7,16 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+} from '@/components/ui'
+import type { TKey } from '@/data/types'
 import { formatKey } from '@/lib/format'
-import type { Tkey } from '@/data/types'
 
 export function KeySelect({
   pKey,
   value,
   onValueChange,
 }: {
-  pKey: Tkey
+  pKey: TKey
   value?: string
   onValueChange?: (value: string) => void
 }) {

@@ -1,14 +1,11 @@
 // src/components/features/date-picker-with-range.tsx
 'use client'
 
-import * as React from 'react'
-import { addDays, format } from 'date-fns'
 import { RiCalendar2Line } from '@remixicon/react'
+import { addDays, format } from 'date-fns'
+import * as React from 'react'
 import { type DateRange } from 'react-day-picker'
-import { Button } from '@/components/ui/button'
-import { Calendar } from '@/components/ui/calendar'
-import { Field } from '@/components/ui/field'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Button, Calendar, Field, Popover, PopoverContent, PopoverTrigger } from '@/components/ui'
 
 const userLocale = navigator.language || 'en-US'
 

@@ -1,17 +1,9 @@
 // src/components/layout/footer.tsx
-import * as React from 'react'
 import { format } from 'date-fns'
+import * as React from 'react'
 import { DatePickerWithRange, KeySelect } from '@/components/features'
 import { keys } from '@/data/keys'
-
-type Query = {
-  article: string
-  access: string
-  agent: string
-  granularity: string
-  start: string
-  end: string
-}
+import type { TQuery } from '@/data/types'
 
 function toDate(value: string) {
   const year = Number(value.slice(0, 4))
@@ -20,7 +12,7 @@ function toDate(value: string) {
   return new Date(year, month, day)
 }
 
-export function Footer({ query, setQuery }: { query: Query; setQuery: React.Dispatch<React.SetStateAction<Query>> }) {
+export function Footer({ query, setQuery }: { query: TQuery; setQuery: React.Dispatch<React.SetStateAction<TQuery>> }) {
   const rangeValue = React.useMemo(
     () => ({
       from: toDate(query.start),
@@ -50,7 +42,7 @@ export function Footer({ query, setQuery }: { query: Query; setQuery: React.Disp
             value={query[key.label as 'access' | 'agent' | 'granularity']}
             onValueChange={(value) => {
               setQuery((prev) => {
-                const label = key.label as keyof Query
+                const label = key.label as keyof TQuery
                 return { ...prev, [label]: value }
               })
             }}

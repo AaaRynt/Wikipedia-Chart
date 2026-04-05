@@ -4,6 +4,8 @@
   "semi": false,
   "printWidth": 120,
   "singleQuote": true,
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindFunctions": ["clsx", "cva"]
+  "plugins": ["prettier-plugin-tailwindcss", "@trivago/prettier-plugin-sort-imports"],
+  "tailwindFunctions": ["clsx", "cva"],
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^@/.*$", "^[./]"],
+  "importOrderSortSpecifiers": true
 }

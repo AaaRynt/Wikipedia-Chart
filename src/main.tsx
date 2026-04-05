@@ -1,6 +1,6 @@
+import { ThemeProvider } from 'next-themes'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ThemeProvider } from 'next-themes'
 import { App } from './components/App'
 import './index.css'
 

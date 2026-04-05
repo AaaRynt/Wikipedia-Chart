@@ -1,19 +1,19 @@
 // src/data/keys.ts
 import {
   Ri24HoursLine,
-  RiCalendarScheduleLine,
-  RiDeviceLine,
-  RiComputerLine,
   RiAppsLine,
-  RiSmartphoneLine,
+  RiBugLine,
+  RiCalendarScheduleLine,
+  RiComputerLine,
+  RiDeviceLine,
   RiGlobalLine,
   RiSeoLine,
-  RiBugLine,
+  RiSmartphoneLine,
   RiUserLine,
 } from '@remixicon/react'
-import type { Tkey } from '@/data/types'
+import type { TKey } from '@/data/types'
 
-export const keys: Tkey[] = [
+export const keys: TKey[] = [
   {
     label: 'granularity',
     value: ['daily', 'monthly'],

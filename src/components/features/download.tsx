@@ -1,6 +1,6 @@
 // src/components/ui/download.tsx
-import { Button } from '@/components/ui'
 import { RiDownload2Line } from '@remixicon/react'
+import { Button } from '@/components/ui'
 
 export function Download() {
   return (
