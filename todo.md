@@ -25,5 +25,3 @@ DEADLINE：清明节假期终焉
   - `.csv`
   - `.json`
 - 调用ai分析、跳转[LLM页面](https://chatgpt.com/?prompt=Help+me+understand...)
-- 暗黑/浅色模式切换
-- URL参数

@@ -59,7 +59,7 @@ export function DatePickerWithRange({
             }}
             numberOfMonths={2}
             startMonth={new Date(2015, 6)}
-            endMonth={new Date()}
+            endMonth={new Date(new Date().getFullYear(), new Date().getMonth())}
             formatters={{
               formatWeekdayName: (date) => date.toLocaleString(userLocale, { weekday: 'short' }),
             }}

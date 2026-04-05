@@ -1,6 +1,6 @@
 import * as React from 'react'
-import type { TooltipValueType } from 'recharts'
 import * as RechartsPrimitive from 'recharts'
+import type { TooltipValueType } from 'recharts'
 import { cn } from '@/lib/utils'
 
 // Format: { THEME_NAME: CSS_SELECTOR }
@@ -186,7 +186,7 @@ function ChartTooltipContent({
                     ) : (
                       !hideIndicator && (
                         <div
-                          className={cn('shrink-0 rounded-xs border-(--color-border) bg-(--color-bg)', {
+                          className={cn('shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)', {
                             'h-2.5 w-2.5': indicator === 'dot',
                             'w-1': indicator === 'line',
                             'w-0 border-[1.5px] border-dashed bg-transparent': indicator === 'dashed',
@@ -262,7 +262,7 @@ function ChartLegendContent({
                 <itemConfig.icon />
               ) : (
                 <div
-                  className="h-2 w-2 shrink-0 rounded-xs"
+                  className="h-2 w-2 shrink-0 rounded-[2px]"
                   style={{
                     backgroundColor: item.color,
                   }}
