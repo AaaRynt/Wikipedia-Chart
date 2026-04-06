@@ -3,6 +3,7 @@ import { InfoIcon } from 'lucide-react'
 import { Alert, AlertDescription, AlertTitle, Badge, CardContent } from '@/components/ui'
 import { suggestions } from '@/data/suggestions'
 import { fisherYates } from '@/util/fisher–yates'
+import { formatKey } from '@/util/format'
 
 export function Empty() {
   return (
@@ -24,7 +25,7 @@ export function Empty() {
                 <li>
                   <Badge variant="outline" className="cursor-pointer">
                     <a href="" className="no-underline! hover:underline!">
-                      {word}
+                      {formatKey(word)}
                     </a>
                   </Badge>
                 </li>

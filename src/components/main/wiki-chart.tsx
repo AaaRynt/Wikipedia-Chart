@@ -46,17 +46,18 @@ export function WikiChart({ res }: { res: TRes[] }) {
             type="number"
             domain={['dataMin', 'dataMax']}
             ticks={monthTicks}
-            tickFormatter={(value) => format(new Date(value), 'M/d')}
+            tickFormatter={(value) => format(new Date(value), 'MMM')}
             tickMargin={8}
           />
           <YAxis tickLine={false} axisLine={false} tickMargin={8} />
           <Tooltip
             cursor={false}
             contentStyle={{
-              color: 'var(--popover-foreground)',
-              backgroundColor: 'var(--popover)',
+              color: 'var(--foreground)',
+              backgroundColor: 'var(--background)',
               border: '1px solid var(--border)',
               borderRadius: 'var(--radius)',
+              opacity: '0.8',
             }}
             labelFormatter={(value) => format(new Date(value as number), 'yyyy, M/d')}
             formatter={(value) => [`${value}`, `${(value as number) >= 2 ? 'views' : 'view'}`]}
@@ -69,7 +70,7 @@ export function WikiChart({ res }: { res: TRes[] }) {
             dot={false}
             activeDot={{ r: 2 }}
           />
-          <Legend formatter={() => formatKey(res[0].article, true)} />
+          <Legend formatter={() => formatKey(res[0].article)} />
         </LineChart>
       </ResponsiveContainer>
     </CardContent>

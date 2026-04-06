@@ -1,8 +1,9 @@
-// src/components/main/fault.tsx
+// src/components/main/Loading.tsx
 import { useEffect, useState } from 'react'
 import { Alert, AlertTitle, CardContent } from '@/components/ui'
+import { Spinner } from '@/components/ui/spinner'
 
-export function Fault() {
+export function Loading() {
   const [dots, setDots] = useState('.')
 
   useEffect(() => {
@@ -15,11 +16,13 @@ export function Fault() {
 
     return () => clearInterval(timer)
   }, [])
-
   return (
     <CardContent className="flex h-full items-center justify-center">
-      <Alert className="text-secondary-foreground bg-secondary w-40 rounded-xl py-4 pl-6 text-xl font-bold shadow-xl">
-        <AlertTitle>LOADING {dots}</AlertTitle>
+      <Alert className="text-card bg-card-foreground w-48 rounded-full shadow-xl">
+        <AlertTitle className="flex items-center gap-1">
+          <Spinner className="size-6" />
+          <span className="text-2xl font-bold">LOADING{dots}</span>
+        </AlertTitle>
       </Alert>
     </CardContent>
   )
