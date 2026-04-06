@@ -36,7 +36,7 @@ export function App() {
 
   return (
     <div className="bg-background text-foreground flex min-h-screen flex-col items-center *:flex *:w-full *:items-center">
-      <Header />
+      <Header setQuery={setQuery} />
       <Main query={query} />
       <Footer query={query} setQuery={setQuery} />
     </div>

@@ -1,7 +1,6 @@
 // src/components/main/Loading.tsx
 import { useEffect, useState } from 'react'
-import { Alert, AlertTitle, CardContent } from '@/components/ui'
-import { Spinner } from '@/components/ui/spinner'
+import { Alert, AlertTitle, CardContent, Spinner } from '@/components/ui'
 
 export function Loading() {
   const [dots, setDots] = useState('.')
