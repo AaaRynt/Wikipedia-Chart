@@ -1,58 +1,71 @@
 // src/components/ui/download.tsx
-import { DownloadIcon } from 'lucide-react'
-import { Button } from '@/components/ui'
+import { toPng, toSvg } from 'html-to-image'
+import { ChartSplineIcon, DownloadIcon, FileImageIcon } from 'lucide-react'
+import { Button, HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui'
+import type { TQuery } from '@/data/types'
 
-function downloadSvgAsPng(svg: SVGSVGElement, filename: string) {
-  const cloned = svg.cloneNode(true) as SVGSVGElement
-  cloned.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-  const serializer = new XMLSerializer()
-  const source = serializer.serializeToString(cloned)
-  const svgBlob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' })
-  const url = URL.createObjectURL(svgBlob)
-
-  const image = new Image()
-  image.onload = () => {
-    const ratio = window.devicePixelRatio || 1
-    const width = svg.clientWidth || Number(svg.getAttribute('width')) || 800
-    const height = svg.clientHeight || Number(svg.getAttribute('height')) || 450
-    const canvas = document.createElement('canvas')
-    canvas.width = width * ratio
-    canvas.height = height * ratio
-    const ctx = canvas.getContext('2d')
-    if (ctx) {
-      ctx.scale(ratio, ratio)
-      ctx.fillStyle = 'white'
-      ctx.fillRect(0, 0, width, height)
-      ctx.drawImage(image, 0, 0, width, height)
-      const pngUrl = canvas.toDataURL('image/png')
-      const a = document.createElement('a')
-      a.href = pngUrl
-      a.download = filename
-      a.click()
-    }
-    URL.revokeObjectURL(url)
-  }
-  image.src = url
+function buildFilename(query: TQuery) {
+  const title = query.article.replace(/\s+/g, '_')
+  return `${title}_${query.start}-${query.end}`
 }
 
-export function Download({ chartReady, chartNode }: { chartReady: boolean; chartNode: HTMLDivElement | null }) {
-  const handleClick = () => {
+async function downloadPng(node: HTMLElement, filename: string) {
+  const dataUrl = await toPng(node, { cacheBust: true, pixelRatio: 2 })
+  const a = document.createElement('a')
+  a.href = dataUrl
+  a.download = `${filename}.png`
+  a.click()
+}
+
+async function downloadSvg(node: HTMLElement, filename: string) {
+  const dataUrl = await toSvg(node, { cacheBust: true })
+  const a = document.createElement('a')
+  a.href = dataUrl
+  a.download = `${filename}.svg`
+  a.click()
+}
+
+export function Download({
+  chartReady,
+  chartNode,
+  query,
+}: {
+  chartReady: boolean
+  chartNode: HTMLDivElement | null
+  query: TQuery
+}) {
+  const handleSvg = async () => {
     if (!chartNode) return
-    const svg = chartNode.querySelector('svg')
-    if (!svg) return
-    downloadSvgAsPng(svg, 'wikipedia-chart.png')
+    await downloadSvg(chartNode, buildFilename(query))
+  }
+  const handlePng = async () => {
+    if (!chartNode) return
+    await downloadPng(chartNode, buildFilename(query))
   }
 
   return (
-    <Button
-      className="cursor-pointer"
-      size="icon-lg"
-      variant="outline"
-      onClick={handleClick}
-      disabled={!chartReady}
-      aria-disabled={!chartReady}
-    >
-      <DownloadIcon />
-    </Button>
+    <HoverCard openDelay={10} closeDelay={100}>
+      <HoverCardTrigger asChild>
+        <Button
+          className="cursor-help active:translate-y-0!"
+          size="icon-lg"
+          variant="outline"
+          disabled={!chartReady}
+          aria-disabled={!chartReady}
+        >
+          <DownloadIcon />
+          <HoverCardContent className="flex w-auto gap-2 shadow-xl" side="bottom">
+            <Button className="cursor-pointer" variant="secondary" onClick={handleSvg}>
+              <ChartSplineIcon />
+              <span className="font-mono">.svg</span>
+            </Button>
+            <Button className="cursor-pointer" variant="secondary" onClick={handlePng}>
+              <FileImageIcon />
+              <span className="font-mono">.png</span>
+            </Button>
+          </HoverCardContent>
+        </Button>
+      </HoverCardTrigger>
+    </HoverCard>
   )
 }

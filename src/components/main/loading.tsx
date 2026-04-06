@@ -18,7 +18,7 @@ export function Loading() {
   return (
     <CardContent className="flex h-full items-center justify-center">
       <Alert className="text-card bg-card-foreground w-48 rounded-full shadow-xl">
-        <AlertTitle className="flex items-center gap-1">
+        <AlertTitle className="flex items-center gap-1 select-none">
           <Spinner className="size-6" />
           <span className="text-2xl font-bold">LOADING{dots}</span>
         </AlertTitle>

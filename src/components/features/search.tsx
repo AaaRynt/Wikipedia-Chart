@@ -7,6 +7,7 @@ import { SearchIcon, TextSearchIcon } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
 import {
+  Badge,
   Button,
   Command,
   CommandDialog,
@@ -20,6 +21,7 @@ import {
   ItemDescription,
   ItemMedia,
   ItemTitle,
+  Spinner,
 } from '@/components/ui'
 import type { SearchResponse, TQuery } from '@/data/types'
 
@@ -92,7 +94,12 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
           <CommandInput placeholder="search..." value={keyword} onValueChange={setKeyword} />
           <CommandList>
             {loading ? (
-              <CommandEmpty>Loading...</CommandEmpty>
+              <CommandEmpty>
+                <Badge variant="secondary">
+                  <span>Loading</span>
+                  <Spinner data-icon="inline-end" />
+                </Badge>
+              </CommandEmpty>
             ) : results.length === 0 ? (
               <CommandEmpty>No results found¯\_(ツ)_/¯</CommandEmpty>
             ) : (

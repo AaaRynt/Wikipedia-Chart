@@ -9,10 +9,12 @@ export function Header({
   setQuery,
   chartReady,
   chartNode,
+  query,
 }: {
   setQuery: Dispatch<SetStateAction<TQuery>>
   chartReady: boolean
   chartNode: HTMLDivElement | null
+  query: TQuery
 }) {
   return (
     <header className="justify-between gap-8 px-4 py-2">
@@ -22,7 +24,7 @@ export function Header({
       <Search setQuery={setQuery} />
       <div className="flex gap-4">
         <ButtonGroup className="hidden sm:flex">
-          <Download chartReady={chartReady} chartNode={chartNode} />
+          <Download chartReady={chartReady} chartNode={chartNode} query={query} />
           <ThemeToggle />
         </ButtonGroup>
         <Button asChild variant="outline" size="icon-lg">

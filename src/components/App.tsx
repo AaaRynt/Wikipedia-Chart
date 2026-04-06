@@ -38,7 +38,7 @@ export function App() {
 
   return (
     <div className="bg-background text-foreground flex min-h-screen flex-col items-center *:flex *:w-full *:items-center">
-      <Header setQuery={setQuery} chartReady={chartReady} chartNode={chartNode} />
+      <Header setQuery={setQuery} chartReady={chartReady} chartNode={chartNode} query={query} />
       <Main query={query} onReady={setChartReady} onChartRef={setChartNode} />
       <Footer query={query} setQuery={setQuery} />
     </div>

@@ -42,6 +42,7 @@ import {
   FieldSet,
   FieldTitle,
 } from './field'
+import { HoverCard, HoverCardContent, HoverCardTrigger } from './hover-card'
 import { Input } from './input'
 import {
   InputGroup,
@@ -152,6 +153,9 @@ export {
   FieldSeparator,
   FieldSet,
   FieldTitle,
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
   Input,
   InputGroup,
   InputGroupAddon,
