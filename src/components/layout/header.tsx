@@ -10,7 +10,7 @@ export function Header() {
         Wikipedia Chart
       </a>
       <Search />
-      <div className="flex gap-2">
+      <div className="flex gap-4">
         <ButtonGroup className="hidden sm:flex">
           <Download />
           <ThemeToggle />

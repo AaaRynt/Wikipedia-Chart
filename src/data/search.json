@@ -1,0 +1,108 @@
+{
+  "continue": {
+    "picontinue": 2399620,
+    "continue": "||pageprops|description"
+  },
+  "query": {
+    "pages": {
+      "514174": {
+        "pageid": 514174,
+        "ns": 0,
+        "title": "Open",
+        "index": 1,
+        "description": "Topics referred to by the same term",
+        "descriptionsource": "local"
+      },
+      "277663": {
+        "pageid": 277663,
+        "ns": 0,
+        "title": "Open-source software",
+        "index": 5,
+        "thumbnail": {
+          "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Debian_13_with_FOSS_software_open.png/120px-Debian_13_with_FOSS_software_open.png",
+          "width": 100,
+          "height": 56
+        },
+        "description": "Software licensed to ensure source code usage rights",
+        "descriptionsource": "local"
+      },
+      "48795986": {
+        "pageid": 48795986,
+        "ns": 0,
+        "title": "OpenAI",
+        "index": 2,
+        "description": "American artificial intelligence company",
+        "descriptionsource": "local"
+      },
+      "22497": {
+        "pageid": 22497,
+        "ns": 0,
+        "title": "OpenGL",
+        "index": 9,
+        "thumbnail": {
+          "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Linux_kernel_and_OpenGL_video_games.svg/120px-Linux_kernel_and_OpenGL_video_games.svg.png",
+          "width": 100,
+          "height": 75
+        },
+        "description": "Cross-platform graphics API",
+        "descriptionsource": "local"
+      },
+      "68227": {
+        "pageid": 68227,
+        "ns": 0,
+        "title": "OpenOffice.org",
+        "index": 10,
+        "thumbnail": {
+          "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/OOo_App_Chooser.png/120px-OOo_App_Chooser.png",
+          "width": 100,
+          "height": 67
+        },
+        "description": "Office suite software",
+        "descriptionsource": "local"
+      },
+      "2399620": {
+        "pageid": 2399620,
+        "ns": 0,
+        "title": "OpenSUSE",
+        "index": 7,
+        "pageprops": {
+          "displaytitle": "openSUSE"
+        },
+        "description": "Community-supported Linux distribution",
+        "descriptionsource": "local"
+      },
+      "2955470": {
+        "pageid": 2955470,
+        "ns": 0,
+        "title": "OpenStreetMap",
+        "index": 4,
+        "description": "Collaborative map database",
+        "descriptionsource": "local"
+      },
+      "36558073": {
+        "pageid": 36558073,
+        "ns": 0,
+        "title": "Open Era tennis records – Men's singles",
+        "index": 8,
+        "description": "",
+        "descriptionsource": "local"
+      },
+      "381219": {
+        "pageid": 381219,
+        "ns": 0,
+        "title": "Open access",
+        "index": 3,
+        "description": "Unrestricted availability of scholarly publications",
+        "descriptionsource": "local"
+      },
+      "59126142": {
+        "pageid": 59126142,
+        "ns": 0,
+        "title": "Open source",
+        "index": 6,
+        "description": "Source code made freely available",
+        "descriptionsource": "local"
+      }
+    }
+  }
+}

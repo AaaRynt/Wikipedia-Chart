@@ -45,3 +45,22 @@ export type TKey = {
   svg: React.ElementType[]
   align: 'start' | 'center' | 'end'
 }
+
+export type SearchResponse = {
+  query?: {
+    pages?: Record<
+      string,
+      {
+        pageid: number
+        index?: number
+        title: string
+        description?: string
+        thumbnail?: {
+          source: string
+          width: number
+          height: number
+        }
+      }
+    >
+  }
+}
