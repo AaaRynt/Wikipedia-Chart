@@ -9,6 +9,8 @@ import { Footer, Header, Main } from './layout'
 // 返回默认查询，或者重定向到错误页面
 
 export function App() {
+  const [chartReady, setChartReady] = useState(false)
+  const [chartNode, setChartNode] = useState<HTMLDivElement | null>(null)
   const [query, setQuery] = useState<TQuery>(() => {
     if (typeof window === 'undefined') return defaultQuery
 
@@ -36,8 +38,8 @@ export function App() {
 
   return (
     <div className="bg-background text-foreground flex min-h-screen flex-col items-center *:flex *:w-full *:items-center">
-      <Header setQuery={setQuery} />
-      <Main query={query} />
+      <Header setQuery={setQuery} chartReady={chartReady} chartNode={chartNode} />
+      <Main query={query} onReady={setChartReady} onChartRef={setChartNode} />
       <Footer query={query} setQuery={setQuery} />
     </div>
   )

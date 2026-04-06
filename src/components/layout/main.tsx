@@ -1,13 +1,22 @@
 // src/components/layout/main.tsx
 // https://recharts.org/
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Empty, Loading, WikiChart } from '@/components/main/index'
 import { Card } from '@/components/ui'
 import type { TQuery, TRes } from '@/data/types'
 
-export function Main({ query }: { query: TQuery }) {
+export function Main({
+  query,
+  onReady,
+  onChartRef,
+}: {
+  query: TQuery
+  onReady?: (ready: boolean) => void
+  onChartRef?: (node: HTMLDivElement | null) => void
+}) {
   const [res, setRes] = useState<TRes[]>([])
   const [loading, setLoading] = useState(false)
+  const cardRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     async function fetchRes() {
@@ -27,12 +36,20 @@ export function Main({ query }: { query: TQuery }) {
     }
     fetchRes()
   }, [query])
+  useEffect(() => {
+    onChartRef?.(cardRef.current)
+  }, [onChartRef])
+  useEffect(() => {
+    onReady?.(!loading && res.length > 0)
+  }, [loading, res.length, onReady])
 
   return (
     <main className="flex-1 flex-col justify-center px-8">
-      <Card className="h-[85vh] w-full">
-        {loading ? <Loading /> : res.length > 0 ? <WikiChart res={res} /> : <Empty />}
-      </Card>
+      <div ref={cardRef} className="w-full">
+        <Card className="h-[85vh] w-full">
+          {loading ? <Loading /> : res.length > 0 ? <WikiChart res={res} /> : <Empty />}
+        </Card>
+      </div>
     </main>
   )
 }
