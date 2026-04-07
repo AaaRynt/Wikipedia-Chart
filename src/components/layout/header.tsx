@@ -18,11 +18,12 @@ export function Header({
 }) {
   return (
     <header className="justify-between gap-8 px-4 py-2">
-      <a className="font-mono text-sm hover:underline" href="/Wikipedia-Chart/" target="_self">
+      <a className="font-mono text-sm hover:text-teal-500 hover:underline" href="/Wikipedia-Chart/" target="_self">
         Wikipedia Chart
       </a>
-      <Search setQuery={setQuery} />
-      <div className="flex gap-4">
+
+      <div className="flex items-center gap-4">
+        <Search setQuery={setQuery} />
         <ButtonGroup className="hidden sm:flex">
           <Download chartReady={chartReady} chartNode={chartNode} query={query} />
           <ThemeToggle />

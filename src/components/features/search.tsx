@@ -6,8 +6,9 @@ import 'lucide-react'
 import { SearchIcon, TextSearchIcon } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
+import { useDebounce } from 'use-debounce'
+import { Loading } from '@/components/features'
 import {
-  Badge,
   Button,
   Command,
   CommandDialog,
@@ -21,13 +22,13 @@ import {
   ItemDescription,
   ItemMedia,
   ItemTitle,
-  Spinner,
 } from '@/components/ui'
 import type { SearchResponse, TQuery } from '@/data/types'
 
 export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>> }) {
   const [open, setOpen] = useState(false)
   const [keyword, setKeyword] = useState('')
+  const [debouncedKeyword] = useDebounce(keyword, 200)
   const [loading, setLoading] = useState(false)
   const [pages, setPages] = useState<NonNullable<NonNullable<SearchResponse['query']>['pages']>[string][]>([])
   useEffect(() => {
@@ -41,7 +42,7 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
     return () => document.removeEventListener('keydown', down)
   }, [])
   useEffect(() => {
-    const nextKeyword = keyword.trim()
+    const nextKeyword = debouncedKeyword.trim()
     if (!nextKeyword) {
       setPages([])
       setLoading(false)
@@ -52,11 +53,7 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
     const run = async () => {
       setLoading(true)
       try {
-        const url =
-          'https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch' +
-          '&prop=pageprops|pageimages|description&redirects=&ppprop=displaytitle&piprop=thumbnail' +
-          `&pithumbsize=100&pilimit=5&gpssearch=${encodeURIComponent(nextKeyword)}` +
-          '&gpsnamespace=0&gpslimit=10&origin=*'
+        const url = `https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&prop=pageprops|pageimages|description&redirects=&ppprop=displaytitle&piprop=thumbnail&pithumbsize=100&pilimit=5&gpssearch=${encodeURIComponent(nextKeyword)}&gpsnamespace=0&gpslimit=10&origin=*`
         const res = await fetch(url, { signal: controller.signal })
         const json = (await res.json()) as SearchResponse
         const raw = json.query?.pages ?? {}
@@ -73,7 +70,7 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
 
     run()
     return () => controller.abort()
-  }, [keyword])
+  }, [debouncedKeyword])
 
   const results = useMemo(() => pages, [pages])
   const handleSelect = (title: string) => {
@@ -84,9 +81,8 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
 
   return (
     <>
-      <Button onClick={() => setOpen(true)} variant="outline" className="px-4">
+      <Button onClick={() => setOpen(true)} variant="outline" className="rounded-full px-6">
         <SearchIcon />
-        <span>Search</span>
         <CommandShortcut>⌘K</CommandShortcut>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -95,10 +91,7 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
           <CommandList>
             {loading ? (
               <CommandEmpty>
-                <Badge variant="secondary">
-                  <span>Loading</span>
-                  <Spinner data-icon="inline-end" />
-                </Badge>
+                <Loading size="small" />
               </CommandEmpty>
             ) : results.length === 0 ? (
               <CommandEmpty>No results found¯\_(ツ)_/¯</CommandEmpty>
