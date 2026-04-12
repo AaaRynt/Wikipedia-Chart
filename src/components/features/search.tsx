@@ -4,8 +4,7 @@
 
 import 'lucide-react'
 import { SearchIcon, TextSearchIcon } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
-import type { Dispatch, SetStateAction } from 'react'
+import { type Dispatch, type SetStateAction, useEffect, useMemo, useState } from 'react'
 import { useDebounce } from 'use-debounce'
 import { Loading } from '@/components/features'
 import {
