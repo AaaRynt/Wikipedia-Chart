@@ -25,11 +25,11 @@ import {
 import type { SearchResponse, TQuery } from '@/data/types'
 
 export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>> }) {
-  const [open, setOpen] = useState(false)
-  const [keyword, setKeyword] = useState('')
-  const [debouncedKeyword] = useDebounce(keyword, 200)
-  const [loading, setLoading] = useState(false)
-  const [pages, setPages] = useState<NonNullable<NonNullable<SearchResponse['query']>['pages']>[string][]>([])
+  const [open, setOpen] = useState(false),
+    [keyword, setKeyword] = useState(''),
+    [loading, setLoading] = useState(false),
+    [pages, setPages] = useState<NonNullable<NonNullable<SearchResponse['query']>['pages']>[string][]>([]),
+    [debouncedKeyword] = useDebounce(keyword, 200)
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {

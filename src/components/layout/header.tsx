@@ -18,7 +18,7 @@ export function Header({
 }) {
   return (
     <header className="justify-between gap-8 px-4 py-2">
-      <a className="font-mono text-sm hover:text-teal-500 hover:underline" href="/Wikipedia-Chart/" target="_self">
+      <a className="font-mono text-sm hover:underline" href="/Wikipedia-Chart/" target="_self">
         Wikipedia Chart
       </a>
 
