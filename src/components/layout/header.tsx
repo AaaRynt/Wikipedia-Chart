@@ -23,7 +23,7 @@ export function Header({
       </a>
 
       <div className="flex items-center gap-4">
-        <Search setQuery={setQuery} />
+        <Search query={query} setQuery={setQuery} />
         <ButtonGroup className="hidden sm:flex">
           <Download query={query} chartReady={chartReady} chartNode={chartNode} />
           <ThemeToggle />

@@ -1,21 +1,21 @@
 // src/components/main/empty.tsx
-import { ArrowUpRightIcon, InfoIcon } from 'lucide-react'
+import { ArrowUpRightIcon, GitCompareIcon, InfoIcon } from 'lucide-react'
 import { type Dispatch, type SetStateAction, useMemo } from 'react'
 import { Alert, AlertDescription, AlertTitle, Badge, CardContent } from '@/components/ui'
-import { suggestions } from '@/data/prompts'
+import { groups } from '@/data/prompts'
 import type { TQuery } from '@/data/types'
 import { fisherYates } from '@/util/fisher–yates'
 import { formatKey } from '@/util/format'
 
 export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>> }) {
-  const entries = useMemo(() => fisherYates([...suggestions]).slice(0, 20), [])
+  const entries = useMemo(() => fisherYates([...groups]), [])
 
   return (
     <CardContent className="flex h-full items-center justify-center">
       <Alert className="text-secondary-foreground bg-secondary w-full max-w-xl px-6 py-4 shadow-xl">
         <InfoIcon className="mt-1" />
         <AlertTitle className="text-base">
-          Search an article from&nbsp;
+          Compare article pageviews from&nbsp;
           <a
             href="https://www.wikipedia.org/"
             target="_blank"
@@ -26,18 +26,26 @@ export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>>
           </a>
         </AlertTitle>
         <AlertDescription className="space-y-4">
-          <p>Pick a suggestion to load its pageview chart:</p>
-          <div className="flex flex-wrap gap-x-1 gap-y-2">
-            {entries.map((prompt) => (
+          <p>Pick a group to load multiple lines, or use search to add articles one by one:</p>
+          <div className="flex flex-wrap gap-2">
+            {entries.map((entry) => (
               <Badge
-                key={prompt}
+                key={`${entry.title}-${entry.group.join('|')}`}
                 variant="outline"
-                className="bg-secondary h-7 cursor-pointer transition hover:brightness-125"
+                className="bg-secondary h-auto min-h-7 cursor-pointer gap-2 px-3 py-1 transition hover:brightness-125"
                 onClick={() => {
-                  setQuery((prev) => ({ ...prev, article: prompt }))
+                  setQuery((prev) => ({ ...prev, group: entry.group }))
                 }}
               >
-                {formatKey(prompt)}
+                {entry.title ? (
+                  <>
+                    <GitCompareIcon />
+                    <span>{formatKey(entry.title, false)}</span>
+                    <span className="text-muted-foreground">({entry.group.length})</span>
+                  </>
+                ) : (
+                  formatKey(entry.group[0])
+                )}
                 <ArrowUpRightIcon />
               </Badge>
             ))}

@@ -5,9 +5,9 @@ export type TQuery = {
    */
   project: string
   /**
-   * （空格用 _ 替代）
+   * Article titles for comparison. Spaces are replaced with underscores.
    */
-  article: string
+  group: string[]
   granularity: 'monthly' | 'daily'
   access: 'all-access' | 'desktop' | 'mobile-app' | 'mobile-web'
   agent: 'all-agents' | 'automated' | 'spider' | 'user'
@@ -39,6 +39,11 @@ export type TRes = {
   views: number
 }
 
+export type TArticleSeries = {
+  article: string
+  items: TRes[]
+}
+
 export type TKey = {
   label: string
   value: string[]
@@ -65,7 +70,7 @@ export type SearchResponse = {
   }
 }
 
-export type Tgroup = {
+export type TPromptGroups = {
   title: string
   group: string[]
 }[]

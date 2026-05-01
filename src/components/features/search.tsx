@@ -24,8 +24,9 @@ import {
   ItemTitle,
 } from '@/components/ui'
 import type { SearchResponse, TQuery } from '@/data/types'
+import { formatKey } from '@/util/format'
 
-export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>> }) {
+export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<SetStateAction<TQuery>> }) {
   const [open, setOpen] = useState(false),
     [keyword, setKeyword] = useState(''),
     [loading, setLoading] = useState(false),
@@ -76,17 +77,31 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
   const results = useMemo(() => pages, [pages])
   const handleSelect = (title: string) => {
     const article = title.replace(/\s+/g, '_')
-    setQuery((prev) => ({ ...prev, article }))
+    setQuery((prev) => {
+      if (prev.group.includes(article)) return prev
+      return { ...prev, group: [...prev.group, article] }
+    })
+    setKeyword('')
     setOpen(false)
   }
 
   return (
-    <>
+    <div className="flex min-w-0 items-center gap-2">
       <Button onClick={() => setOpen(true)} variant="outline" className="rounded-full px-6">
         <SearchIcon />
-        {['current', 'searching', 'test'].map((title) => (
-          <Current title={title} />
-        ))}
+        {query.group.length > 0 ? (
+          <div className="hidden max-w-[42vw] flex-wrap gap-1 md:flex">
+            {query.group.map((title) => (
+              <Current
+                key={title}
+                title={title}
+                onRemove={() => {
+                  setQuery((prev) => ({ ...prev, group: prev.group.filter((item) => item !== title) }))
+                }}
+              />
+            ))}
+          </div>
+        ) : null}
         <CommandShortcut>⌘K</CommandShortcut>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -136,18 +151,21 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
           </CommandList>
         </Command>
       </CommandDialog>
-    </>
+    </div>
   )
 }
 
-const Current = ({ title }: { title: string }) => {
+const Current = ({ title, onRemove }: { title: string; onRemove: () => void }) => {
   return (
-    <Badge variant="secondary">
-      {title}
+    <Badge variant="secondary" className="h-7 gap-1 pr-1 pl-2">
+      {formatKey(title)}
       <Button
+        type="button"
+        size="icon-xs"
         variant="ghost"
-        className="hover:bg-ring! text-muted-foreground hover:text-secondary-foreground size-4 cursor-pointer rounded-sm p-2"
-        onClick={() => {}}
+        aria-label={`Remove ${formatKey(title)}`}
+        className="hover:bg-ring! text-muted-foreground hover:text-secondary-foreground size-4 cursor-pointer rounded-full"
+        onClick={onRemove}
       >
         <XIcon />
       </Button>

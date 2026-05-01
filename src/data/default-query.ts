@@ -9,7 +9,7 @@ const yyyy = date.getFullYear(),
 
 export const defaultQuery: TQuery = {
   project: 'en.wikipedia',
-  article: 'Europa_(moon)',
+  group: [],
   access: 'all-access',
   agent: 'user',
   granularity: 'daily',

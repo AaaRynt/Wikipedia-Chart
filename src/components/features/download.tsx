@@ -5,8 +5,7 @@ import { Button, HoverCard, HoverCardContent, HoverCardTrigger } from '@/compone
 import type { TQuery } from '@/data/types'
 
 function buildFilename(query: TQuery) {
-  const title = query.article.replace(/\s+/g, '_')
-  return `${title}_${query.start}-${query.end}`
+  return `${query.group.join('_vs_')}_${query.start}-${query.end}`
 }
 
 async function downloadPng(node: HTMLElement, filename: string) {

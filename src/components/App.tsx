@@ -4,6 +4,20 @@ import { defaultQuery } from '@/data/default-query'
 import type { TQuery } from '@/data/types'
 import { Footer, Header, Main } from './layout'
 
+const GROUP_SEPARATOR = ','
+
+function parseGroup(value: string | undefined) {
+  if (!value) return []
+  return value
+    .split(GROUP_SEPARATOR)
+    .map((item) => decodeURIComponent(item))
+    .filter(Boolean)
+}
+
+function formatGroup(value: string[]) {
+  return value.map(encodeURIComponent).join(GROUP_SEPARATOR)
+}
+
 export function App() {
   const [chartReady, setChartReady] = useState(false)
   const [chartNode, setChartNode] = useState<HTMLDivElement | null>(null)
@@ -13,11 +27,11 @@ export function App() {
     const parts = window.location.pathname.split('/').filter(Boolean),
       startIndex = parts.indexOf('Wikipedia-Chart') + 1,
       routeParts = parts.slice(startIndex, startIndex + 7),
-      [project, access, agent, article, granularity, start, end] = routeParts
+      [project, access, agent, group, granularity, start, end] = routeParts
 
     return {
       project: project || defaultQuery.project,
-      article: routeParts.length >= 7 ? article || defaultQuery.article : '',
+      group: routeParts.length >= 7 ? parseGroup(group) : defaultQuery.group,
       access: (access as TQuery['access']) || defaultQuery.access,
       agent: (agent as TQuery['agent']) || defaultQuery.agent,
       granularity: (granularity as TQuery['granularity']) || defaultQuery.granularity,
@@ -30,9 +44,10 @@ export function App() {
     if (typeof window === 'undefined') return
     const base = import.meta.env.BASE_URL ?? '/',
       normalizedBase = base.endsWith('/') ? base : `${base}/`,
-      nextPath = query.article
-        ? `${normalizedBase}${query.project}/${query.access}/${query.agent}/${query.article}/${query.granularity}/${query.start}/${query.end}`
-        : normalizedBase
+      nextPath =
+        query.group.length > 0
+          ? `${normalizedBase}${query.project}/${query.access}/${query.agent}/${formatGroup(query.group)}/${query.granularity}/${query.start}/${query.end}`
+          : normalizedBase
 
     window.history.replaceState(null, '', nextPath)
   }, [query])

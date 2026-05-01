@@ -1,10 +1,10 @@
 // src/data/prompts.ts
-import { type Tgroup } from '@/data/types'
+import { type TPromptGroups } from '@/data/types'
 
-export const groups: Tgroup = [
-  { title: 'language', group: ['C++', 'JavaScript', 'python', 'Java'] },
+export const groups: TPromptGroups = [
+  { title: 'language', group: ['C++', 'JavaScript', 'Python_(programming_language)', 'Java_(programming_language)'] },
   { title: 'AI', group: ['ChatGPT', 'DeepSeek', 'Grok', 'Claude', 'Gemini'] },
-  { title: 'FE library', group: ['React', 'Vue.js', 'Angular'] },
+  { title: 'FE library', group: ['React_(JavaScript_library)', 'Vue.js', 'Angular_(web_framework)'] },
   { title: '', group: ['Adobe'] },
   { title: '', group: ['CSS'] },
   { title: '', group: ['World_War_II'] },

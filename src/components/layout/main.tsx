@@ -4,7 +4,7 @@ import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from 
 import { Loading } from '@/components/features'
 import { Empty, WikiChart } from '@/components/main/'
 import { Card, CardContent } from '@/components/ui'
-import type { TQuery, TRes } from '@/data/types'
+import type { TArticleSeries, TQuery } from '@/data/types'
 
 export function Main({
   query,
@@ -17,44 +17,60 @@ export function Main({
   setChartReady?: (ready: boolean) => void
   setChartNode?: (node: HTMLDivElement | null) => void
 }) {
-  const [res, setRes] = useState<TRes[]>([])
+  const [res, setRes] = useState<TArticleSeries[]>([])
   const [loading, setLoading] = useState(false)
   const cardRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    const controller = new AbortController()
+
     async function fetchRes() {
-      if (!query.article) {
+      if (query.group.length === 0) {
         setRes([])
+        setLoading(false)
         return
       }
 
       setLoading(true)
       try {
-        const segments = [
-          query.project,
-          query.access,
-          query.agent,
-          query.article,
-          query.granularity,
-          query.start,
-          query.end,
-        ].map(encodeURIComponent)
-        const url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/' + segments.join('/')
-        const temp = await fetch(url)
-        const json = await temp.json()
-        setRes(json.items ?? [])
+        const series = await Promise.all(
+          query.group.map(async (article) => {
+            const segments = [
+              query.project,
+              query.access,
+              query.agent,
+              article,
+              query.granularity,
+              query.start,
+              query.end,
+            ].map(encodeURIComponent)
+            const url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/' + segments.join('/')
+            const temp = await fetch(url, { signal: controller.signal })
+            if (!temp.ok) return { article, items: [] }
+            const json = await temp.json()
+            return { article, items: json.items ?? [] }
+          }),
+        )
+        setRes(series)
+      } catch (error) {
+        if ((error as Error).name !== 'AbortError') {
+          setRes([])
+        }
       } finally {
-        setLoading(false)
+        if (!controller.signal.aborted) {
+          setLoading(false)
+        }
       }
     }
     fetchRes()
+    return () => controller.abort()
   }, [query])
   useEffect(() => {
     setChartNode?.(cardRef.current)
   }, [setChartNode])
   useEffect(() => {
-    setChartReady?.(!loading && res.length > 0)
-  }, [loading, res.length, setChartReady])
+    setChartReady?.(!loading && res.some((series) => series.items.length > 0))
+  }, [loading, res, setChartReady])
 
   return (
     <main className="flex-1 flex-col justify-center px-8">
@@ -64,7 +80,7 @@ export function Main({
             <CardContent className="flex h-full items-center justify-center">
               <Loading size="big" />
             </CardContent>
-          ) : res.length > 0 ? (
+          ) : query.group.length > 0 ? (
             <WikiChart res={res} />
           ) : (
             <Empty setQuery={setQuery} />
