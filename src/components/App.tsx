@@ -4,19 +4,12 @@ import { defaultQuery } from '@/data/default-query'
 import type { TQuery } from '@/data/types'
 import { Footer, Header, Main } from './layout'
 
-// 只忽略用户在URL末尾加的字段
-// [TODO] 暂不处理用户缺失或修改非法URL字段，导致无法查询数据的问题：
-// 返回默认查询，或者重定向到错误页面
-
 export function App() {
   const [chartReady, setChartReady] = useState(false)
   const [chartNode, setChartNode] = useState<HTMLDivElement | null>(null)
   const [query, setQuery] = useState<TQuery>(() => {
     if (typeof window === 'undefined') return defaultQuery
 
-    // const parts = window.location.pathname.split('/').filter(Boolean),
-    //   startIndex = parts.indexOf('Wikipedia-Chart') + 1,
-    //   [project, access, agent, article, granularity, start, end] = parts.slice(startIndex, startIndex + 7)
     const parts = window.location.pathname.split('/').filter(Boolean),
       startIndex = parts.indexOf('Wikipedia-Chart') + 1,
       routeParts = parts.slice(startIndex, startIndex + 7),
