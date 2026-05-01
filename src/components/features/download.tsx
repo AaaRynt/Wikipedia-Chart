@@ -26,13 +26,13 @@ async function downloadSvg(node: HTMLElement, filename: string) {
 }
 
 export function Download({
+  query,
   chartReady,
   chartNode,
-  query,
 }: {
+  query: TQuery
   chartReady: boolean
   chartNode: HTMLDivElement | null
-  query: TQuery
 }) {
   const handleSvg = async () => {
     if (!chartNode) return

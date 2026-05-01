@@ -3,11 +3,12 @@
 'use client'
 
 import 'lucide-react'
-import { SearchIcon, TextSearchIcon } from 'lucide-react'
+import { SearchIcon, TextSearchIcon, XIcon } from 'lucide-react'
 import { type Dispatch, type SetStateAction, useEffect, useMemo, useState } from 'react'
 import { useDebounce } from 'use-debounce'
 import { Loading } from '@/components/features'
 import {
+  Badge,
   Button,
   Command,
   CommandDialog,
@@ -43,6 +44,7 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
   useEffect(() => {
     const nextKeyword = debouncedKeyword.trim()
     if (!nextKeyword) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPages([])
       setLoading(false)
       return
@@ -82,6 +84,9 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
     <>
       <Button onClick={() => setOpen(true)} variant="outline" className="rounded-full px-6">
         <SearchIcon />
+        {['current', 'searching', 'test'].map((title) => (
+          <Current title={title} />
+        ))}
         <CommandShortcut>⌘K</CommandShortcut>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -132,5 +137,20 @@ export function Search({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>
         </Command>
       </CommandDialog>
     </>
+  )
+}
+
+const Current = ({ title }: { title: string }) => {
+  return (
+    <Badge variant="secondary">
+      {title}
+      <Button
+        variant="ghost"
+        className="hover:bg-ring! text-muted-foreground hover:text-secondary-foreground size-4 cursor-pointer rounded-sm p-2"
+        onClick={() => {}}
+      >
+        <XIcon />
+      </Button>
+    </Badge>
   )
 }

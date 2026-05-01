@@ -64,3 +64,8 @@ export type SearchResponse = {
     >
   }
 }
+
+export type Tgroup = {
+  title: string
+  group: string[]
+}[]

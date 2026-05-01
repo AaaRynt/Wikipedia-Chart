@@ -6,15 +6,15 @@ import { Button, ButtonGroup } from '@/components/ui'
 import type { TQuery } from '@/data/types'
 
 export function Header({
+  query,
   setQuery,
   chartReady,
   chartNode,
-  query,
 }: {
+  query: TQuery
   setQuery: Dispatch<SetStateAction<TQuery>>
   chartReady: boolean
   chartNode: HTMLDivElement | null
-  query: TQuery
 }) {
   return (
     <header className="justify-between gap-8 px-4 py-2">
@@ -25,7 +25,7 @@ export function Header({
       <div className="flex items-center gap-4">
         <Search setQuery={setQuery} />
         <ButtonGroup className="hidden sm:flex">
-          <Download chartReady={chartReady} chartNode={chartNode} query={query} />
+          <Download query={query} chartReady={chartReady} chartNode={chartNode} />
           <ThemeToggle />
         </ButtonGroup>
         <Button asChild variant="outline" size="icon-lg">

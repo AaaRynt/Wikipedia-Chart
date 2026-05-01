@@ -12,7 +12,7 @@ export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>>
 
   return (
     <CardContent className="flex h-full items-center justify-center">
-      <Alert className="text-secondary-foreground bg-secondary w-full max-w-xl shadow-xl">
+      <Alert className="text-secondary-foreground bg-secondary w-full max-w-xl px-6 py-4 shadow-xl">
         <InfoIcon className="mt-1" />
         <AlertTitle className="text-base">
           Search an article from&nbsp;
@@ -32,7 +32,7 @@ export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>>
               <Badge
                 key={prompt}
                 variant="outline"
-                className="bg-secondary h-7 cursor-pointer px-3 transition hover:brightness-125"
+                className="bg-secondary h-7 cursor-pointer transition hover:brightness-125"
                 onClick={() => {
                   setQuery((prev) => ({ ...prev, article: prompt }))
                 }}

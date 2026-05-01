@@ -9,13 +9,13 @@ import type { TQuery, TRes } from '@/data/types'
 export function Main({
   query,
   setQuery,
-  onReady,
-  onChartRef,
+  setChartReady,
+  setChartNode,
 }: {
   query: TQuery
   setQuery: Dispatch<SetStateAction<TQuery>>
-  onReady?: (ready: boolean) => void
-  onChartRef?: (node: HTMLDivElement | null) => void
+  setChartReady?: (ready: boolean) => void
+  setChartNode?: (node: HTMLDivElement | null) => void
 }) {
   const [res, setRes] = useState<TRes[]>([])
   const [loading, setLoading] = useState(false)
@@ -50,11 +50,11 @@ export function Main({
     fetchRes()
   }, [query])
   useEffect(() => {
-    onChartRef?.(cardRef.current)
-  }, [onChartRef])
+    setChartNode?.(cardRef.current)
+  }, [setChartNode])
   useEffect(() => {
-    onReady?.(!loading && res.length > 0)
-  }, [loading, res.length, onReady])
+    setChartReady?.(!loading && res.length > 0)
+  }, [loading, res.length, setChartReady])
 
   return (
     <main className="flex-1 flex-col justify-center px-8">

@@ -23,6 +23,7 @@ export function DatePickerWithRange({
 
   React.useEffect(() => {
     if (!value?.from && !value?.to) return
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDate(value)
   }, [value, value?.from, value?.to])
 
