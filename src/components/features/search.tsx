@@ -87,10 +87,10 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
 
   return (
     <div className="flex min-w-0 items-center gap-2">
-      <Button onClick={() => setOpen(true)} variant="outline" className="rounded-full px-6">
+      <Button onClick={() => setOpen(true)} variant="outline" className="cursor-pointer rounded-full px-4">
         <SearchIcon />
         {query.group.length > 0 ? (
-          <div className="hidden max-w-[42vw] flex-wrap gap-1 md:flex">
+          <div className="flex flex-wrap gap-1">
             {query.group.map((title) => (
               <Current
                 key={title}
@@ -101,8 +101,9 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
               />
             ))}
           </div>
-        ) : null}
-        <CommandShortcut>⌘K</CommandShortcut>
+        ) : (
+          <CommandShortcut>⌘K</CommandShortcut>
+        )}
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <Command shouldFilter={false}>
@@ -157,15 +158,18 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
 
 const Current = ({ title, onRemove }: { title: string; onRemove: () => void }) => {
   return (
-    <Badge variant="secondary" className="h-7 gap-1 pr-1 pl-2">
+    <Badge variant="secondary" className="h-7 cursor-auto gap-1 pr-1 pl-2">
       {formatKey(title)}
       <Button
         type="button"
         size="icon-xs"
         variant="ghost"
         aria-label={`Remove ${formatKey(title)}`}
-        className="hover:bg-ring! text-muted-foreground hover:text-secondary-foreground size-4 cursor-pointer rounded-full"
-        onClick={onRemove}
+        className="hover:bg-ring! text-muted-foreground hover:text-secondary-foreground size-4 cursor-pointer rounded-sm p-2"
+        onClick={(event) => {
+          event.stopPropagation()
+          onRemove()
+        }}
       >
         <XIcon />
       </Button>

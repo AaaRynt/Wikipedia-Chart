@@ -4,7 +4,7 @@ import { defaultQuery } from '@/data/default-query'
 import type { TQuery } from '@/data/types'
 import { Footer, Header, Main } from './layout'
 
-const GROUP_SEPARATOR = ','
+const GROUP_SEPARATOR = ';'
 
 function parseGroup(value: string | undefined) {
   if (!value) return []

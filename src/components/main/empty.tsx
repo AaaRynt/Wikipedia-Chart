@@ -8,7 +8,7 @@ import { fisherYates } from '@/util/fisher–yates'
 import { formatKey } from '@/util/format'
 
 export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>> }) {
-  const entries = useMemo(() => fisherYates([...groups]), [])
+  const entries = useMemo(() => fisherYates([...groups]).slice(0, 20), [])
 
   return (
     <CardContent className="flex h-full items-center justify-center">
@@ -37,14 +37,14 @@ export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>>
                   setQuery((prev) => ({ ...prev, group: entry.group }))
                 }}
               >
-                {entry.title ? (
+                {entry.kind === 'preset-group' ? (
                   <>
                     <GitCompareIcon />
-                    <span>{formatKey(entry.title, false)}</span>
+                    <span>{formatKey(entry.title!, false)}</span>
                     <span className="text-muted-foreground">({entry.group.length})</span>
                   </>
                 ) : (
-                  formatKey(entry.group[0])
+                  formatKey(entry.group[0], false)
                 )}
                 <ArrowUpRightIcon />
               </Badge>

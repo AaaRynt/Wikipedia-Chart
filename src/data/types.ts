@@ -71,6 +71,7 @@ export type SearchResponse = {
 }
 
 export type TPromptGroups = {
-  title: string
+  title?: string
   group: string[]
+  kind: 'preset-group' | 'preset-single' | 'user'
 }[]
