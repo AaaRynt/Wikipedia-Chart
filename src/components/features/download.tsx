@@ -46,7 +46,7 @@ export function Download({
     <HoverCard openDelay={10} closeDelay={100}>
       <HoverCardTrigger asChild>
         <Button
-          className="cursor-pointer active:translate-y-0!"
+          className="cursor-auto active:translate-y-0!"
           size="icon-lg"
           variant="outline"
           disabled={!chartReady}

@@ -61,23 +61,23 @@ JSON:
         blobs: {}
       name: ./tsconfig.node.json
     - stats:
-        blanks: 3
-        code: 29
-        comments: 0
-        blobs: {}
-      name: ./tsconfig.app.json
-    - stats:
         blanks: 0
         code: 9
         comments: 0
         blobs: {}
       name: ./tsconfig.json
+    - stats:
+        blanks: 3
+        code: 29
+        comments: 0
+        blobs: {}
+      name: ./tsconfig.app.json
   children: {}
   inaccurate: false
 Markdown:
-  blanks: 42
+  blanks: 80
   code: 0
-  comments: 92
+  comments: 194
   reports:
     - stats:
         blanks: 4
@@ -86,24 +86,24 @@ Markdown:
         blobs: {}
       name: ./todo.md
     - stats:
-        blanks: 19
+        blanks: 38
         code: 0
-        comments: 37
+        comments: 88
         blobs:
           BASH:
             blanks: 0
-            code: 2
+            code: 4
             comments: 0
             blobs: {}
       name: ./README.md
     - stats:
-        blanks: 19
+        blanks: 38
         code: 0
-        comments: 37
+        comments: 88
         blobs:
           BASH:
             blanks: 0
-            code: 2
+            code: 4
             comments: 0
             blobs: {}
       name: ./README_zh.md
@@ -111,13 +111,13 @@ Markdown:
     BASH:
       - stats:
           blanks: 0
-          code: 2
+          code: 4
           comments: 0
           blobs: {}
         name: ./README.md
       - stats:
           blanks: 0
-          code: 2
+          code: 4
           comments: 0
           blobs: {}
         name: ./README_zh.md
@@ -136,16 +136,10 @@ SVG:
   children: {}
   inaccurate: false
 TSX:
-  blanks: 232
-  code: 2636
-  comments: 20
+  blanks: 237
+  code: 2683
+  comments: 21
   reports:
-    - stats:
-        blanks: 2
-        code: 17
-        comments: 1
-        blobs: {}
-      name: ./src/components/features/theme-toggle.tsx
     - stats:
         blanks: 4
         code: 64
@@ -159,23 +153,17 @@ TSX:
         blobs: {}
       name: ./src/components/main/empty.tsx
     - stats:
-        blanks: 11
-        code: 117
-        comments: 1
-        blobs: {}
-      name: ./src/components/main/wiki-chart.tsx
-    - stats:
-        blanks: 1
-        code: 50
-        comments: 1
-        blobs: {}
-      name: ./src/components/features/key-select.tsx
-    - stats:
         blanks: 2
-        code: 32
+        code: 17
         comments: 1
         blobs: {}
-      name: ./src/components/features/loading.tsx
+      name: ./src/components/features/theme-toggle.tsx
+    - stats:
+        blanks: 5
+        code: 46
+        comments: 1
+        blobs: {}
+      name: ./src/components/features/ask.tsx
     - stats:
         blanks: 5
         code: 64
@@ -183,29 +171,41 @@ TSX:
         blobs: {}
       name: ./src/components/features/download.tsx
     - stats:
+        blanks: 11
+        code: 117
+        comments: 1
+        blobs: {}
+      name: ./src/components/main/wiki-chart.tsx
+    - stats:
         blanks: 2
-        code: 36
+        code: 32
+        comments: 1
+        blobs: {}
+      name: ./src/components/features/loading.tsx
+    - stats:
+        blanks: 2
+        code: 37
         comments: 1
         blobs: {}
       name: ./src/components/layout/header.tsx
     - stats:
-        blanks: 2
-        code: 15
-        comments: 0
+        blanks: 1
+        code: 50
+        comments: 1
         blobs: {}
-      name: ./src/components/ui/textarea.tsx
-    - stats:
-        blanks: 2
-        code: 6
-        comments: 0
-        blobs: {}
-      name: ./src/components/ui/spinner.tsx
+      name: ./src/components/features/key-select.tsx
     - stats:
         blanks: 7
         code: 168
         comments: 3
         blobs: {}
       name: ./src/components/features/search.tsx
+    - stats:
+        blanks: 5
+        code: 85
+        comments: 2
+        blobs: {}
+      name: ./src/components/layout/main.tsx
     - stats:
         blanks: 9
         code: 52
@@ -214,10 +214,22 @@ TSX:
       name: ./src/components/App.tsx
     - stats:
         blanks: 2
-        code: 16
+        code: 6
         comments: 0
         blobs: {}
-      name: ./src/components/ui/input.tsx
+      name: ./src/components/ui/spinner.tsx
+    - stats:
+        blanks: 2
+        code: 23
+        comments: 0
+        blobs: {}
+      name: ./src/components/ui/separator.tsx
+    - stats:
+        blanks: 3
+        code: 50
+        comments: 1
+        blobs: {}
+      name: ./src/components/layout/footer.tsx
     - stats:
         blanks: 12
         code: 156
@@ -226,22 +238,10 @@ TSX:
       name: ./src/components/ui/select.tsx
     - stats:
         blanks: 2
-        code: 23
+        code: 15
         comments: 0
         blobs: {}
-      name: ./src/components/ui/separator.tsx
-    - stats:
-        blanks: 4
-        code: 35
-        comments: 1
-        blobs: {}
-      name: ./src/components/ui/badge.tsx
-    - stats:
-        blanks: 13
-        code: 159
-        comments: 0
-        blobs: {}
-      name: ./src/components/ui/item.tsx
+      name: ./src/components/ui/textarea.tsx
     - stats:
         blanks: 4
         code: 61
@@ -249,17 +249,17 @@ TSX:
         blobs: {}
       name: ./src/components/ui/button.tsx
     - stats:
-        blanks: 6
-        code: 49
-        comments: 0
+        blanks: 4
+        code: 35
+        comments: 1
         blobs: {}
-      name: ./src/components/ui/alert.tsx
+      name: ./src/components/ui/badge.tsx
     - stats:
-        blanks: 8
-        code: 78
+        blanks: 2
+        code: 16
         comments: 0
         blobs: {}
-      name: ./src/components/ui/empty.tsx
+      name: ./src/components/ui/input.tsx
     - stats:
         blanks: 11
         code: 120
@@ -267,17 +267,41 @@ TSX:
         blobs: {}
       name: ./src/components/ui/dialog.tsx
     - stats:
-        blanks: 3
-        code: 17
-        comments: 0
-        blobs: {}
-      name: ./src/components/ui/label.tsx
-    - stats:
         blanks: 11
         code: 140
         comments: 0
         blobs: {}
       name: ./src/components/ui/command.tsx
+    - stats:
+        blanks: 4
+        code: 31
+        comments: 0
+        blobs: {}
+      name: ./src/components/ui/hover-card.tsx
+    - stats:
+        blanks: 13
+        code: 159
+        comments: 0
+        blobs: {}
+      name: ./src/components/ui/item.tsx
+    - stats:
+        blanks: 8
+        code: 78
+        comments: 0
+        blobs: {}
+      name: ./src/components/ui/empty.tsx
+    - stats:
+        blanks: 6
+        code: 49
+        comments: 0
+        blobs: {}
+      name: ./src/components/ui/alert.tsx
+    - stats:
+        blanks: 3
+        code: 17
+        comments: 0
+        blobs: {}
+      name: ./src/components/ui/label.tsx
     - stats:
         blanks: 8
         code: 43
@@ -286,16 +310,16 @@ TSX:
       name: ./src/components/ui/popover.tsx
     - stats:
         blanks: 9
+        code: 123
+        comments: 0
+        blobs: {}
+      name: ./src/components/ui/input-group.tsx
+    - stats:
+        blanks: 9
         code: 162
         comments: 0
         blobs: {}
       name: ./src/components/ui/calendar.tsx
-    - stats:
-        blanks: 8
-        code: 64
-        comments: 0
-        blobs: {}
-      name: ./src/components/ui/card.tsx
     - stats:
         blanks: 19
         code: 198
@@ -303,11 +327,17 @@ TSX:
         blobs: {}
       name: ./src/components/ui/field.tsx
     - stats:
-        blanks: 4
-        code: 31
+        blanks: 6
+        code: 71
+        comments: 1
+        blobs: {}
+      name: ./src/components/ui/button-group.tsx
+    - stats:
+        blanks: 8
+        code: 64
         comments: 0
         blobs: {}
-      name: ./src/components/ui/hover-card.tsx
+      name: ./src/components/ui/card.tsx
     - stats:
         blanks: 35
         code: 268
@@ -315,54 +345,18 @@ TSX:
         blobs: {}
       name: ./src/components/ui/chart.tsx
     - stats:
-        blanks: 6
-        code: 71
-        comments: 1
-        blobs: {}
-      name: ./src/components/ui/button-group.tsx
-    - stats:
         blanks: 1
         code: 12
         comments: 0
         blobs: {}
       name: ./src/main.tsx
-    - stats:
-        blanks: 9
-        code: 123
-        comments: 0
-        blobs: {}
-      name: ./src/components/ui/input-group.tsx
-    - stats:
-        blanks: 3
-        code: 50
-        comments: 1
-        blobs: {}
-      name: ./src/components/layout/footer.tsx
-    - stats:
-        blanks: 5
-        code: 85
-        comments: 2
-        blobs: {}
-      name: ./src/components/layout/main.tsx
   children: {}
   inaccurate: false
 TypeScript:
   blanks: 17
-  code: 528
+  code: 529
   comments: 34
   reports:
-    - stats:
-        blanks: 2
-        code: 15
-        comments: 1
-        blobs: {}
-      name: ./src/data/default-query.ts
-    - stats:
-        blanks: 1
-        code: 32
-        comments: 1
-        blobs: {}
-      name: ./src/data/keys.ts
     - stats:
         blanks: 1
         code: 5
@@ -370,29 +364,23 @@ TypeScript:
         blobs: {}
       name: ./src/lib/utils.ts
     - stats:
+        blanks: 1
+        code: 8
+        comments: 1
+        blobs: {}
+      name: ./src/components/features/index.ts
+    - stats:
         blanks: 4
         code: 51
         comments: 22
         blobs: {}
       name: ./src/data/types.ts
     - stats:
-        blanks: 1
-        code: 3
+        blanks: 2
+        code: 15
         comments: 1
         blobs: {}
-      name: ./src/components/main/index.ts
-    - stats:
-        blanks: 1
-        code: 7
-        comments: 1
-        blobs: {}
-      name: ./src/components/features/index.ts
-    - stats:
-        blanks: 1
-        code: 4
-        comments: 1
-        blobs: {}
-      name: ./src/components/layout/index.ts
+      name: ./src/data/default-query.ts
     - stats:
         blanks: 2
         code: 174
@@ -401,22 +389,40 @@ TypeScript:
       name: ./src/data/prompts.ts
     - stats:
         blanks: 1
+        code: 3
+        comments: 1
+        blobs: {}
+      name: ./src/components/main/index.ts
+    - stats:
+        blanks: 1
+        code: 32
+        comments: 1
+        blobs: {}
+      name: ./src/data/keys.ts
+    - stats:
+        blanks: 1
+        code: 4
+        comments: 1
+        blobs: {}
+      name: ./src/components/layout/index.ts
+    - stats:
+        blanks: 1
         code: 195
         comments: 1
         blobs: {}
       name: ./src/components/ui/index.ts
-    - stats:
-        blanks: 2
-        code: 15
-        comments: 0
-        blobs: {}
-      name: ./src/tailwind.config.ts
     - stats:
         blanks: 0
         code: 6
         comments: 1
         blobs: {}
       name: ./src/util/format.ts
+    - stats:
+        blanks: 2
+        code: 15
+        comments: 0
+        blobs: {}
+      name: ./src/tailwind.config.ts
     - stats:
         blanks: 0
         code: 8
@@ -451,9 +457,9 @@ YAML:
   children: {}
   inaccurate: false
 Total:
-  blanks: 802
-  code: 9852
-  comments: 171
+  blanks: 845
+  code: 9904
+  comments: 274
   reports: []
   children:
     CSS:
@@ -497,17 +503,17 @@ Total:
           blobs: {}
         name: ./tsconfig.node.json
       - stats:
-          blanks: 3
-          code: 29
-          comments: 0
-          blobs: {}
-        name: ./tsconfig.app.json
-      - stats:
           blanks: 0
           code: 9
           comments: 0
           blobs: {}
         name: ./tsconfig.json
+      - stats:
+          blanks: 3
+          code: 29
+          comments: 0
+          blobs: {}
+        name: ./tsconfig.app.json
     Markdown:
       - stats:
           blanks: 4
@@ -516,24 +522,24 @@ Total:
           blobs: {}
         name: ./todo.md
       - stats:
-          blanks: 19
+          blanks: 38
           code: 0
-          comments: 37
+          comments: 88
           blobs:
             BASH:
               blanks: 0
-              code: 2
+              code: 4
               comments: 0
               blobs: {}
         name: ./README.md
       - stats:
-          blanks: 19
+          blanks: 38
           code: 0
-          comments: 37
+          comments: 88
           blobs:
             BASH:
               blanks: 0
-              code: 2
+              code: 4
               comments: 0
               blobs: {}
         name: ./README_zh.md
@@ -545,12 +551,6 @@ Total:
           blobs: {}
         name: ./public/img/favicon.svg
     TSX:
-      - stats:
-          blanks: 2
-          code: 17
-          comments: 1
-          blobs: {}
-        name: ./src/components/features/theme-toggle.tsx
       - stats:
           blanks: 4
           code: 64
@@ -564,23 +564,17 @@ Total:
           blobs: {}
         name: ./src/components/main/empty.tsx
       - stats:
-          blanks: 11
-          code: 117
-          comments: 1
-          blobs: {}
-        name: ./src/components/main/wiki-chart.tsx
-      - stats:
-          blanks: 1
-          code: 50
-          comments: 1
-          blobs: {}
-        name: ./src/components/features/key-select.tsx
-      - stats:
           blanks: 2
-          code: 32
+          code: 17
           comments: 1
           blobs: {}
-        name: ./src/components/features/loading.tsx
+        name: ./src/components/features/theme-toggle.tsx
+      - stats:
+          blanks: 5
+          code: 46
+          comments: 1
+          blobs: {}
+        name: ./src/components/features/ask.tsx
       - stats:
           blanks: 5
           code: 64
@@ -588,29 +582,41 @@ Total:
           blobs: {}
         name: ./src/components/features/download.tsx
       - stats:
+          blanks: 11
+          code: 117
+          comments: 1
+          blobs: {}
+        name: ./src/components/main/wiki-chart.tsx
+      - stats:
           blanks: 2
-          code: 36
+          code: 32
+          comments: 1
+          blobs: {}
+        name: ./src/components/features/loading.tsx
+      - stats:
+          blanks: 2
+          code: 37
           comments: 1
           blobs: {}
         name: ./src/components/layout/header.tsx
       - stats:
-          blanks: 2
-          code: 15
-          comments: 0
+          blanks: 1
+          code: 50
+          comments: 1
           blobs: {}
-        name: ./src/components/ui/textarea.tsx
-      - stats:
-          blanks: 2
-          code: 6
-          comments: 0
-          blobs: {}
-        name: ./src/components/ui/spinner.tsx
+        name: ./src/components/features/key-select.tsx
       - stats:
           blanks: 7
           code: 168
           comments: 3
           blobs: {}
         name: ./src/components/features/search.tsx
+      - stats:
+          blanks: 5
+          code: 85
+          comments: 2
+          blobs: {}
+        name: ./src/components/layout/main.tsx
       - stats:
           blanks: 9
           code: 52
@@ -619,10 +625,22 @@ Total:
         name: ./src/components/App.tsx
       - stats:
           blanks: 2
-          code: 16
+          code: 6
           comments: 0
           blobs: {}
-        name: ./src/components/ui/input.tsx
+        name: ./src/components/ui/spinner.tsx
+      - stats:
+          blanks: 2
+          code: 23
+          comments: 0
+          blobs: {}
+        name: ./src/components/ui/separator.tsx
+      - stats:
+          blanks: 3
+          code: 50
+          comments: 1
+          blobs: {}
+        name: ./src/components/layout/footer.tsx
       - stats:
           blanks: 12
           code: 156
@@ -631,22 +649,10 @@ Total:
         name: ./src/components/ui/select.tsx
       - stats:
           blanks: 2
-          code: 23
+          code: 15
           comments: 0
           blobs: {}
-        name: ./src/components/ui/separator.tsx
-      - stats:
-          blanks: 4
-          code: 35
-          comments: 1
-          blobs: {}
-        name: ./src/components/ui/badge.tsx
-      - stats:
-          blanks: 13
-          code: 159
-          comments: 0
-          blobs: {}
-        name: ./src/components/ui/item.tsx
+        name: ./src/components/ui/textarea.tsx
       - stats:
           blanks: 4
           code: 61
@@ -654,17 +660,17 @@ Total:
           blobs: {}
         name: ./src/components/ui/button.tsx
       - stats:
-          blanks: 6
-          code: 49
-          comments: 0
+          blanks: 4
+          code: 35
+          comments: 1
           blobs: {}
-        name: ./src/components/ui/alert.tsx
+        name: ./src/components/ui/badge.tsx
       - stats:
-          blanks: 8
-          code: 78
+          blanks: 2
+          code: 16
           comments: 0
           blobs: {}
-        name: ./src/components/ui/empty.tsx
+        name: ./src/components/ui/input.tsx
       - stats:
           blanks: 11
           code: 120
@@ -672,17 +678,41 @@ Total:
           blobs: {}
         name: ./src/components/ui/dialog.tsx
       - stats:
-          blanks: 3
-          code: 17
-          comments: 0
-          blobs: {}
-        name: ./src/components/ui/label.tsx
-      - stats:
           blanks: 11
           code: 140
           comments: 0
           blobs: {}
         name: ./src/components/ui/command.tsx
+      - stats:
+          blanks: 4
+          code: 31
+          comments: 0
+          blobs: {}
+        name: ./src/components/ui/hover-card.tsx
+      - stats:
+          blanks: 13
+          code: 159
+          comments: 0
+          blobs: {}
+        name: ./src/components/ui/item.tsx
+      - stats:
+          blanks: 8
+          code: 78
+          comments: 0
+          blobs: {}
+        name: ./src/components/ui/empty.tsx
+      - stats:
+          blanks: 6
+          code: 49
+          comments: 0
+          blobs: {}
+        name: ./src/components/ui/alert.tsx
+      - stats:
+          blanks: 3
+          code: 17
+          comments: 0
+          blobs: {}
+        name: ./src/components/ui/label.tsx
       - stats:
           blanks: 8
           code: 43
@@ -691,16 +721,16 @@ Total:
         name: ./src/components/ui/popover.tsx
       - stats:
           blanks: 9
+          code: 123
+          comments: 0
+          blobs: {}
+        name: ./src/components/ui/input-group.tsx
+      - stats:
+          blanks: 9
           code: 162
           comments: 0
           blobs: {}
         name: ./src/components/ui/calendar.tsx
-      - stats:
-          blanks: 8
-          code: 64
-          comments: 0
-          blobs: {}
-        name: ./src/components/ui/card.tsx
       - stats:
           blanks: 19
           code: 198
@@ -708,11 +738,17 @@ Total:
           blobs: {}
         name: ./src/components/ui/field.tsx
       - stats:
-          blanks: 4
-          code: 31
+          blanks: 6
+          code: 71
+          comments: 1
+          blobs: {}
+        name: ./src/components/ui/button-group.tsx
+      - stats:
+          blanks: 8
+          code: 64
           comments: 0
           blobs: {}
-        name: ./src/components/ui/hover-card.tsx
+        name: ./src/components/ui/card.tsx
       - stats:
           blanks: 35
           code: 268
@@ -720,48 +756,12 @@ Total:
           blobs: {}
         name: ./src/components/ui/chart.tsx
       - stats:
-          blanks: 6
-          code: 71
-          comments: 1
-          blobs: {}
-        name: ./src/components/ui/button-group.tsx
-      - stats:
           blanks: 1
           code: 12
           comments: 0
           blobs: {}
         name: ./src/main.tsx
-      - stats:
-          blanks: 9
-          code: 123
-          comments: 0
-          blobs: {}
-        name: ./src/components/ui/input-group.tsx
-      - stats:
-          blanks: 3
-          code: 50
-          comments: 1
-          blobs: {}
-        name: ./src/components/layout/footer.tsx
-      - stats:
-          blanks: 5
-          code: 85
-          comments: 2
-          blobs: {}
-        name: ./src/components/layout/main.tsx
     TypeScript:
-      - stats:
-          blanks: 2
-          code: 15
-          comments: 1
-          blobs: {}
-        name: ./src/data/default-query.ts
-      - stats:
-          blanks: 1
-          code: 32
-          comments: 1
-          blobs: {}
-        name: ./src/data/keys.ts
       - stats:
           blanks: 1
           code: 5
@@ -769,29 +769,23 @@ Total:
           blobs: {}
         name: ./src/lib/utils.ts
       - stats:
+          blanks: 1
+          code: 8
+          comments: 1
+          blobs: {}
+        name: ./src/components/features/index.ts
+      - stats:
           blanks: 4
           code: 51
           comments: 22
           blobs: {}
         name: ./src/data/types.ts
       - stats:
-          blanks: 1
-          code: 3
+          blanks: 2
+          code: 15
           comments: 1
           blobs: {}
-        name: ./src/components/main/index.ts
-      - stats:
-          blanks: 1
-          code: 7
-          comments: 1
-          blobs: {}
-        name: ./src/components/features/index.ts
-      - stats:
-          blanks: 1
-          code: 4
-          comments: 1
-          blobs: {}
-        name: ./src/components/layout/index.ts
+        name: ./src/data/default-query.ts
       - stats:
           blanks: 2
           code: 174
@@ -800,22 +794,40 @@ Total:
         name: ./src/data/prompts.ts
       - stats:
           blanks: 1
+          code: 3
+          comments: 1
+          blobs: {}
+        name: ./src/components/main/index.ts
+      - stats:
+          blanks: 1
+          code: 32
+          comments: 1
+          blobs: {}
+        name: ./src/data/keys.ts
+      - stats:
+          blanks: 1
+          code: 4
+          comments: 1
+          blobs: {}
+        name: ./src/components/layout/index.ts
+      - stats:
+          blanks: 1
           code: 195
           comments: 1
           blobs: {}
         name: ./src/components/ui/index.ts
-      - stats:
-          blanks: 2
-          code: 15
-          comments: 0
-          blobs: {}
-        name: ./src/tailwind.config.ts
       - stats:
           blanks: 0
           code: 6
           comments: 1
           blobs: {}
         name: ./src/util/format.ts
+      - stats:
+          blanks: 2
+          code: 15
+          comments: 0
+          blobs: {}
+        name: ./src/tailwind.config.ts
       - stats:
           blanks: 0
           code: 8
