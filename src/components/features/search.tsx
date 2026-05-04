@@ -22,6 +22,8 @@ import {
   ItemDescription,
   ItemMedia,
   ItemTitle,
+  Kbd,
+  KbdGroup,
 } from '@/components/ui'
 import type { SearchResponse, TQuery } from '@/data/types'
 import { formatKey } from '@/util/format'
@@ -102,7 +104,12 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
             ))}
           </div>
         ) : (
-          <CommandShortcut>⌘K</CommandShortcut>
+          <CommandShortcut>
+            <KbdGroup>
+              <Kbd>{navigator.platform.toUpperCase().includes('MAC') ? '⌘' : 'Ctrl'}</Kbd>
+              <Kbd>K</Kbd>
+            </KbdGroup>
+          </CommandShortcut>
         )}
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>

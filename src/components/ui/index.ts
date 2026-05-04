@@ -1,4 +1,5 @@
 // src/components/ui/index.ts
+import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { Alert, AlertAction, AlertDescription, AlertTitle } from './alert'
 import { Badge, badgeVariants } from './badge'
 import { Button, buttonVariants } from './button'
@@ -173,6 +174,8 @@ export {
   ItemMedia,
   ItemSeparator,
   ItemTitle,
+  Kbd,
+  KbdGroup,
   Label,
   Popover,
   PopoverAnchor,
