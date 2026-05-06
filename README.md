@@ -18,7 +18,7 @@ Wikipedia Chart is a React + TypeScript data visualization app for comparing Wik
 - Remove individual articles from the current comparison group.
 - Sync the current query to the URL path for shareable chart states.
 - Filter by date range, access type, agent type, and daily/monthly granularity.
-- Export the chart card as `.svg` or `.png`.
+- Export the chart card as `.svg` or `.png`, and export the current Wikimedia API responses as `.json`.
 - Open ChatGPT with a generated prompt containing the current articles, filters, and Wikimedia API links.
 - Support light/dark theme through `next-themes`.
 
