@@ -1,200 +1,23 @@
 // src/components/ui/index.ts
-import { Alert, AlertAction, AlertDescription, AlertTitle } from './alert'
-import { Badge, badgeVariants } from './badge'
-import { Button, buttonVariants } from './button'
-import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText, buttonGroupVariants } from './button-group'
-import { Calendar, CalendarDayButton } from './calendar'
-import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './card'
-import { ChartContainer, ChartLegend, ChartLegendContent, ChartStyle, ChartTooltip, ChartTooltipContent } from './chart'
-import {
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from './command'
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogPortal,
-  DialogTitle,
-  DialogTrigger,
-} from './dialog'
-import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from './empty'
-import {
-  Field,
-  FieldContent,
-  FieldDescription,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-  FieldLegend,
-  FieldSeparator,
-  FieldSet,
-  FieldTitle,
-} from './field'
-import { HoverCard, HoverCardContent, HoverCardTrigger } from './hover-card'
-import { Input } from './input'
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-  InputGroupText,
-  InputGroupTextarea,
-} from './input-group'
-import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemFooter,
-  ItemGroup,
-  ItemHeader,
-  ItemMedia,
-  ItemSeparator,
-  ItemTitle,
-} from './item'
-import { Kbd, KbdGroup } from './kbd'
-import { Label } from './label'
-import {
-  Popover,
-  PopoverAnchor,
-  PopoverContent,
-  PopoverDescription,
-  PopoverHeader,
-  PopoverTitle,
-  PopoverTrigger,
-} from './popover'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectScrollDownButton,
-  SelectScrollUpButton,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from './select'
-import { Separator } from './separator'
-import { Spinner } from './spinner'
-import { Textarea } from './textarea'
-
-export {
-  Alert,
-  AlertAction,
-  AlertDescription,
-  AlertTitle,
-  Badge,
-  badgeVariants,
-  Button,
-  buttonVariants,
-  ButtonGroup,
-  ButtonGroupSeparator,
-  ButtonGroupText,
-  buttonGroupVariants,
-  Calendar,
-  CalendarDayButton,
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartStyle,
-  ChartTooltip,
-  ChartTooltipContent,
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogPortal,
-  DialogTitle,
-  DialogTrigger,
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-  Field,
-  FieldContent,
-  FieldDescription,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-  FieldLegend,
-  FieldSeparator,
-  FieldSet,
-  FieldTitle,
-  HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-  InputGroupText,
-  InputGroupTextarea,
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemFooter,
-  ItemGroup,
-  ItemHeader,
-  ItemMedia,
-  ItemSeparator,
-  ItemTitle,
-  Kbd,
-  KbdGroup,
-  Label,
-  Popover,
-  PopoverAnchor,
-  PopoverContent,
-  PopoverDescription,
-  PopoverHeader,
-  PopoverTitle,
-  PopoverTrigger,
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectScrollDownButton,
-  SelectScrollUpButton,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-  Separator,
-  Spinner,
-  Textarea,
-}
+export * from './alert'
+export * from './badge'
+export * from './button'
+export * from './button-group'
+export * from './calendar'
+export * from './card'
+export * from './chart'
+export * from './command'
+export * from './dialog'
+export * from './empty'
+export * from './field'
+export * from './hover-card'
+export * from './input'
+export * from './input-group'
+export * from './item'
+export * from './kbd'
+export * from './label'
+export * from './popover'
+export * from './select'
+export * from './separator'
+export * from './spinner'
+export * from './textarea'

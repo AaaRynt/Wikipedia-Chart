@@ -1,10 +1,8 @@
 // src/components/features/index.ts
-import { Ask } from './ask'
-import { DatePickerWithRange } from './date-picker-with-range'
-import { Download } from './download'
-import { KeySelect } from './key-select'
-import { Loading } from './loading'
-import { Search } from './search'
-import { ThemeToggle } from './theme-toggle'
-
-export { Ask, DatePickerWithRange, Download, KeySelect, Loading, Search, ThemeToggle }
+export { Ask } from './ask'
+export { DatePickerWithRange } from './date-picker-with-range'
+export { Download } from './download'
+export { KeySelect } from './key-select'
+export { Loading } from './loading'
+export { Search } from './search'
+export { ThemeToggle } from './theme-toggle'

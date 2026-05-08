@@ -1,6 +1,4 @@
 // src/components/layout/index.ts
-import { Footer } from './footer'
-import { Header } from './header'
-import { Main } from './main'
-
-export { Header, Main, Footer }
+export { Footer } from './footer'
+export { Header } from './header'
+export { Main } from './main'
