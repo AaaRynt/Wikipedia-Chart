@@ -11,5 +11,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: '/Wikipedia-Chart/',
+  base: process.env.VERCEL ? '/' : '/Wikipedia-Chart/'
 })
