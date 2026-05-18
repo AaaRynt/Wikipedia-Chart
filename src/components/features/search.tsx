@@ -26,7 +26,7 @@ import {
   KbdGroup,
 } from '@/components/ui'
 import type { SearchResponse, TQuery } from '@/data/types'
-import { formatKey } from '@/util/format'
+import { formatKey } from '@/lib/format'
 
 export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<SetStateAction<TQuery>> }) {
   const [open, setOpen] = useState(false),

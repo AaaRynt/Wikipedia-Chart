@@ -1,4 +1,4 @@
-// src/util/fisher–yates.ts
+// src/lib/fisher–yates.ts
 // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 // https://bost.ocks.org/mike/shuffle/compare.html
 export const fisherYates = <T>(arr: T[]): T[] => {

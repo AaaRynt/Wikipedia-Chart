@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { Alert, AlertDescription, AlertTitle, CardContent } from '@/components/ui'
 import type { TArticleSeries } from '@/data/types'
-import { formatKey } from '@/util/format'
+import { formatKey } from '@/lib/format'
 
 type ChartDatum = {
   time: number

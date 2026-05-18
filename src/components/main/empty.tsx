@@ -4,8 +4,8 @@ import { type Dispatch, type SetStateAction, useMemo } from 'react'
 import { Alert, AlertDescription, AlertTitle, Badge, CardContent } from '@/components/ui'
 import { groups } from '@/data/prompts'
 import type { TQuery } from '@/data/types'
-import { fisherYates } from '@/util/fisher–yates'
-import { formatKey } from '@/util/format'
+import { fisherYates } from '@/lib/fisher–yates'
+import { formatKey } from '@/lib/format'
 
 export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>> }) {
   const entries = useMemo(() => fisherYates([...groups]).slice(0, 20), [])

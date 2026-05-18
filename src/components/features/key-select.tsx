@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from '@/components/ui'
 import type { TKey } from '@/data/types'
-import { formatKey } from '@/util/format'
+import { formatKey } from '@/lib/format'
 
 export function KeySelect({
   pKey,

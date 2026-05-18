@@ -2,7 +2,7 @@
 import { RiOpenaiFill } from '@remixicon/react'
 import { Button } from '@/components/ui'
 import type { TQuery } from '@/data/types'
-import { formatKey } from '@/util/format'
+import { formatKey } from '@/lib/format'
 
 export function Ask({ query }: { query: TQuery }) {
   function buildPrompt(query: TQuery) {
