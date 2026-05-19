@@ -18,7 +18,7 @@ export function Header({
 }) {
   return (
     <header className="justify-between gap-8 px-4 py-2">
-      <a className="font-mono text-sm hover:underline" href="/Wikipedia-Chart/" target="_self">
+      <a className="font-mono text-sm hover:underline" href="/" target="_self">
         Wikipedia Chart
       </a>
 
@@ -29,7 +29,7 @@ export function Header({
           <Download query={query} chartReady={chartReady} chartNode={chartNode} />
           <ThemeToggle />
         </ButtonGroup>
-        <Button asChild variant="outline" size="icon-lg">
+        <Button asChild variant="outline" size="icon-lg" className="active:translate-y-0!">
           <a href="https://github.com/AaaRynt/Wikipedia-Chart" target="_blank" rel="noreferrer">
             <RiGithubFill />
           </a>

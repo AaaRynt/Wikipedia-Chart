@@ -89,7 +89,11 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
 
   return (
     <div className="flex min-w-0 items-center gap-2">
-      <Button onClick={() => setOpen(true)} variant="outline" className="cursor-pointer rounded-full px-4">
+      <Button
+        onClick={() => setOpen(true)}
+        variant="outline"
+        className="cursor-pointer rounded-full px-4 active:translate-y-0!"
+      >
         <SearchIcon />
         {query.group.length > 0 ? (
           <div className="flex flex-wrap gap-1">

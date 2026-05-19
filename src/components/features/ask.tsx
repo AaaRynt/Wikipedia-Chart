@@ -34,7 +34,14 @@ export function Ask({ query }: { query: TQuery }) {
   const disabled = query.group.length === 0
 
   return (
-    <Button asChild={!disabled} variant="outline" size="icon-lg" disabled={disabled} aria-disabled={disabled}>
+    <Button
+      asChild={!disabled}
+      variant="outline"
+      size="icon-lg"
+      disabled={disabled}
+      aria-disabled={disabled}
+      className="active:translate-y-0!"
+    >
       {disabled ? (
         <RiOpenaiFill />
       ) : (
