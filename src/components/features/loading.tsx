@@ -1,5 +1,6 @@
 // src/components/main/Loading.tsx
 import { useEffect, useState } from 'react'
+
 import { Alert, AlertTitle, Badge, Spinner } from '@/components/ui'
 
 export function Loading({ size = 'small' }: { size: 'small' | 'big' }) {
@@ -17,7 +18,7 @@ export function Loading({ size = 'small' }: { size: 'small' | 'big' }) {
   switch (size) {
     case 'big':
       return (
-        <Alert className="text-card bg-card-foreground w-48 rounded-full shadow-xl">
+        <Alert className="w-48 rounded-full bg-card-foreground text-card shadow-xl">
           <AlertTitle className="flex items-center gap-1 select-none">
             <Spinner className="size-6" />
             <span className="text-2xl font-bold">LOADING{dots}</span>

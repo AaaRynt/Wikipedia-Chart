@@ -484,7 +484,8 @@ Recharts 多折线更适合这样的结构：
 
 - `vite.config.ts`：配置 React 插件、Tailwind 插件、`@` 路径别名和部署 base `/Wikipedia-Chart/`。
 - `tsconfig.app.json`：开启严格 TypeScript 配置，包括 `strict`、`noUnusedLocals`、`noUnusedParameters` 等。
-- `eslint.config.js`：使用 ESLint 10 flat config，包含 TypeScript、React Hooks、React Refresh 规则。
+- `.oxlintrc.json`：使用 Oxlint 配置并启用 React 插件规则。
+- `.oxfmtrc.json`：使用 Oxfmt 统一代码格式、导入排序和 Tailwind 类名排序。
 - `components.json`：记录 shadcn 风格 UI 组件配置。
 - `package.json`：定义 dev、build、lint、preview、deploy 等脚本。
 

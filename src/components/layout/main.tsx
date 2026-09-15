@@ -1,22 +1,14 @@
 // src/components/layout/main.tsx
 // https://recharts.org/
 import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from 'react'
+
+import type { TArticleSeries, TQuery } from '@/data/types'
+
 import { Loading } from '@/components/features'
 import { Empty, WikiChart } from '@/components/main/'
 import { Card, CardContent } from '@/components/ui'
-import type { TArticleSeries, TQuery } from '@/data/types'
 
-export function Main({
-  query,
-  setQuery,
-  setChartReady,
-  setChartNode,
-}: {
-  query: TQuery
-  setQuery: Dispatch<SetStateAction<TQuery>>
-  setChartReady?: (ready: boolean) => void
-  setChartNode?: (node: HTMLDivElement | null) => void
-}) {
+export function Main({ query, setQuery, setChartReady, setChartNode }: { query: TQuery; setQuery: Dispatch<SetStateAction<TQuery>>; setChartReady?: (ready: boolean) => void; setChartNode?: (node: HTMLDivElement | null) => void }) {
   const [res, setRes] = useState<TArticleSeries[]>([])
   const [loading, setLoading] = useState(false)
   const cardRef = useRef<HTMLDivElement | null>(null)
@@ -35,15 +27,7 @@ export function Main({
       try {
         const series = await Promise.all(
           query.group.map(async (article) => {
-            const segments = [
-              query.project,
-              query.access,
-              query.agent,
-              article,
-              query.granularity,
-              query.start,
-              query.end,
-            ].map(encodeURIComponent)
+            const segments = [query.project, query.access, query.agent, article, query.granularity, query.start, query.end].map(encodeURIComponent)
             const url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/' + segments.join('/')
             const temp = await fetch(url, { signal: controller.signal })
             if (!temp.ok) return { article, items: [] }

@@ -1,9 +1,11 @@
 // src/components/main/empty.tsx
 import { ArrowUpRightIcon, GitCompareIcon, InfoIcon } from 'lucide-react'
 import { type Dispatch, type SetStateAction, useMemo } from 'react'
+
+import type { TQuery } from '@/data/types'
+
 import { Alert, AlertDescription, AlertTitle, Badge, CardContent } from '@/components/ui'
 import { groups } from '@/data/prompts'
-import type { TQuery } from '@/data/types'
 import { fisherYates } from '@/lib/fisher–yates'
 import { formatKey } from '@/lib/format'
 
@@ -12,16 +14,11 @@ export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>>
 
   return (
     <CardContent className="flex h-full items-center justify-center">
-      <Alert className="text-secondary-foreground bg-secondary w-full max-w-xl px-6 py-4 shadow-xl">
+      <Alert className="w-full max-w-xl bg-secondary px-6 py-4 text-secondary-foreground shadow-xl">
         <InfoIcon className="mt-1" />
         <AlertTitle className="text-base">
           Compare article pageviews from&nbsp;
-          <a
-            href="https://www.wikipedia.org/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-lg font-semibold no-underline! hover:underline!"
-          >
+          <a href="https://www.wikipedia.org/" target="_blank" rel="noreferrer" className="text-lg font-semibold no-underline! hover:underline!">
             Wikipedia
           </a>
         </AlertTitle>
@@ -32,7 +29,7 @@ export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>>
               <Badge
                 key={`${entry.title}-${entry.group.join('|')}`}
                 variant="outline"
-                className="bg-secondary h-auto min-h-7 cursor-pointer gap-2 px-3 py-1 transition hover:brightness-125"
+                className="h-auto min-h-7 cursor-pointer gap-2 bg-secondary px-3 py-1 transition hover:brightness-125"
                 onClick={() => {
                   setQuery((prev) => ({ ...prev, group: entry.group }))
                 }}

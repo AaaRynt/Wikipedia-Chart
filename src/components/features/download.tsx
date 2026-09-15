@@ -2,17 +2,17 @@
 import { toPng, toSvg } from 'html-to-image'
 import { ChartSplineIcon, DownloadIcon, FileImageIcon, FileJsonIcon } from 'lucide-react'
 import { useState } from 'react'
-import { Button, HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui'
+
 import type { TQuery } from '@/data/types'
+
+import { Button, HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui'
 
 function buildFilename(query: TQuery) {
   return `${query.group.join('_vs_')}_${query.start}-${query.end}`
 }
 
 function buildPageviewsUrl(query: TQuery, article: string) {
-  const segments = [query.project, query.access, query.agent, article, query.granularity, query.start, query.end]
-    .map(encodeURIComponent)
-    .join('/')
+  const segments = [query.project, query.access, query.agent, article, query.granularity, query.start, query.end].map(encodeURIComponent).join('/')
 
   return 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/' + segments
 }
@@ -78,15 +78,7 @@ async function downloadJson(query: TQuery, filename: string) {
   URL.revokeObjectURL(objectUrl)
 }
 
-export function Download({
-  query,
-  chartReady,
-  chartNode,
-}: {
-  query: TQuery
-  chartReady: boolean
-  chartNode: HTMLDivElement | null
-}) {
+export function Download({ query, chartReady, chartNode }: { query: TQuery; chartReady: boolean; chartNode: HTMLDivElement | null }) {
   const [jsonLoading, setJsonLoading] = useState(false)
   const hasGroup = query.group.length > 0
 
@@ -111,13 +103,7 @@ export function Download({
   return (
     <HoverCard openDelay={10} closeDelay={100}>
       <HoverCardTrigger asChild>
-        <Button
-          className="cursor-auto active:translate-y-0!"
-          size="icon-lg"
-          variant="outline"
-          disabled={!hasGroup}
-          aria-disabled={!hasGroup}
-        >
+        <Button className="cursor-auto active:translate-y-0!" size="icon-lg" variant="outline" disabled={!hasGroup} aria-disabled={!hasGroup}>
           <DownloadIcon />
           <HoverCardContent className="flex w-auto gap-2 shadow-xl" side="bottom">
             <Button className="cursor-pointer" variant="secondary" disabled={!chartReady} onClick={handleSvg}>

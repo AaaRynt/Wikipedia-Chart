@@ -1,25 +1,10 @@
-// src/components/features/key-select.tsx
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui'
 import type { TKey } from '@/data/types'
+
+// src/components/features/key-select.tsx
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui'
 import { formatKey } from '@/lib/format'
 
-export function KeySelect({
-  pKey,
-  value,
-  onValueChange,
-}: {
-  pKey: TKey
-  value?: string
-  onValueChange?: (value: string) => void
-}) {
+export function KeySelect({ pKey, value, onValueChange }: { pKey: TKey; value?: string; onValueChange?: (value: string) => void }) {
   const Icon = pKey.svg[0]
   return (
     <Select value={value} onValueChange={onValueChange}>

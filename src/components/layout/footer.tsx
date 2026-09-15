@@ -1,9 +1,11 @@
 // src/components/layout/footer.tsx
 import { format } from 'date-fns'
 import * as React from 'react'
+
+import type { TQuery } from '@/data/types'
+
 import { DatePickerWithRange, KeySelect } from '@/components/features'
 import { keys } from '@/data/keys'
-import type { TQuery } from '@/data/types'
 
 function toDate(value: string) {
   const year = Number(value.slice(0, 4)),

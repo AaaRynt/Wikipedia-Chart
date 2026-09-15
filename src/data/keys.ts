@@ -1,15 +1,7 @@
 // src/data/keys.ts
 import { Ri24HoursLine, RiAppsLine } from '@remixicon/react'
-import {
-  BugIcon,
-  CalendarClockIcon,
-  GlobeIcon,
-  MonitorIcon,
-  MonitorSmartphoneIcon,
-  SearchCodeIcon,
-  SmartphoneIcon,
-  UserIcon,
-} from 'lucide-react'
+import { BugIcon, CalendarClockIcon, GlobeIcon, MonitorIcon, MonitorSmartphoneIcon, SearchCodeIcon, SmartphoneIcon, UserIcon } from 'lucide-react'
+
 import type { TKey } from '@/data/types'
 
 export const keys: TKey[] = [

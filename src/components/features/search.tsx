@@ -6,26 +6,11 @@ import 'lucide-react'
 import { SearchIcon, TextSearchIcon, XIcon } from 'lucide-react'
 import { type Dispatch, type SetStateAction, useEffect, useMemo, useState } from 'react'
 import { useDebounce } from 'use-debounce'
-import { Loading } from '@/components/features'
-import {
-  Badge,
-  Button,
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandShortcut,
-  ItemContent,
-  ItemDescription,
-  ItemMedia,
-  ItemTitle,
-  Kbd,
-  KbdGroup,
-} from '@/components/ui'
+
 import type { SearchResponse, TQuery } from '@/data/types'
+
+import { Loading } from '@/components/features'
+import { Badge, Button, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut, ItemContent, ItemDescription, ItemMedia, ItemTitle, Kbd, KbdGroup } from '@/components/ui'
 import { formatKey } from '@/lib/format'
 
 export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<SetStateAction<TQuery>> }) {
@@ -47,7 +32,6 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
   useEffect(() => {
     const nextKeyword = debouncedKeyword.trim()
     if (!nextKeyword) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPages([])
       setLoading(false)
       return
@@ -89,11 +73,7 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
 
   return (
     <div className="flex min-w-0 items-center gap-2">
-      <Button
-        onClick={() => setOpen(true)}
-        variant="outline"
-        className="cursor-pointer rounded-full px-4 active:translate-y-0!"
-      >
+      <Button onClick={() => setOpen(true)} variant="outline" className="cursor-pointer rounded-full px-4 active:translate-y-0!">
         <SearchIcon />
         {query.group.length > 0 ? (
           <div className="flex flex-wrap gap-1">
@@ -129,32 +109,13 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
             ) : (
               <CommandGroup heading="Results">
                 {results.map((page) => (
-                  <CommandItem
-                    key={page.pageid}
-                    value={page.title}
-                    className="flex items-start gap-3"
-                    onSelect={() => handleSelect(page.title)}
-                  >
-                    <ItemMedia
-                      variant={page.thumbnail?.source ? 'image' : 'icon'}
-                      className="flex size-10 items-center justify-center overflow-hidden rounded-sm"
-                    >
-                      {page.thumbnail?.source ? (
-                        <img
-                          src={page.thumbnail.source}
-                          alt={page.title}
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <TextSearchIcon />
-                      )}
+                  <CommandItem key={page.pageid} value={page.title} className="flex items-start gap-3" onSelect={() => handleSelect(page.title)}>
+                    <ItemMedia variant={page.thumbnail?.source ? 'image' : 'icon'} className="flex size-10 items-center justify-center overflow-hidden rounded-sm">
+                      {page.thumbnail?.source ? <img src={page.thumbnail.source} alt={page.title} className="h-full w-full object-cover" loading="lazy" /> : <TextSearchIcon />}
                     </ItemMedia>
                     <ItemContent className="flex flex-col gap-1">
                       <ItemTitle className="text-sm font-medium">{page.title}</ItemTitle>
-                      <ItemDescription className="text-muted-foreground text-xs">
-                        {page.description ?? 'No description'}
-                      </ItemDescription>
+                      <ItemDescription className="text-xs text-muted-foreground">{page.description ?? 'No description'}</ItemDescription>
                     </ItemContent>
                   </CommandItem>
                 ))}
@@ -176,7 +137,7 @@ const Current = ({ title, onRemove }: { title: string; onRemove: () => void }) =
         size="icon-xs"
         variant="ghost"
         aria-label={`Remove ${formatKey(title)}`}
-        className="hover:bg-ring! text-muted-foreground hover:text-secondary-foreground size-4 cursor-pointer rounded-sm p-2"
+        className="size-4 cursor-pointer rounded-sm p-2 text-muted-foreground hover:bg-ring! hover:text-secondary-foreground"
         onClick={(event) => {
           event.stopPropagation()
           onRemove()

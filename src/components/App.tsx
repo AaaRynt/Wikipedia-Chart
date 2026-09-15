@@ -1,7 +1,10 @@
 // src/components/App.tsx
 import { useEffect, useState } from 'react'
-import { defaultQuery } from '@/data/default-query'
+
 import type { TQuery } from '@/data/types'
+
+import { defaultQuery } from '@/data/default-query'
+
 import { Footer, Header, Main } from './layout'
 
 const GROUP_SEPARATOR = ';'
@@ -44,16 +47,13 @@ export function App() {
     if (typeof window === 'undefined') return
     const base = import.meta.env.BASE_URL ?? '/',
       normalizedBase = base.endsWith('/') ? base : `${base}/`,
-      nextPath =
-        query.group.length > 0
-          ? `${normalizedBase}${query.project}/${query.access}/${query.agent}/${formatGroup(query.group)}/${query.granularity}/${query.start}/${query.end}`
-          : normalizedBase
+      nextPath = query.group.length > 0 ? `${normalizedBase}${query.project}/${query.access}/${query.agent}/${formatGroup(query.group)}/${query.granularity}/${query.start}/${query.end}` : normalizedBase
 
     window.history.replaceState(null, '', nextPath)
   }, [query])
 
   return (
-    <div className="bg-background text-foreground flex min-h-screen flex-col items-center *:flex *:w-full *:items-center">
+    <div className="flex min-h-screen flex-col items-center bg-background text-foreground *:flex *:w-full *:items-center">
       <Header query={query} setQuery={setQuery} chartReady={chartReady} chartNode={chartNode} />
       <Main query={query} setQuery={setQuery} setChartReady={setChartReady} setChartNode={setChartNode} />
       <Footer query={query} setQuery={setQuery} />

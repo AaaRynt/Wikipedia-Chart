@@ -4,6 +4,7 @@ import { addDays, format } from 'date-fns'
 import { CalendarRangeIcon } from 'lucide-react'
 import * as React from 'react'
 import { type DateRange } from 'react-day-picker'
+
 import { Button, Calendar, Field, Popover, PopoverContent, PopoverTrigger } from '@/components/ui'
 
 const userLocale = navigator.language || 'en-US',
@@ -12,18 +13,11 @@ const userLocale = navigator.language || 'en-US',
     to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
   }
 
-export function DatePickerWithRange({
-  value,
-  onChange,
-}: {
-  value?: DateRange
-  onChange?: (range: DateRange | undefined) => void
-}) {
+export function DatePickerWithRange({ value, onChange }: { value?: DateRange; onChange?: (range: DateRange | undefined) => void }) {
   const [date, setDate] = React.useState<DateRange | undefined>(value ?? defaultRange)
 
   React.useEffect(() => {
     if (!value?.from && !value?.to) return
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDate(value)
   }, [value, value?.from, value?.to])
 

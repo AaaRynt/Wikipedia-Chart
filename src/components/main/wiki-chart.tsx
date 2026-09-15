@@ -2,8 +2,10 @@
 import { eachMonthOfInterval, format } from 'date-fns'
 import { useMemo } from 'react'
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import { Alert, AlertDescription, AlertTitle, CardContent } from '@/components/ui'
+
 import type { TArticleSeries } from '@/data/types'
+
+import { Alert, AlertDescription, AlertTitle, CardContent } from '@/components/ui'
 import { formatKey } from '@/lib/format'
 
 type ChartDatum = {
@@ -73,11 +75,9 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
   if (!hasData) {
     return (
       <CardContent className="flex h-full items-center justify-center">
-        <Alert className="bg-secondary text-secondary-foreground w-full max-w-md shadow-xl">
+        <Alert className="w-full max-w-md bg-secondary text-secondary-foreground shadow-xl">
           <AlertTitle>No pageview data</AlertTitle>
-          <AlertDescription>
-            The selected group did not return pageview data for this date range. Try another article or date range.
-          </AlertDescription>
+          <AlertDescription>The selected group did not return pageview data for this date range. Try another article or date range.</AlertDescription>
         </Alert>
       </CardContent>
     )
@@ -88,14 +88,7 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={chartData}>
           <CartesianGrid stroke="var(--muted)" vertical={false} />
-          <XAxis
-            dataKey="time"
-            type="number"
-            domain={['dataMin', 'dataMax']}
-            ticks={monthTicks}
-            tickFormatter={(value) => format(new Date(value), 'MMM')}
-            tickMargin={8}
-          />
+          <XAxis dataKey="time" type="number" domain={['dataMin', 'dataMax']} ticks={monthTicks} tickFormatter={(value) => format(new Date(value), 'MMM')} tickMargin={8} />
           <YAxis tickLine={false} axisLine={false} tickMargin={8} />
           <Tooltip
             cursor={false}
@@ -110,16 +103,7 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
             formatter={(value, name) => [`${value}`, lineNames.get(String(name)) ?? String(name)]}
           />
           {lines.map((line) => (
-            <Line
-              key={line.key}
-              type="monotone"
-              dataKey={line.key}
-              name={formatKey(line.article)}
-              stroke={line.color}
-              strokeWidth={2}
-              dot={false}
-              activeDot={{ r: 2 }}
-            />
+            <Line key={line.key} type="monotone" dataKey={line.key} name={formatKey(line.article)} stroke={line.color} strokeWidth={2} dot={false} activeDot={{ r: 2 }} />
           ))}
           <Legend />
         </LineChart>
