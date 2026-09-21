@@ -6,7 +6,7 @@ import type { TArticle, TQuery } from '@/data/types'
 import { pageviewsApi } from '@/api/pageviews-api'
 
 const target: TArticle = { project: 'ja.wikipedia', article: '\u65e5\u672c', entityId: 'Q17' }
-const query: TQuery = { searchProject: 'en.wikipedia', articles: [target], access: 'all-access', agent: 'user', granularity: 'daily', start: '20240101', end: '20240102' }
+const query: TQuery = { mode: 'languages', source: target, searchProject: 'en.wikipedia', articles: [target], access: 'all-access', agent: 'user', granularity: 'daily', start: '20240101', end: '20240102' }
 const items = [{ project: target.project, article: target.article, granularity: 'daily', timestamp: '2024010100', access: 'all-access', agent: 'user', views: 0 }]
 
 describe('pageviews API', () => {

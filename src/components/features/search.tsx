@@ -11,6 +11,7 @@ import { wikipediaApi } from '@/api/wikipedia-api'
 import { Loading } from '@/components/features'
 import { Badge, Button, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut, ItemContent, ItemDescription, ItemMedia, ItemTitle, Kbd, KbdGroup } from '@/components/ui'
 import { getArticleKey, getArticleLabel, normalizeArticleTitle } from '@/lib/article'
+import { selectArticle } from '@/lib/comparison'
 
 type TSearchResult = {
   project: string
@@ -60,10 +61,7 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
 
   const handleSelect = (page: TSearchPage) => {
     const target = { project: query.searchProject, article: normalizeArticleTitle(page.title), ...(page.pageprops?.wikibase_item ? { entityId: page.pageprops.wikibase_item } : {}) }
-    setQuery((prev) => {
-      if (prev.articles.some((article) => getArticleKey(article) === getArticleKey(target))) return prev
-      return { ...prev, articles: [...prev.articles, target] }
-    })
+    setQuery((prev) => selectArticle(prev, target))
     setKeyword('')
     setResult(null)
     setOpen(false)
@@ -73,6 +71,7 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
     <div className="flex min-w-0 flex-wrap items-center gap-2">
       <Button onClick={() => setOpen(true)} variant="outline" className="shrink-0 cursor-pointer rounded-full px-4 active:translate-y-0!" aria-label="Search Wikipedia">
         <SearchIcon />
+        <span>{query.mode === 'languages' ? 'Select entity' : 'Add article'}</span>
         {query.articles.length === 0 && (
           <CommandShortcut>
             <KbdGroup>
@@ -82,7 +81,7 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
           </CommandShortcut>
         )}
       </Button>
-      {query.articles.length > 0 && (
+      {query.mode === 'articles' && query.articles.length > 0 && (
         <div className="flex min-w-0 flex-wrap gap-1">
           {query.articles.map((target) => (
             <Current
@@ -95,7 +94,7 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
           ))}
         </div>
       )}
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog open={open} onOpenChange={setOpen} title="Search Wikipedia" description={query.searchProject}>
         <Command shouldFilter={false}>
           <CommandInput placeholder="search..." value={keyword} onValueChange={setKeyword} />
           <CommandList>

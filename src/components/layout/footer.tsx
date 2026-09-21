@@ -24,7 +24,7 @@ export function Footer({ query, setQuery }: { query: TQuery; setQuery: React.Dis
   )
 
   return (
-    <footer className="justify-center gap-6 px-4 py-2">
+    <footer className="flex-wrap justify-center gap-3 px-4 py-3">
       <DatePickerWithRange
         value={rangeValue}
         onChange={(range) => {
@@ -36,7 +36,7 @@ export function Footer({ query, setQuery }: { query: TQuery; setQuery: React.Dis
           }))
         }}
       />
-      <div className="flex gap-2">
+      <div className="flex flex-wrap justify-center gap-2">
         {keys.map((key) => (
           <KeySelect
             key={key.label}

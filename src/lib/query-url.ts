@@ -2,6 +2,7 @@
 import type { TArticle, TQuery } from '@/data/types'
 
 import { isWikipediaProject, normalizeArticleTitle, uniqueArticles } from '@/lib/article'
+import { isValidComparison } from '@/lib/comparison'
 
 const accessValues = ['all-access', 'desktop', 'mobile-app', 'mobile-web'] as const
 const agentValues = ['all-agents', 'automated', 'spider', 'user'] as const
@@ -25,21 +26,35 @@ function readArticles(value: unknown): TArticle[] | null {
 }
 
 function readQuery(values: Record<string, unknown>): TQuery | null {
-  const { searchProject, access, agent, granularity, start, end } = values
+  const { mode, searchProject, access, agent, granularity, start, end } = values
   const articles = readArticles(values.articles)
+  const source = values.source === null ? null : readArticles([values.source])?.[0]
+  if ((mode !== 'articles' && mode !== 'languages') || source === undefined) return null
   if (!isWikipediaProject(searchProject) || !articles) return null
   if (!accessValues.includes(access as TQuery['access']) || !agentValues.includes(agent as TQuery['agent']) || !granularityValues.includes(granularity as TQuery['granularity'])) return null
   if (typeof start !== 'string' || typeof end !== 'string' || !isDate(start) || !isDate(end) || start > end) return null
-  return { searchProject, articles, access: access as TQuery['access'], agent: agent as TQuery['agent'], granularity: granularity as TQuery['granularity'], start, end }
+  const query: TQuery = { mode, source, searchProject, articles, access: access as TQuery['access'], agent: agent as TQuery['agent'], granularity: granularity as TQuery['granularity'], start, end }
+  return isValidComparison(query) ? query : null
+}
+
+function migrateV2(values: Record<string, unknown>) {
+  const articles = readArticles(values.articles)
+  if (!articles) return null
+  const first = articles[0]
+  const mixedProjects = articles.some((target) => target.project !== first.project)
+  return readQuery({ ...values, articles, mode: mixedProjects ? 'languages' : 'articles', source: mixedProjects ? first : null, searchProject: mixedProjects ? values.searchProject : (first?.project ?? values.searchProject) })
 }
 
 export function parseQueryUrl(url: URL, fallback: TQuery): TQuery {
   try {
     const params = url.searchParams
     if (params.has('v')) {
-      if (params.get('v') !== '2') return fallback
+      const version = params.get('v')
+      if (version !== '2' && version !== '3') return fallback
       return (
-        readQuery({
+        (version === '2' ? migrateV2 : readQuery)({
+          mode: params.get('mode'),
+          source: JSON.parse(params.get('source') ?? 'null'),
           searchProject: params.get('project'),
           articles: JSON.parse(params.get('articles') ?? 'null'),
           access: params.get('access'),
@@ -57,6 +72,8 @@ export function parseQueryUrl(url: URL, fallback: TQuery): TQuery {
     const [project, access, agent, group, granularity, start, end] = parts
     return (
       readQuery({
+        mode: 'articles',
+        source: null,
         searchProject: project,
         articles: group.split(';').map((article) => ({ project, article: decodeURIComponent(article) })),
         access,
@@ -74,7 +91,9 @@ export function parseQueryUrl(url: URL, fallback: TQuery): TQuery {
 export function formatQueryUrl(query: TQuery, basePath: string) {
   const base = basePath.endsWith('/') ? basePath : `${basePath}/`
   const params = new URLSearchParams({
-    v: '2',
+    v: '3',
+    mode: query.mode,
+    source: JSON.stringify(query.source),
     project: query.searchProject,
     articles: JSON.stringify(query.articles),
     access: query.access,

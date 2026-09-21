@@ -15,6 +15,7 @@ export function Ask({ query }: { query: TQuery }) {
     return `Analyze the Wikimedia pageviews chart:
 
   Articles: ${articles}
+  Comparison: ${query.mode === 'languages' ? `Language editions of ${query.source ? getArticleLabel(query.source) : 'one entity'} (${query.source?.entityId ?? 'no linked entity'})` : 'Articles in one Wikipedia language'}
   Date range: ${query.start} to ${query.end}
   Access: ${query.access}
   Agent: ${query.agent}
@@ -23,7 +24,7 @@ export function Ask({ query }: { query: TQuery }) {
   Data links:
   ${links}
 
-  Please explain the trend, compare the articles, identify spikes or unusual changes, and give possible real-world reasons. Keep the analysis concise and useful for understanding the chart.`
+  Please explain the trend, compare the articles, identify spikes or unusual changes, and give possible real-world reasons. Language editions do not identify reader countries. Missing data is not zero views. Keep the analysis concise and useful for understanding the chart.`
   }
   const disabled = query.articles.length === 0
 

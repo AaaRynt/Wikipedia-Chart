@@ -6,6 +6,8 @@ import type { TQuery } from '@/data/types'
 const end = subDays(new Date(), 2)
 
 export const defaultQuery: TQuery = {
+  mode: 'articles',
+  source: null,
   searchProject: 'en.wikipedia',
   articles: [],
   access: 'all-access',

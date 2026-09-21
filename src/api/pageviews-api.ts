@@ -1,5 +1,5 @@
 // src/api/pageviews-api.ts
-import type { TArticle, TArticleSeries, TQuery, TRes } from '@/data/types'
+import type { TArticle, TArticleSeries, TPageviewsQuery, TRes } from '@/data/types'
 
 export type TPageviewsResult = TArticleSeries & {
   url: string
@@ -7,7 +7,7 @@ export type TPageviewsResult = TArticleSeries & {
   data: unknown
 }
 
-function buildUrl(query: TQuery, target: TArticle) {
+function buildUrl(query: TPageviewsQuery, target: TArticle) {
   const segments = [target.project, query.access, query.agent, target.article, query.granularity, query.start, query.end].map(encodeURIComponent)
   return `https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/${segments.join('/')}`
 }
@@ -17,7 +17,7 @@ function isPageview(value: unknown): value is TRes {
   return 'timestamp' in value && typeof value.timestamp === 'string' && /^\d{10}$/.test(value.timestamp) && 'views' in value && typeof value.views === 'number' && Number.isFinite(value.views) && value.views >= 0
 }
 
-async function getArticle(query: TQuery, target: TArticle, signal?: AbortSignal): Promise<TPageviewsResult> {
+async function getArticle(query: TPageviewsQuery, target: TArticle, signal?: AbortSignal): Promise<TPageviewsResult> {
   const url = buildUrl(query, target)
   let statusCode = 0
   let data: unknown = null
@@ -40,7 +40,7 @@ async function getArticle(query: TQuery, target: TArticle, signal?: AbortSignal)
   }
 }
 
-function getArticles(query: TQuery, signal?: AbortSignal) {
+function getArticles(query: TPageviewsQuery, signal?: AbortSignal) {
   return Promise.all(query.articles.map((target) => getArticle(query, target, signal)))
 }
 

@@ -10,12 +10,20 @@ import { normalizeArticleTitle } from '@/lib/article'
 import { fisherYates } from '@/lib/fisher–yates'
 import { formatKey } from '@/lib/format'
 
-export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>> }) {
+export function Empty({ query, setQuery }: { query: TQuery; setQuery: Dispatch<SetStateAction<TQuery>> }) {
   const entries = useMemo(() => fisherYates([...groups]).slice(0, 20), [])
 
+  if (query.mode === 'languages' || query.searchProject !== 'en.wikipedia') {
+    return (
+      <CardContent className="flex h-full items-center justify-center text-sm text-muted-foreground">
+        <p role="status">{query.mode === 'languages' ? (query.source ? 'No languages selected' : 'No entity selected') : 'No articles selected'}</p>
+      </CardContent>
+    )
+  }
+
   return (
-    <CardContent className="flex h-full items-center justify-center">
-      <Alert className="w-full max-w-xl bg-secondary px-6 py-4 text-secondary-foreground shadow-xl">
+    <CardContent className="flex min-h-0 flex-1 overflow-y-auto">
+      <Alert className="m-auto w-full max-w-xl shrink-0 bg-secondary px-6 py-4 text-secondary-foreground shadow-xl">
         <InfoIcon className="mt-1" />
         <AlertTitle className="text-base">
           Compare article pageviews from&nbsp;
@@ -32,7 +40,7 @@ export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>>
                 variant="outline"
                 className="h-auto min-h-7 cursor-pointer gap-2 bg-secondary px-3 py-1 transition hover:brightness-125"
                 onClick={() => {
-                  setQuery((prev) => ({ ...prev, searchProject: 'en.wikipedia', articles: entry.group.map((article) => ({ project: 'en.wikipedia', article: normalizeArticleTitle(article) })) }))
+                  setQuery((prev) => ({ ...prev, mode: 'articles', source: null, searchProject: 'en.wikipedia', articles: entry.group.map((article) => ({ project: 'en.wikipedia', article: normalizeArticleTitle(article) })) }))
                 }}
               >
                 {entry.kind === 'preset-group' ? (

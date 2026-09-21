@@ -5,7 +5,17 @@ export type TArticle = {
   entityId?: string
 }
 
+export type TComparisonMode = 'articles' | 'languages'
+
+export type TLanguageMapping = {
+  source: TArticle
+  versions: TArticle[]
+  unavailable?: 'missing-page' | 'no-entity' | 'missing-entity'
+}
+
 export type TQuery = {
+  mode: TComparisonMode
+  source: TArticle | null
   searchProject: string
   articles: TArticle[]
   granularity: 'monthly' | 'daily'
@@ -17,6 +27,8 @@ export type TQuery = {
   start: string
   end: string
 }
+
+export type TPageviewsQuery = Pick<TQuery, 'articles' | 'access' | 'agent' | 'granularity' | 'start' | 'end'>
 // {
 //   "project": "en.wikipedia",
 //   "article": "Russo-Ukrainian_war",
@@ -59,6 +71,8 @@ export type TSearchPage = {
   title: string
   description?: string
   pageprops?: { wikibase_item?: string }
+  missing?: string
+  invalid?: string
   thumbnail?: {
     source: string
     width: number

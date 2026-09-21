@@ -22,6 +22,7 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
         id: getArticleKey(series.target),
         key: `article_${index}`,
         color: `var(--chart-${(index % 5) + 1})`,
+        dash: [undefined, '6 3', '2 3'][Math.floor(index / 5) % 3],
       })),
     [res],
   )
@@ -104,7 +105,7 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
             formatter={(value, name) => [`${value}`, lineNames.get(String(name)) ?? String(name)]}
           />
           {lines.map((line) => (
-            <Line key={line.id} type="monotone" dataKey={line.key} name={line.label} stroke={line.color} strokeWidth={2} dot={false} activeDot={{ r: 2 }} />
+            <Line key={line.id} type="monotone" dataKey={line.key} name={line.label} stroke={line.color} strokeDasharray={line.dash} strokeWidth={2} dot={false} activeDot={{ r: 2 }} />
           ))}
           <Legend />
         </LineChart>

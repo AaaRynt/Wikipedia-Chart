@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 import type { TQuery } from '@/data/types'
 
+import { ComparisonControls } from '@/components/features'
 import { Footer, Header, Main } from '@/components/layout'
 import { defaultQuery } from '@/data/default-query'
 import { formatQueryUrl, parseQueryUrl } from '@/lib/query-url'
@@ -22,7 +23,8 @@ export function App() {
 
   return (
     <div className="flex min-h-screen flex-col items-center bg-background text-foreground *:flex *:w-full *:items-center">
-      <Header query={query} setQuery={setQuery} chartReady={chartReady} chartNode={chartNode} />
+      <Header query={query} chartReady={chartReady} chartNode={chartNode} />
+      <ComparisonControls query={query} setQuery={setQuery} />
       <Main query={query} setQuery={setQuery} setChartReady={setChartReady} setChartNode={setChartNode} />
       <Footer query={query} setQuery={setQuery} />
     </div>
