@@ -3,10 +3,10 @@ import { toPng, toSvg } from 'html-to-image'
 import { ChartSplineIcon, DownloadIcon, FileImageIcon, FileJsonIcon, TriangleAlertIcon } from 'lucide-react'
 import { useState } from 'react'
 
-import type { TQuery } from '@/data/types'
+import type { TPageviewsSnapshot, TQuery } from '@/data/types'
 
-import { pageviewsApi } from '@/api/pageviews-api'
 import { Button, Popover, PopoverContent, PopoverTrigger } from '@/components/ui'
+import { createPageviewsExport, getPageviewsRequestKey } from '@/lib/pageviews-snapshot'
 
 function buildFilename(query: TQuery) {
   const articles = query.articles.map((target) => `${target.project}-${target.article}`).join('_vs_')
@@ -29,14 +29,8 @@ async function downloadSvg(node: HTMLElement, filename: string) {
   a.click()
 }
 
-async function downloadJson(query: TQuery, filename: string) {
-  const articles = await pageviewsApi.getArticles(query)
-  const payload = {
-    version: 3,
-    exportedAt: new Date().toISOString(),
-    query,
-    articles,
-  }
+function downloadJson(query: TQuery, snapshot: TPageviewsSnapshot, filename: string) {
+  const payload = createPageviewsExport(query, snapshot)
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json;charset=utf-8' }),
     objectUrl = URL.createObjectURL(blob),
     a = document.createElement('a')
@@ -47,18 +41,20 @@ async function downloadJson(query: TQuery, filename: string) {
   URL.revokeObjectURL(objectUrl)
 }
 
-export function Download({ query, chartReady, chartNode }: { query: TQuery; chartReady: boolean; chartNode: HTMLDivElement | null }) {
+export function Download({ query, snapshot, chartNode }: { query: TQuery; snapshot: TPageviewsSnapshot | null; chartNode: HTMLDivElement | null }) {
   const [pending, setPending] = useState<'svg' | 'png' | 'json' | null>(null)
   const [error, setError] = useState<string | null>(null)
   const hasGroup = query.articles.length > 0
+  const currentSnapshot = snapshot?.requestKey === getPageviewsRequestKey(query) ? snapshot : null
+  const chartReady = currentSnapshot?.series.some((series) => series.items.length > 0) ?? false
 
   const handleDownload = async (kind: 'svg' | 'png' | 'json') => {
-    if (!hasGroup || pending || (kind !== 'json' && !chartNode)) return
+    if (!hasGroup || !currentSnapshot || pending || (kind !== 'json' && (!chartNode || !chartReady))) return
     setPending(kind)
     setError(null)
     try {
       const filename = buildFilename(query)
-      if (kind === 'json') await downloadJson(query, filename)
+      if (kind === 'json') downloadJson(query, currentSnapshot, filename)
       else if (kind === 'png') await downloadPng(chartNode!, filename)
       else await downloadSvg(chartNode!, filename)
     } catch (error) {
@@ -84,7 +80,7 @@ export function Download({ query, chartReady, chartNode }: { query: TQuery; char
           <FileImageIcon />
           <span className="font-mono">.png</span>
         </Button>
-        <Button className="cursor-pointer" variant="secondary" disabled={pending !== null} onClick={() => handleDownload('json')}>
+        <Button className="cursor-pointer" variant="secondary" disabled={!currentSnapshot || pending !== null} onClick={() => handleDownload('json')}>
           <FileJsonIcon />
           <span className="font-mono">.json</span>
         </Button>

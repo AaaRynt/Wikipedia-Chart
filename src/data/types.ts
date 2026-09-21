@@ -58,6 +58,18 @@ export type TArticleSeries = {
   error?: string
 }
 
+export type TPageviewsResult = TArticleSeries & {
+  url: string
+  statusCode: number
+  data: unknown
+}
+
+export type TPageviewsSnapshot = {
+  requestKey: string
+  fetchedAt: string
+  series: TPageviewsResult[]
+}
+
 export type TKey = {
   label: string
   value: string[]

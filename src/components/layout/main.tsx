@@ -1,51 +1,25 @@
 // src/components/layout/main.tsx
 
 import { RotateCcwIcon } from 'lucide-react'
-import { type Dispatch, type SetStateAction, useEffect, useMemo, useRef, useState } from 'react'
+import { type Dispatch, type SetStateAction, useEffect, useRef } from 'react'
 
-import type { TArticleSeries, TPageviewsQuery, TQuery } from '@/data/types'
+import type { TPageviewsSnapshot, TQuery } from '@/data/types'
 
-import { pageviewsApi } from '@/api/pageviews-api'
 import { Loading } from '@/components/features'
 import { Empty, WikiChart } from '@/components/main'
 import { Alert, AlertDescription, AlertTitle, Button, Card, CardContent } from '@/components/ui'
 import { getArticleLabel } from '@/lib/article'
 
-export function Main({ query, setQuery, setChartReady, setChartNode }: { query: TQuery; setQuery: Dispatch<SetStateAction<TQuery>>; setChartReady?: (ready: boolean) => void; setChartNode?: (node: HTMLDivElement | null) => void }) {
-  const { articles, access, agent, granularity, start, end } = query
-  const request = useMemo<TPageviewsQuery>(() => ({ articles, access, agent, granularity, start, end }), [articles, access, agent, granularity, start, end])
-  const [result, setResult] = useState<{ request: TPageviewsQuery; series: TArticleSeries[] } | null>(null)
-  const [retry, setRetry] = useState(0)
+export function Main({ query, setQuery, snapshot, loading, onRetry, setChartNode }: { query: TQuery; setQuery: Dispatch<SetStateAction<TQuery>>; snapshot: TPageviewsSnapshot | null; loading: boolean; onRetry: () => void; setChartNode?: (node: HTMLDivElement | null) => void }) {
   const cardRef = useRef<HTMLDivElement | null>(null)
-  const res = result?.request === request ? result.series : []
-  const loading = request.articles.length > 0 && result?.request !== request
+  const res = snapshot?.series ?? []
   const failed = res.filter((series) => series.status === 'error')
   const empty = res.filter((series) => series.status === 'empty')
   const hasData = res.some((series) => series.items.length > 0)
 
   useEffect(() => {
-    const controller = new AbortController()
-
-    async function fetchRes() {
-      if (request.articles.length === 0) return
-      try {
-        const series = await pageviewsApi.getArticles(request, controller.signal)
-        if (!controller.signal.aborted) setResult({ request, series })
-      } catch (error) {
-        if (!controller.signal.aborted) {
-          setResult({ request, series: request.articles.map((target) => ({ target, items: [], status: 'error', error: error instanceof Error ? error.message : 'Pageviews request failed' })) })
-        }
-      }
-    }
-    fetchRes()
-    return () => controller.abort()
-  }, [request, retry])
-  useEffect(() => {
     setChartNode?.(cardRef.current)
   }, [setChartNode])
-  useEffect(() => {
-    setChartReady?.(!loading && hasData)
-  }, [loading, hasData, setChartReady])
 
   return (
     <main className="flex-1 flex-col justify-center px-2 py-4 sm:px-8">
@@ -62,15 +36,7 @@ export function Main({ query, setQuery, setChartReady, setChartNode }: { query: 
                   <Alert variant="destructive">
                     <AlertTitle>Some pageviews could not be loaded</AlertTitle>
                     <AlertDescription className="break-words">{failed.map((series) => `${getArticleLabel(series.target)}: ${series.error}`).join('; ')}</AlertDescription>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="mt-2 w-fit"
-                      onClick={() => {
-                        setResult(null)
-                        setRetry((value) => value + 1)
-                      }}
-                    >
+                    <Button variant="outline" size="sm" className="mt-2 w-fit" onClick={onRetry}>
                       <RotateCcwIcon /> Retry
                     </Button>
                   </Alert>
@@ -83,7 +49,7 @@ export function Main({ query, setQuery, setChartReady, setChartNode }: { query: 
                   </p>
                 </CardContent>
               )}
-              {(hasData || failed.length === 0) && <WikiChart res={res} />}
+              {(hasData || failed.length === 0) && <WikiChart res={res} query={query} />}
             </>
           ) : (
             <Empty query={query} setQuery={setQuery} />

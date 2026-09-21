@@ -1,5 +1,7 @@
 # Wikipedia Chart 项目介绍
 
+`2026-05-06`
+
 ## 1. 项目定位
 
 Wikipedia Chart 是一个面向 Wikipedia 条目访问量对比的数据可视化应用。项目基于 React + TypeScript + Vite 开发，核心目标是把 Wikimedia Pageviews 数据变成可交互、可筛选、可分享、可导出的多折线图。

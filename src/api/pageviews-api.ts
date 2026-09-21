@@ -1,11 +1,7 @@
 // src/api/pageviews-api.ts
-import type { TArticle, TArticleSeries, TPageviewsQuery, TRes } from '@/data/types'
+import type { TArticle, TPageviewsQuery, TPageviewsResult, TRes } from '@/data/types'
 
-export type TPageviewsResult = TArticleSeries & {
-  url: string
-  statusCode: number
-  data: unknown
-}
+import { parsePageviewDate } from '@/lib/chart-data'
 
 function buildUrl(query: TPageviewsQuery, target: TArticle) {
   const segments = [target.project, query.access, query.agent, target.article, query.granularity, query.start, query.end].map(encodeURIComponent)
@@ -14,7 +10,7 @@ function buildUrl(query: TPageviewsQuery, target: TArticle) {
 
 function isPageview(value: unknown): value is TRes {
   if (!value || typeof value !== 'object') return false
-  return 'timestamp' in value && typeof value.timestamp === 'string' && /^\d{10}$/.test(value.timestamp) && 'views' in value && typeof value.views === 'number' && Number.isFinite(value.views) && value.views >= 0
+  return 'timestamp' in value && typeof value.timestamp === 'string' && value.timestamp.length === 10 && parsePageviewDate(value.timestamp) !== null && 'views' in value && typeof value.views === 'number' && Number.isFinite(value.views) && value.views >= 0
 }
 
 async function getArticle(query: TPageviewsQuery, target: TArticle, signal?: AbortSignal): Promise<TPageviewsResult> {

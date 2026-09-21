@@ -1,20 +1,17 @@
 // src/components/main/wiki-chart.tsx
-import { eachMonthOfInterval, format } from 'date-fns'
 import { useMemo } from 'react'
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
-import type { TArticleSeries } from '@/data/types'
+import type { TArticleSeries, TPageviewsQuery } from '@/data/types'
 
 import { Alert, AlertDescription, AlertTitle, CardContent } from '@/components/ui'
 import { getArticleKey, getArticleLabel } from '@/lib/article'
+import { buildChartData } from '@/lib/chart-data'
 
-type TChartDatum = {
-  time: number
-  timestamp: string
-  [key: string]: number | string
-}
+const monthLabel = new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' })
+const dateLabel = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
 
-export function WikiChart({ res }: { res: TArticleSeries[] }) {
+export function WikiChart({ res, query }: { res: TArticleSeries[]; query: TPageviewsQuery }) {
   const lines = useMemo(
     () =>
       res.map((series, index) => ({
@@ -27,28 +24,8 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
     [res],
   )
 
-  const chartData = useMemo(() => {
-    const rows = new Map<number, TChartDatum>()
-
-    res.forEach((series, index) => {
-      series.items.forEach((item) => {
-        const year = Number(item.timestamp.slice(0, 4)),
-          month = Number(item.timestamp.slice(4, 6)) - 1,
-          day = Number(item.timestamp.slice(6, 8)),
-          time = new Date(year, month, day).getTime(),
-          key = `article_${index}`,
-          row = rows.get(time) ?? {
-            time,
-            timestamp: item.timestamp,
-          }
-
-        row[key] = item.views
-        rows.set(time, row)
-      })
-    })
-
-    return Array.from(rows.values()).sort((a, b) => a.time - b.time)
-  }, [res])
+  const { start, end, granularity } = query
+  const chartData = useMemo(() => buildChartData(res, { start, end, granularity }), [res, start, end, granularity])
 
   const lineNames = useMemo(
     () =>
@@ -59,19 +36,11 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
       ),
     [lines],
   )
-  const hasData = chartData.length > 0
+  const hasData = res.some((series) => series.items.length > 0)
 
   const monthTicks = useMemo(() => {
     if (chartData.length === 0) return []
-    const startTime = chartData[0].time,
-      endTime = chartData[chartData.length - 1].time,
-      start = new Date(startTime),
-      end = new Date(endTime),
-      ticks = [startTime, ...eachMonthOfInterval({ start, end }).map((date) => date.getTime()), endTime]
-
-    return Array.from(new Set(ticks))
-      .filter((value) => value >= startTime && value <= endTime)
-      .sort((a, b) => a - b)
+    return chartData.filter((row, index) => index === 0 || index === chartData.length - 1 || new Date(row.time).getUTCDate() === 1).map((row) => row.time)
   }, [chartData])
 
   if (!hasData) {
@@ -90,7 +59,7 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={chartData}>
           <CartesianGrid stroke="var(--muted)" vertical={false} />
-          <XAxis dataKey="time" type="number" domain={['dataMin', 'dataMax']} ticks={monthTicks} tickFormatter={(value) => format(new Date(value), 'MMM')} tickMargin={8} />
+          <XAxis dataKey="time" type="number" domain={['dataMin', 'dataMax']} ticks={monthTicks} tickFormatter={(value) => monthLabel.format(value)} tickMargin={8} />
           <YAxis tickLine={false} axisLine={false} tickMargin={8} />
           <Tooltip
             cursor={false}
@@ -101,11 +70,11 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
               borderRadius: 'var(--radius)',
               opacity: '0.8',
             }}
-            labelFormatter={(value) => format(new Date(value as number), 'yyyy, M/d')}
+            labelFormatter={(value) => dateLabel.format(Number(value))}
             formatter={(value, name) => [`${value}`, lineNames.get(String(name)) ?? String(name)]}
           />
           {lines.map((line) => (
-            <Line key={line.id} type="monotone" dataKey={line.key} name={line.label} stroke={line.color} strokeDasharray={line.dash} strokeWidth={2} dot={false} activeDot={{ r: 2 }} />
+            <Line key={line.id} type="monotone" dataKey={line.key} name={line.label} stroke={line.color} strokeDasharray={line.dash} strokeWidth={2} dot={chartData.length <= 31 ? { r: 2 } : false} activeDot={{ r: 2 }} connectNulls={false} />
           ))}
           <Legend />
         </LineChart>

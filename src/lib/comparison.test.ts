@@ -78,6 +78,12 @@ describe('comparison modes', () => {
     expect(applyLanguageMapping(query, japan, mapping)).toBe(query)
   })
 
+  it('ignores a result from an earlier selection of the same title', () => {
+    const current = selectArticle(changeComparisonMode(query, 'languages'), japan)
+    expect(current.source).not.toBe(japan)
+    expect(applyLanguageMapping(current, japan, mapping)).toBe(current)
+  })
+
   it('toggles language editions of the same entity and retains the source when none are checked', () => {
     const current = changeComparisonMode(query, 'languages')
     const next = toggleLanguage(toggleLanguage(current, japanese, true), chinese, true)

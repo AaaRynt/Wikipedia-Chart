@@ -28,7 +28,7 @@ export function changeComparisonMode(query: TQuery, mode: TComparisonMode, saved
 }
 
 export function applyLanguageMapping(query: TQuery, requestedSource: TArticle, mapping: TLanguageMapping): TQuery {
-  if (query.mode !== 'languages' || !query.source || getArticleKey(query.source) !== getArticleKey(requestedSource)) return query
+  if (query.mode !== 'languages' || query.source !== requestedSource) return query
   const versions = new Map(mapping.versions.map((target) => [target.project, target]))
   const articles = query.articles.flatMap((target) => versions.get(target.project) ?? [])
   return { ...query, source: mapping.source, articles }

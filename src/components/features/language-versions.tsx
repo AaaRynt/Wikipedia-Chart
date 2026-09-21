@@ -9,7 +9,7 @@ import { wikidataApi } from '@/api/wikidata-api'
 import { Loading } from '@/components/features'
 import { Button } from '@/components/ui'
 import { getLanguageLabel, wikipediaLanguages } from '@/data/languages'
-import { getArticleKey, getArticleLabel } from '@/lib/article'
+import { getArticleLabel } from '@/lib/article'
 import { applyLanguageMapping, toggleLanguage } from '@/lib/comparison'
 
 type TMappingResult = { request: TArticle; mapping?: TLanguageMapping; error?: string }
@@ -17,8 +17,7 @@ type TMappingResult = { request: TArticle; mapping?: TLanguageMapping; error?: s
 export function LanguageVersions({ query, setQuery }: { query: TQuery; setQuery: Dispatch<SetStateAction<TQuery>> }) {
   const [result, setResult] = useState<TMappingResult | null>(null)
   const source = query.source
-  const sourceKey = source ? getArticleKey(source) : null
-  const current = result && (getArticleKey(result.request) === sourceKey || (result.mapping && getArticleKey(result.mapping.source) === sourceKey)) ? result : null
+  const current = result && (result.request === source || result.mapping?.source === source) ? result : null
 
   useEffect(() => {
     if (!source || current) return
