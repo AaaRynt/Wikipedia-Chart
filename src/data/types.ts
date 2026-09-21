@@ -1,13 +1,13 @@
 // src/data/types.ts
-export type TQuery = {
-  /**
-   *   {lang}.project
-   */
+export type TArticle = {
   project: string
-  /**
-   * Article titles for comparison. Spaces are replaced with underscores.
-   */
-  group: string[]
+  article: string
+  entityId?: string
+}
+
+export type TQuery = {
+  searchProject: string
+  articles: TArticle[]
   granularity: 'monthly' | 'daily'
   access: 'all-access' | 'desktop' | 'mobile-app' | 'mobile-web'
   agent: 'all-agents' | 'automated' | 'spider' | 'user'
@@ -40,8 +40,10 @@ export type TRes = {
 }
 
 export type TArticleSeries = {
-  article: string
+  target: TArticle
   items: TRes[]
+  status: 'success' | 'empty' | 'error'
+  error?: string
 }
 
 export type TKey = {
@@ -51,22 +53,23 @@ export type TKey = {
   align: 'start' | 'center' | 'end'
 }
 
-export type SearchResponse = {
+export type TSearchPage = {
+  pageid: number
+  index?: number
+  title: string
+  description?: string
+  pageprops?: { wikibase_item?: string }
+  thumbnail?: {
+    source: string
+    width: number
+    height: number
+  }
+}
+
+export type TSearchResponse = {
+  error?: { info?: string }
   query?: {
-    pages?: Record<
-      string,
-      {
-        pageid: number
-        index?: number
-        title: string
-        description?: string
-        thumbnail?: {
-          source: string
-          width: number
-          height: number
-        }
-      }
-    >
+    pages?: Record<string, TSearchPage>
   }
 }
 

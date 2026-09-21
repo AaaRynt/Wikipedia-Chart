@@ -1,18 +1,16 @@
 // src/data/default-query.ts
+import { format, subDays, subYears } from 'date-fns'
+
 import type { TQuery } from '@/data/types'
 
-const date = new Date()
-date.setDate(date.getDate() - 2)
-const yyyy = date.getFullYear(),
-  MM = String(date.getMonth() + 1).padStart(2, '0'),
-  dd = String(date.getDate()).padStart(2, '0')
+const end = subDays(new Date(), 2)
 
 export const defaultQuery: TQuery = {
-  project: 'en.wikipedia',
-  group: [],
+  searchProject: 'en.wikipedia',
+  articles: [],
   access: 'all-access',
   agent: 'user',
   granularity: 'daily',
-  start: `${yyyy - 1}${MM}${dd}`,
-  end: `${yyyy}${MM}${dd}`,
+  start: format(subYears(end, 1), 'yyyyMMdd'),
+  end: format(end, 'yyyyMMdd'),
 }

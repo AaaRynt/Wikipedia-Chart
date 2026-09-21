@@ -3,25 +3,19 @@ import { RiOpenaiFill } from '@remixicon/react'
 
 import type { TQuery } from '@/data/types'
 
+import { pageviewsApi } from '@/api/pageviews-api'
 import { Button } from '@/components/ui'
-import { formatKey } from '@/lib/format'
+import { getArticleLabel } from '@/lib/article'
 
 export function Ask({ query }: { query: TQuery }) {
   function buildPrompt(query: TQuery) {
-    function buildPageviewsUrl(query: TQuery, article: string) {
-      const segments = [query.project, query.access, query.agent, article, query.granularity, query.start, query.end].map(encodeURIComponent).join('/')
-
-      return 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/' + segments
-    }
-
-    const articles = query.group.map((article) => formatKey(article)).join(', '),
-      links = query.group.map((article) => `- ${formatKey(article)}: ${buildPageviewsUrl(query, article)}`).join('\n')
+    const articles = query.articles.map(getArticleLabel).join(', '),
+      links = query.articles.map((target) => `- ${getArticleLabel(target)}: ${pageviewsApi.buildUrl(query, target)}`).join('\n')
 
     return `Analyze the Wikimedia pageviews chart:
 
   Articles: ${articles}
   Date range: ${query.start} to ${query.end}
-  Project: ${query.project}
   Access: ${query.access}
   Agent: ${query.agent}
   Granularity: ${query.granularity}
@@ -31,7 +25,7 @@ export function Ask({ query }: { query: TQuery }) {
 
   Please explain the trend, compare the articles, identify spikes or unusual changes, and give possible real-world reasons. Keep the analysis concise and useful for understanding the chart.`
   }
-  const disabled = query.group.length === 0
+  const disabled = query.articles.length === 0
 
   return (
     <Button asChild={!disabled} variant="outline" size="icon-lg" disabled={disabled} aria-disabled={disabled} className="active:translate-y-0!">

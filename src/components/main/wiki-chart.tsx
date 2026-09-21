@@ -6,9 +6,9 @@ import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, X
 import type { TArticleSeries } from '@/data/types'
 
 import { Alert, AlertDescription, AlertTitle, CardContent } from '@/components/ui'
-import { formatKey } from '@/lib/format'
+import { getArticleKey, getArticleLabel } from '@/lib/article'
 
-type ChartDatum = {
+type TChartDatum = {
   time: number
   timestamp: string
   [key: string]: number | string
@@ -18,7 +18,8 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
   const lines = useMemo(
     () =>
       res.map((series, index) => ({
-        article: series.article,
+        label: getArticleLabel(series.target),
+        id: getArticleKey(series.target),
         key: `article_${index}`,
         color: `var(--chart-${(index % 5) + 1})`,
       })),
@@ -26,7 +27,7 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
   )
 
   const chartData = useMemo(() => {
-    const rows = new Map<number, ChartDatum>()
+    const rows = new Map<number, TChartDatum>()
 
     res.forEach((series, index) => {
       series.items.forEach((item) => {
@@ -52,7 +53,7 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
     () =>
       new Map(
         lines.map((line) => {
-          return [line.key, formatKey(line.article)]
+          return [line.key, line.label]
         }),
       ),
     [lines],
@@ -84,7 +85,7 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
   }
 
   return (
-    <CardContent className="h-full">
+    <CardContent className="min-h-0 flex-1">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={chartData}>
           <CartesianGrid stroke="var(--muted)" vertical={false} />
@@ -103,7 +104,7 @@ export function WikiChart({ res }: { res: TArticleSeries[] }) {
             formatter={(value, name) => [`${value}`, lineNames.get(String(name)) ?? String(name)]}
           />
           {lines.map((line) => (
-            <Line key={line.key} type="monotone" dataKey={line.key} name={formatKey(line.article)} stroke={line.color} strokeWidth={2} dot={false} activeDot={{ r: 2 }} />
+            <Line key={line.id} type="monotone" dataKey={line.key} name={line.label} stroke={line.color} strokeWidth={2} dot={false} activeDot={{ r: 2 }} />
           ))}
           <Legend />
         </LineChart>

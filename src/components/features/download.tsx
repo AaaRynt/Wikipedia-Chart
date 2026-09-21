@@ -1,20 +1,16 @@
-// src/components/ui/download.tsx
+// src/components/features/download.tsx
 import { toPng, toSvg } from 'html-to-image'
-import { ChartSplineIcon, DownloadIcon, FileImageIcon, FileJsonIcon } from 'lucide-react'
+import { ChartSplineIcon, DownloadIcon, FileImageIcon, FileJsonIcon, TriangleAlertIcon } from 'lucide-react'
 import { useState } from 'react'
 
 import type { TQuery } from '@/data/types'
 
+import { pageviewsApi } from '@/api/pageviews-api'
 import { Button, HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui'
 
 function buildFilename(query: TQuery) {
-  return `${query.group.join('_vs_')}_${query.start}-${query.end}`
-}
-
-function buildPageviewsUrl(query: TQuery, article: string) {
-  const segments = [query.project, query.access, query.agent, article, query.granularity, query.start, query.end].map(encodeURIComponent).join('/')
-
-  return 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/' + segments
+  const articles = query.articles.map((target) => `${target.project}-${target.article}`).join('_vs_')
+  return `${articles}_${query.start}-${query.end}`.replace(/[\\/:*?"<>|]/g, '_')
 }
 
 async function downloadPng(node: HTMLElement, filename: string) {
@@ -34,36 +30,9 @@ async function downloadSvg(node: HTMLElement, filename: string) {
 }
 
 async function downloadJson(query: TQuery, filename: string) {
-  const articles = await Promise.all(
-    query.group.map(async (article) => {
-      const url = buildPageviewsUrl(query, article)
-
-      try {
-        const res = await fetch(url)
-        const data = (await res.json()) as unknown
-
-        return {
-          article,
-          url,
-          ok: res.ok,
-          status: res.status,
-          statusText: res.statusText,
-          data,
-        }
-      } catch (error) {
-        return {
-          article,
-          url,
-          ok: false,
-          status: 0,
-          statusText: 'Network Error',
-          error: error instanceof Error ? error.message : String(error),
-          data: null,
-        }
-      }
-    }),
-  )
+  const articles = await pageviewsApi.getArticles(query)
   const payload = {
+    version: 2,
     exportedAt: new Date().toISOString(),
     query,
     articles,
@@ -79,24 +48,23 @@ async function downloadJson(query: TQuery, filename: string) {
 }
 
 export function Download({ query, chartReady, chartNode }: { query: TQuery; chartReady: boolean; chartNode: HTMLDivElement | null }) {
-  const [jsonLoading, setJsonLoading] = useState(false)
-  const hasGroup = query.group.length > 0
+  const [pending, setPending] = useState<'svg' | 'png' | 'json' | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const hasGroup = query.articles.length > 0
 
-  const handleSvg = async () => {
-    if (!chartNode) return
-    await downloadSvg(chartNode, buildFilename(query))
-  }
-  const handlePng = async () => {
-    if (!chartNode) return
-    await downloadPng(chartNode, buildFilename(query))
-  }
-  const handleJson = async () => {
-    if (!hasGroup || jsonLoading) return
-    setJsonLoading(true)
+  const handleDownload = async (kind: 'svg' | 'png' | 'json') => {
+    if (!hasGroup || pending || (kind !== 'json' && !chartNode)) return
+    setPending(kind)
+    setError(null)
     try {
-      await downloadJson(query, buildFilename(query))
+      const filename = buildFilename(query)
+      if (kind === 'json') await downloadJson(query, filename)
+      else if (kind === 'png') await downloadPng(chartNode!, filename)
+      else await downloadSvg(chartNode!, filename)
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Download failed')
     } finally {
-      setJsonLoading(false)
+      setPending(null)
     }
   }
 
@@ -104,20 +72,30 @@ export function Download({ query, chartReady, chartNode }: { query: TQuery; char
     <HoverCard openDelay={10} closeDelay={100}>
       <HoverCardTrigger asChild>
         <Button className="cursor-auto active:translate-y-0!" size="icon-lg" variant="outline" disabled={!hasGroup} aria-disabled={!hasGroup}>
-          <DownloadIcon />
-          <HoverCardContent className="flex w-auto gap-2 shadow-xl" side="bottom">
-            <Button className="cursor-pointer" variant="secondary" disabled={!chartReady} onClick={handleSvg}>
+          {error ? <TriangleAlertIcon aria-label={error} /> : <DownloadIcon />}
+          <HoverCardContent className="flex w-auto max-w-sm flex-wrap gap-2 shadow-xl" side="bottom">
+            <Button className="cursor-pointer" variant="secondary" disabled={!chartReady || pending !== null} onClick={() => handleDownload('svg')}>
               <ChartSplineIcon />
               <span className="font-mono">.svg</span>
             </Button>
-            <Button className="cursor-pointer" variant="secondary" disabled={!chartReady} onClick={handlePng}>
+            <Button className="cursor-pointer" variant="secondary" disabled={!chartReady || pending !== null} onClick={() => handleDownload('png')}>
               <FileImageIcon />
               <span className="font-mono">.png</span>
             </Button>
-            <Button className="cursor-pointer" variant="secondary" disabled={jsonLoading} onClick={handleJson}>
+            <Button className="cursor-pointer" variant="secondary" disabled={pending !== null} onClick={() => handleDownload('json')}>
               <FileJsonIcon />
               <span className="font-mono">.json</span>
             </Button>
+            {pending && (
+              <p role="status" className="w-full text-xs text-muted-foreground">
+                Exporting {pending.toUpperCase()}...
+              </p>
+            )}
+            {error && (
+              <p role="alert" className="w-full text-xs break-words text-destructive">
+                {error}
+              </p>
+            )}
           </HoverCardContent>
         </Button>
       </HoverCardTrigger>

@@ -1,0 +1,30 @@
+// src/components/app.tsx
+import { useEffect, useState } from 'react'
+
+import type { TQuery } from '@/data/types'
+
+import { Footer, Header, Main } from '@/components/layout'
+import { defaultQuery } from '@/data/default-query'
+import { formatQueryUrl, parseQueryUrl } from '@/lib/query-url'
+
+export function App() {
+  const [chartReady, setChartReady] = useState(false)
+  const [chartNode, setChartNode] = useState<HTMLDivElement | null>(null)
+  const [query, setQuery] = useState<TQuery>(() => {
+    if (typeof window === 'undefined') return defaultQuery
+    return parseQueryUrl(new URL(window.location.href), defaultQuery)
+  })
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.history.replaceState(null, '', formatQueryUrl(query, import.meta.env.BASE_URL ?? '/'))
+  }, [query])
+
+  return (
+    <div className="flex min-h-screen flex-col items-center bg-background text-foreground *:flex *:w-full *:items-center">
+      <Header query={query} setQuery={setQuery} chartReady={chartReady} chartNode={chartNode} />
+      <Main query={query} setQuery={setQuery} setChartReady={setChartReady} setChartNode={setChartNode} />
+      <Footer query={query} setQuery={setQuery} />
+    </div>
+  )
+}

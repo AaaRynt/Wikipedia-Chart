@@ -1,24 +1,33 @@
 // src/components/features/search.tsx
-// https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&prop=pageprops%7Cpageimages%7Cdescription&redirects=&ppprop=displaytitle&piprop=thumbnail&pithumbsize=100&pilimit=5&gpssearch=open&gpsnamespace=0&gpslimit=10&origin=*
 'use client'
 
-import 'lucide-react'
 import { SearchIcon, TextSearchIcon, XIcon } from 'lucide-react'
-import { type Dispatch, type SetStateAction, useEffect, useMemo, useState } from 'react'
+import { type Dispatch, type SetStateAction, useEffect, useState } from 'react'
 import { useDebounce } from 'use-debounce'
 
-import type { SearchResponse, TQuery } from '@/data/types'
+import type { TQuery, TSearchPage } from '@/data/types'
 
+import { wikipediaApi } from '@/api/wikipedia-api'
 import { Loading } from '@/components/features'
 import { Badge, Button, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut, ItemContent, ItemDescription, ItemMedia, ItemTitle, Kbd, KbdGroup } from '@/components/ui'
-import { formatKey } from '@/lib/format'
+import { getArticleKey, getArticleLabel, normalizeArticleTitle } from '@/lib/article'
+
+type TSearchResult = {
+  project: string
+  keyword: string
+  pages: TSearchPage[]
+  error: string | null
+}
 
 export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<SetStateAction<TQuery>> }) {
   const [open, setOpen] = useState(false),
     [keyword, setKeyword] = useState(''),
-    [loading, setLoading] = useState(false),
-    [pages, setPages] = useState<NonNullable<NonNullable<SearchResponse['query']>['pages']>[string][]>([]),
+    [result, setResult] = useState<TSearchResult | null>(null),
     [debouncedKeyword] = useDebounce(keyword, 200)
+  const currentResult = result?.project === query.searchProject && result.keyword === keyword.trim() ? result : null
+  const pages = currentResult?.pages ?? []
+  const error = currentResult?.error
+  const loading = open && keyword.trim().length > 0 && (keyword !== debouncedKeyword || !currentResult)
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
@@ -31,71 +40,61 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
   }, [])
   useEffect(() => {
     const nextKeyword = debouncedKeyword.trim()
-    if (!nextKeyword) {
-      setPages([])
-      setLoading(false)
-      return
-    }
+    if (!open || !nextKeyword) return
 
     const controller = new AbortController()
     const run = async () => {
-      setLoading(true)
       try {
-        const url = `https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&prop=pageprops|pageimages|description&redirects=&ppprop=displaytitle&piprop=thumbnail&pithumbsize=100&pilimit=5&gpssearch=${encodeURIComponent(nextKeyword)}&gpsnamespace=0&gpslimit=10&origin=*`
-        const res = await fetch(url, { signal: controller.signal })
-        const json = (await res.json()) as SearchResponse
-        const raw = json.query?.pages ?? {}
-        const list = Object.values(raw).sort((a, b) => (a.index ?? 0) - (b.index ?? 0))
-        setPages(list)
+        const list = await wikipediaApi.search(query.searchProject, nextKeyword, controller.signal)
+        if (!controller.signal.aborted) setResult({ project: query.searchProject, keyword: nextKeyword, pages: list, error: null })
       } catch (error) {
-        if ((error as Error).name !== 'AbortError') {
-          setPages([])
+        if (!controller.signal.aborted) {
+          setResult({ project: query.searchProject, keyword: nextKeyword, pages: [], error: error instanceof Error ? error.message : 'Search failed' })
         }
-      } finally {
-        setLoading(false)
       }
     }
 
     run()
     return () => controller.abort()
-  }, [debouncedKeyword])
+  }, [debouncedKeyword, query.searchProject, open])
 
-  const results = useMemo(() => pages, [pages])
-  const handleSelect = (title: string) => {
-    const article = title.replace(/\s+/g, '_')
+  const handleSelect = (page: TSearchPage) => {
+    const target = { project: query.searchProject, article: normalizeArticleTitle(page.title), ...(page.pageprops?.wikibase_item ? { entityId: page.pageprops.wikibase_item } : {}) }
     setQuery((prev) => {
-      if (prev.group.includes(article)) return prev
-      return { ...prev, group: [...prev.group, article] }
+      if (prev.articles.some((article) => getArticleKey(article) === getArticleKey(target))) return prev
+      return { ...prev, articles: [...prev.articles, target] }
     })
     setKeyword('')
+    setResult(null)
     setOpen(false)
   }
 
   return (
-    <div className="flex min-w-0 items-center gap-2">
-      <Button onClick={() => setOpen(true)} variant="outline" className="cursor-pointer rounded-full px-4 active:translate-y-0!">
+    <div className="flex min-w-0 flex-wrap items-center gap-2">
+      <Button onClick={() => setOpen(true)} variant="outline" className="shrink-0 cursor-pointer rounded-full px-4 active:translate-y-0!" aria-label="Search Wikipedia">
         <SearchIcon />
-        {query.group.length > 0 ? (
-          <div className="flex flex-wrap gap-1">
-            {query.group.map((title) => (
-              <Current
-                key={title}
-                title={title}
-                onRemove={() => {
-                  setQuery((prev) => ({ ...prev, group: prev.group.filter((item) => item !== title) }))
-                }}
-              />
-            ))}
-          </div>
-        ) : (
+        {query.articles.length === 0 && (
           <CommandShortcut>
             <KbdGroup>
-              <Kbd>{navigator.platform.toUpperCase().includes('MAC') ? '⌘' : 'Ctrl'}</Kbd>
+              <Kbd>{typeof navigator !== 'undefined' && navigator.platform.toUpperCase().includes('MAC') ? '⌘' : 'Ctrl'}</Kbd>
               <Kbd>K</Kbd>
             </KbdGroup>
           </CommandShortcut>
         )}
       </Button>
+      {query.articles.length > 0 && (
+        <div className="flex min-w-0 flex-wrap gap-1">
+          {query.articles.map((target) => (
+            <Current
+              key={getArticleKey(target)}
+              title={getArticleLabel(target)}
+              onRemove={() => {
+                setQuery((prev) => ({ ...prev, articles: prev.articles.filter((item) => getArticleKey(item) !== getArticleKey(target)) }))
+              }}
+            />
+          ))}
+        </div>
+      )}
       <CommandDialog open={open} onOpenChange={setOpen}>
         <Command shouldFilter={false}>
           <CommandInput placeholder="search..." value={keyword} onValueChange={setKeyword} />
@@ -104,12 +103,16 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
               <CommandEmpty>
                 <Loading size="small" />
               </CommandEmpty>
-            ) : results.length === 0 ? (
-              <CommandEmpty>No results found¯\_(ツ)_/¯</CommandEmpty>
+            ) : error ? (
+              <CommandEmpty>
+                <span role="alert">{error}</span>
+              </CommandEmpty>
+            ) : pages.length === 0 ? (
+              <CommandEmpty>{keyword.trim() ? 'No results found' : `Search ${query.searchProject}`}</CommandEmpty>
             ) : (
               <CommandGroup heading="Results">
-                {results.map((page) => (
-                  <CommandItem key={page.pageid} value={page.title} className="flex items-start gap-3" onSelect={() => handleSelect(page.title)}>
+                {pages.map((page) => (
+                  <CommandItem key={page.pageid} value={page.title} className="flex items-start gap-3" onSelect={() => handleSelect(page)}>
                     <ItemMedia variant={page.thumbnail?.source ? 'image' : 'icon'} className="flex size-10 items-center justify-center overflow-hidden rounded-sm">
                       {page.thumbnail?.source ? <img src={page.thumbnail.source} alt={page.title} className="h-full w-full object-cover" loading="lazy" /> : <TextSearchIcon />}
                     </ItemMedia>
@@ -130,13 +133,15 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
 
 const Current = ({ title, onRemove }: { title: string; onRemove: () => void }) => {
   return (
-    <Badge variant="secondary" className="h-7 cursor-auto gap-1 pr-1 pl-2">
-      {formatKey(title)}
+    <Badge variant="secondary" className="min-h-7 max-w-full cursor-auto gap-1 pr-1 pl-2">
+      <span className="min-w-0 truncate" title={title}>
+        {title}
+      </span>
       <Button
         type="button"
         size="icon-xs"
         variant="ghost"
-        aria-label={`Remove ${formatKey(title)}`}
+        aria-label={`Remove ${title}`}
         className="size-4 cursor-pointer rounded-sm p-2 text-muted-foreground hover:bg-ring! hover:text-secondary-foreground"
         onClick={(event) => {
           event.stopPropagation()

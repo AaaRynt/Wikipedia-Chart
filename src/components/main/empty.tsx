@@ -6,6 +6,7 @@ import type { TQuery } from '@/data/types'
 
 import { Alert, AlertDescription, AlertTitle, Badge, CardContent } from '@/components/ui'
 import { groups } from '@/data/prompts'
+import { normalizeArticleTitle } from '@/lib/article'
 import { fisherYates } from '@/lib/fisher–yates'
 import { formatKey } from '@/lib/format'
 
@@ -31,7 +32,7 @@ export function Empty({ setQuery }: { setQuery: Dispatch<SetStateAction<TQuery>>
                 variant="outline"
                 className="h-auto min-h-7 cursor-pointer gap-2 bg-secondary px-3 py-1 transition hover:brightness-125"
                 onClick={() => {
-                  setQuery((prev) => ({ ...prev, group: entry.group }))
+                  setQuery((prev) => ({ ...prev, searchProject: 'en.wikipedia', articles: entry.group.map((article) => ({ project: 'en.wikipedia', article: normalizeArticleTitle(article) })) }))
                 }}
               >
                 {entry.kind === 'preset-group' ? (
