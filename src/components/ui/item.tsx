@@ -1,9 +1,10 @@
-import { type VariantProps, cva } from 'class-variance-authority'
-import { Slot } from 'radix-ui'
+import { mergeProps } from '@base-ui/react/merge-props'
+import { useRender } from '@base-ui/react/use-render'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from 'cn'
 import * as React from 'react'
 
 import { Separator } from '@/components/ui/separator'
-import { cn } from '@/lib/utils'
 
 function ItemGroup({ className, ...props }: React.ComponentProps<'div'>) {
   return <div role="list" data-slot="item-group" className={cn('group/item-group flex w-full flex-col gap-4 has-data-[size=sm]:gap-2.5 has-data-[size=xs]:gap-2', className)} {...props} />
@@ -13,12 +14,12 @@ function ItemSeparator({ className, ...props }: React.ComponentProps<typeof Sepa
   return <Separator data-slot="item-separator" orientation="horizontal" className={cn('my-2', className)} {...props} />
 }
 
-const itemVariants = cva('group/item focus-visible:border-ring focus-visible:ring-ring/50 [a]:hover:bg-muted flex w-full flex-wrap items-center rounded-md border text-sm transition-colors duration-100 outline-none focus-visible:ring-[3px] [a]:transition-colors', {
+const itemVariants = cva('group/item flex w-full flex-wrap items-center rounded-md border text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted', {
   variants: {
     variant: {
       default: 'border-transparent',
       outline: 'border-border',
-      muted: 'bg-muted/50 border-transparent',
+      muted: 'border-transparent bg-muted/50',
     },
     size: {
       default: 'gap-3.5 px-4 py-3.5',
@@ -32,9 +33,22 @@ const itemVariants = cva('group/item focus-visible:border-ring focus-visible:rin
   },
 })
 
-function Item({ className, variant = 'default', size = 'default', asChild = false, ...props }: React.ComponentProps<'div'> & VariantProps<typeof itemVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot.Root : 'div'
-  return <Comp data-slot="item" data-variant={variant} data-size={size} className={cn(itemVariants({ variant, size, className }))} {...props} />
+function Item({ className, variant = 'default', size = 'default', render, ...props }: useRender.ComponentProps<'div'> & VariantProps<typeof itemVariants>) {
+  return useRender({
+    defaultTagName: 'div',
+    props: mergeProps<'div'>(
+      {
+        className: cn(itemVariants({ variant, size, className })),
+      },
+      props,
+    ),
+    render,
+    state: {
+      slot: 'item',
+      variant,
+      size,
+    },
+  })
 }
 
 const itemMediaVariants = cva('flex shrink-0 items-center justify-center gap-2 group-has-data-[slot=item-description]/item:translate-y-0.5 group-has-data-[slot=item-description]/item:self-start [&_svg]:pointer-events-none', {

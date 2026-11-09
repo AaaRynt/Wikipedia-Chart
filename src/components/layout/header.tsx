@@ -6,7 +6,7 @@ import { RiGithubFill } from '@remixicon/react'
 import type { TQuery } from '@/data/types'
 
 import { Ask, Download, Search, ThemeToggle } from '@/components/features'
-import { Button, ButtonGroup } from '@/components/ui'
+import { buttonVariants, ButtonGroup } from '@/components/ui'
 
 export function Header({ query, setQuery, chartReady, chartNode }: { query: TQuery; setQuery: Dispatch<SetStateAction<TQuery>>; chartReady: boolean; chartNode: HTMLDivElement | null }) {
   return (
@@ -22,11 +22,19 @@ export function Header({ query, setQuery, chartReady, chartNode }: { query: TQue
           <Download query={query} chartReady={chartReady} chartNode={chartNode} />
           <ThemeToggle />
         </ButtonGroup>
-        <Button asChild variant="outline" size="icon-lg" className="active:translate-y-0!">
-          <a href="https://github.com/AaaRynt/Wikipedia-Chart" target="_blank" rel="noreferrer">
-            <RiGithubFill />
-          </a>
-        </Button>
+        <a
+          href="https://github.com/AaaRynt/Wikipedia-Chart"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Open GitHub repository"
+          className={buttonVariants({
+            variant: 'outline',
+            size: 'icon-lg',
+            className: 'active:translate-y-0!',
+          })}
+        >
+          <RiGithubFill />
+        </a>
       </div>
     </header>
   )

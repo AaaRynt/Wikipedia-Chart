@@ -3,7 +3,7 @@ import { RiOpenaiFill } from '@remixicon/react'
 
 import type { TQuery } from '@/data/types'
 
-import { Button } from '@/components/ui'
+import { Button, buttonVariants } from '@/components/ui'
 import { formatKey } from '@/lib/format'
 
 export function Ask({ query }: { query: TQuery }) {
@@ -33,15 +33,23 @@ export function Ask({ query }: { query: TQuery }) {
   }
   const disabled = query.group.length === 0
 
-  return (
-    <Button asChild={!disabled} variant="outline" size="icon-lg" disabled={disabled} aria-disabled={disabled} className="active:translate-y-0!">
-      {disabled ? (
-        <RiOpenaiFill />
-      ) : (
-        <a href={`https://chatgpt.com/?prompt=${encodeURIComponent(buildPrompt(query))}`} target="_blank" rel="noreferrer" aria-label="Ask ChatGPT to analyze chart">
-          <RiOpenaiFill />
-        </a>
-      )}
+  return disabled ? (
+    <Button variant="outline" size="icon-lg" disabled aria-label="Ask ChatGPT to analyze chart" className="active:translate-y-0!">
+      <RiOpenaiFill />
     </Button>
+  ) : (
+    <a
+      href={`https://chatgpt.com/?prompt=${encodeURIComponent(buildPrompt(query))}`}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Ask ChatGPT to analyze chart"
+      className={buttonVariants({
+        variant: 'outline',
+        size: 'icon-lg',
+        className: 'active:translate-y-0!',
+      })}
+    >
+      <RiOpenaiFill />
+    </a>
   )
 }

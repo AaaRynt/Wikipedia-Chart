@@ -5,20 +5,22 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { formatKey } from '@/lib/format'
 
 export function KeySelect({ pKey, value, onValueChange }: { pKey: TKey; value?: string; onValueChange?: (value: string) => void }) {
-  const Icon = pKey.svg[0]
+  const selectedIndex = Math.max(0, pKey.value.indexOf(value ?? pKey.value[0]))
+  const Icon = pKey.svg[selectedIndex]
   return (
-    <Select value={value} onValueChange={onValueChange}>
+    <Select
+      value={value}
+      onValueChange={(next) => {
+        if (next !== null) onValueChange?.(next)
+      }}
+    >
       <SelectTrigger className="w-33 cursor-pointer">
-        <SelectValue
-          placeholder={
-            <>
-              <Icon className="text-muted-foreground" />
-              {formatKey(pKey.value[0], false)}
-            </>
-          }
-        />
+        <SelectValue>
+          <Icon className="text-muted-foreground" />
+          {formatKey(value ?? pKey.value[0], false)}
+        </SelectValue>
       </SelectTrigger>
-      <SelectContent position="popper" align={pKey.align}>
+      <SelectContent alignItemWithTrigger={false} align={pKey.align}>
         <SelectGroup>
           <SelectLabel>{formatKey(pKey.label, false)}</SelectLabel>
           {pKey.value.map((value, index) => {

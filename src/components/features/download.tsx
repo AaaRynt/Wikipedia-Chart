@@ -101,26 +101,24 @@ export function Download({ query, chartReady, chartNode }: { query: TQuery; char
   }
 
   return (
-    <HoverCard openDelay={10} closeDelay={100}>
-      <HoverCardTrigger asChild>
-        <Button className="cursor-auto active:translate-y-0!" size="icon-lg" variant="outline" disabled={!hasGroup} aria-disabled={!hasGroup}>
-          <DownloadIcon />
-          <HoverCardContent className="flex w-auto gap-2 shadow-xl" side="bottom">
-            <Button className="cursor-pointer" variant="secondary" disabled={!chartReady} onClick={handleSvg}>
-              <ChartSplineIcon />
-              <span className="font-mono">.svg</span>
-            </Button>
-            <Button className="cursor-pointer" variant="secondary" disabled={!chartReady} onClick={handlePng}>
-              <FileImageIcon />
-              <span className="font-mono">.png</span>
-            </Button>
-            <Button className="cursor-pointer" variant="secondary" disabled={jsonLoading} onClick={handleJson}>
-              <FileJsonIcon />
-              <span className="font-mono">.json</span>
-            </Button>
-          </HoverCardContent>
-        </Button>
+    <HoverCard>
+      <HoverCardTrigger delay={10} closeDelay={100} render={<Button className="cursor-auto active:translate-y-0!" size="icon-lg" variant="outline" disabled={!hasGroup} aria-label="Download chart" />}>
+        <DownloadIcon />
       </HoverCardTrigger>
+      <HoverCardContent className="flex w-auto gap-2 shadow-xl" side="bottom">
+        <Button className="cursor-pointer" variant="secondary" disabled={!chartReady} onClick={handleSvg}>
+          <ChartSplineIcon />
+          <span className="font-mono">.svg</span>
+        </Button>
+        <Button className="cursor-pointer" variant="secondary" disabled={!chartReady} onClick={handlePng}>
+          <FileImageIcon />
+          <span className="font-mono">.png</span>
+        </Button>
+        <Button className="cursor-pointer" variant="secondary" disabled={jsonLoading} onClick={handleJson}>
+          <FileJsonIcon />
+          <span className="font-mono">.json</span>
+        </Button>
+      </HoverCardContent>
     </HoverCard>
   )
 }

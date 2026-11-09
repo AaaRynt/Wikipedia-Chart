@@ -24,21 +24,19 @@ export function DatePickerWithRange({ value, onChange }: { value?: DateRange; on
   return (
     <Field className="w-60">
       <Popover>
-        <PopoverTrigger asChild>
-          <Button variant="outline" id="date-picker-range" className="cursor-pointer justify-start font-normal">
-            <CalendarRangeIcon />
-            {date?.from ? (
-              date.to ? (
-                <>
-                  {format(date.from, 'yyyy, M/d')} - {format(date.to, 'yyyy, M/d')}
-                </>
-              ) : (
-                format(date.from, 'yyyy, M/d')
-              )
+        <PopoverTrigger render={<Button variant="outline" id="date-picker-range" className="cursor-pointer justify-start font-normal" />}>
+          <CalendarRangeIcon />
+          {date?.from ? (
+            date.to ? (
+              <>
+                {format(date.from, 'yyyy, M/d')} - {format(date.to, 'yyyy, M/d')}
+              </>
             ) : (
-              <span>Pick a date</span>
-            )}
-          </Button>
+              format(date.from, 'yyyy, M/d')
+            )
+          ) : (
+            <span>Pick a date</span>
+          )}
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar

@@ -1,12 +1,12 @@
 'use client'
 
 import { Command as CommandPrimitive } from 'cmdk'
+import { cn } from 'cn'
 import { CheckIcon, SearchIcon } from 'lucide-react'
 import * as React from 'react'
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { InputGroup, InputGroupAddon } from '@/components/ui/input-group'
-import { cn } from '@/lib/utils'
 
 function Command({ className, ...props }: React.ComponentProps<typeof CommandPrimitive>) {
   return <CommandPrimitive data-slot="command" className={cn('flex size-full flex-col overflow-hidden rounded-xl! bg-popover p-1 text-popover-foreground', className)} {...props} />
@@ -19,7 +19,8 @@ function CommandDialog({
   className,
   showCloseButton = false,
   ...props
-}: React.ComponentProps<typeof Dialog> & {
+}: Omit<React.ComponentProps<typeof Dialog>, 'children'> & {
+  children?: React.ReactNode
   title?: string
   description?: string
   className?: string
@@ -27,11 +28,11 @@ function CommandDialog({
 }) {
   return (
     <Dialog {...props}>
-      <DialogHeader className="sr-only">
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>{description}</DialogDescription>
-      </DialogHeader>
       <DialogContent className={cn('top-1/3 translate-y-0 overflow-hidden rounded-xl! p-0', className)} showCloseButton={showCloseButton}>
+        <DialogHeader className="sr-only">
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
+        </DialogHeader>
         {children}
       </DialogContent>
     </Dialog>

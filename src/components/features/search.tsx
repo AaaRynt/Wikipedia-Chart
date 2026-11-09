@@ -72,8 +72,8 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
   }
 
   return (
-    <div className="relative flex min-w-0 items-center gap-2 pr-1.5 pl-8">
-      <Button onClick={() => setOpen(true)} variant="outline" className="absolute z-1 h-10 w-full -translate-x-8 cursor-pointer justify-start rounded-full pl-2 active:translate-y-0!" aria-label="Open search">
+    <div className="relative flex min-w-22 items-center gap-2 pr-1.5 pl-8">
+      <Button onClick={() => setOpen(true)} variant="outline" className="absolute z-1 h-10 w-full min-w-22 -translate-x-8 cursor-pointer justify-start rounded-full pl-2 active:translate-y-0!" aria-label="Open search">
         <SearchIcon />
         {query.group.length === 0 && (
           <CommandShortcut>
