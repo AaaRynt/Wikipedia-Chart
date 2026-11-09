@@ -1,6 +1,2 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-echo "Generating tokei.yaml and running Oxfmt..."
-tokei -o yaml > tokei.yaml
-git add tokei.yaml
-pnpm exec oxfmt --write .
+node "$(dirname "$0")/format-staged.cjs"

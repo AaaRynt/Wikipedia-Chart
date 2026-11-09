@@ -23,5 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+# next.js
+/.next/
+/out/
+
 temp.*
 t.*
+todo.*

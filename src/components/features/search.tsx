@@ -72,22 +72,10 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
   }
 
   return (
-    <div className="flex min-w-0 items-center gap-2">
-      <Button onClick={() => setOpen(true)} variant="outline" className="cursor-pointer rounded-full px-4 active:translate-y-0!">
+    <div className="relative flex min-w-0 items-center gap-2 pr-1.5 pl-8">
+      <Button onClick={() => setOpen(true)} variant="outline" className="absolute z-1 h-10 w-full -translate-x-8 cursor-pointer justify-start rounded-full pl-2 active:translate-y-0!" aria-label="Open search">
         <SearchIcon />
-        {query.group.length > 0 ? (
-          <div className="flex flex-wrap gap-1">
-            {query.group.map((title) => (
-              <Current
-                key={title}
-                title={title}
-                onRemove={() => {
-                  setQuery((prev) => ({ ...prev, group: prev.group.filter((item) => item !== title) }))
-                }}
-              />
-            ))}
-          </div>
-        ) : (
+        {query.group.length === 0 && (
           <CommandShortcut>
             <KbdGroup>
               <Kbd>{navigator.platform.toUpperCase().includes('MAC') ? '⌘' : 'Ctrl'}</Kbd>
@@ -96,6 +84,22 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
           </CommandShortcut>
         )}
       </Button>
+      {query.group.length > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {query.group.map((title) => (
+            <Current
+              key={title}
+              title={title}
+              onRemove={() => {
+                setQuery((prev) => ({
+                  ...prev,
+                  group: prev.group.filter((item) => item !== title),
+                }))
+              }}
+            />
+          ))}
+        </div>
+      )}
       <CommandDialog open={open} onOpenChange={setOpen}>
         <Command shouldFilter={false}>
           <CommandInput placeholder="search..." value={keyword} onValueChange={setKeyword} />
@@ -130,14 +134,14 @@ export function Search({ query, setQuery }: { query: TQuery; setQuery: Dispatch<
 
 const Current = ({ title, onRemove }: { title: string; onRemove: () => void }) => {
   return (
-    <Badge variant="secondary" className="h-7 cursor-auto gap-1 pr-1 pl-2">
+    <Badge variant="secondary" className="z-2 h-7 cursor-auto gap-1 pr-1 pl-2">
       {formatKey(title)}
       <Button
         type="button"
         size="icon-xs"
         variant="ghost"
         aria-label={`Remove ${formatKey(title)}`}
-        className="size-4 cursor-pointer rounded-sm p-2 text-muted-foreground hover:bg-ring! hover:text-secondary-foreground"
+        className="cursor-pointer rounded-full text-muted-foreground hover:bg-ring! hover:text-secondary-foreground"
         onClick={(event) => {
           event.stopPropagation()
           onRemove()

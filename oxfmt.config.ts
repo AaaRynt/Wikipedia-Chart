@@ -10,6 +10,7 @@ export default defineConfig({
   sortTailwindcss: {
     stylesheet: './src/index.css',
     functions: ['clsx', 'cn'],
-    preserveWhitespace: true,
+    preserveWhitespace: false,
+    preserveDuplicates: false,
   },
 })

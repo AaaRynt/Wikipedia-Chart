@@ -45,7 +45,7 @@ export function App() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const base = import.meta.env.BASE_URL ?? '/',
+    const base = '/',
       normalizedBase = base.endsWith('/') ? base : `${base}/`,
       nextPath = query.group.length > 0 ? `${normalizedBase}${query.project}/${query.access}/${query.agent}/${formatGroup(query.group)}/${query.granularity}/${query.start}/${query.end}` : normalizedBase
 
